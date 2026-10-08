@@ -121,14 +121,20 @@ def main() -> int:
             }
         )
 
+    out = hf / "audio_meta.json"
     existing_sfx = []
     existing_bgm = None
-    out = hf / "audio_meta.json"
     if out.is_file():
         try:
-            prev = read_json(out)
-            existing_sfx = prev.get("sfx") or []
-            existing_bgm = prev.get("bgm")
+            old = read_json(out)
+            existing_sfx = old.get("sfx") or []
+            existing_bgm = old.get("bgm")
+        except Exception:
+            pass
+    if not existing_sfx and (hf / "audio_engine_meta.json").is_file():
+        try:
+            aem = read_json(hf / "audio_engine_meta.json")
+            existing_sfx = aem.get("sfx") or []
         except Exception:
             pass
 

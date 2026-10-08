@@ -6,9 +6,10 @@ Pick one pattern per storyboard scene. Match the narration concept, not the refe
 
 **When:** Opening claim, villain/surprise reaction, brand “didn’t see this coming”.  
 **Layout:** Centered cutout subject with **thick white border + soft shadow**; optional faded brand mark behind; dual-tone caption below.  
+**Asset:** Real photo/PNG cutout of the subject (downloaded + cached). Border is CSS; the face/product is an `<img>`.  
 **Motion:** Pop/scale-in sticker → caption words.  
 **Ref:** `refs/ref_01.jpg`  
-**Do not:** paste reference celebrity pixels; commission/source a new cutout or use abstract icon.
+**Do not:** invent SVG brand marks; do not paste reference celebrity pixels.
 
 ## B — Big number + device
 

@@ -19,6 +19,7 @@ Use with `/hyperframe-video-director`. This pack **replaces Step 4 style analysi
 2. **Grammar only.** Do not copy reference frames, celebrity cutouts, product screenshots, or logos verbatim. Rebuild equivalent compositions with original / licensed assets.
 3. **Voice-over owns timing.** Captions and cuts follow the user’s VO transcript, not the reference’s edit.
 4. **Live motion + SFX.** Even though the reference often *looks* like hard cuts, every scene needs GSAP pop/float entrances and boundary SFX (`whoosh`/`pop`/`hit`). Mix in `zoom-through` / `push-slide` / `crossfade` on ~half of boundaries so the piece is not a silent slideshow. Follow parent [../../references/motion-and-sfx.md](../../references/motion-and-sfx.md).
+5. **Real images inside the chrome.** Sticker / floating-card / laptop patterns must wrap a **downloaded, narration-relevant** photo or UI screenshot — not hand-drawn SVG logos or empty cards. Follow [../../references/asset-research.md](../../references/asset-research.md).
 
 ## When to load
 

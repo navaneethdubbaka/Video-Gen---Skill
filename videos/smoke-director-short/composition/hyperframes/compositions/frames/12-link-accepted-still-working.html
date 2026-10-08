@@ -8,21 +8,18 @@
   >
     <div class="f12-bg"></div>
     <div class="f12-container">
-      <div class="f12-badge-check" id="f12-check">
-        <div class="f12-check-circle">
-          <svg viewBox="0 0 24 24" width="76" height="76" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
+
+      <div class="f12-sticker-wrap" id="f12-card">
+        <div class="f12-badge" id="f12-badge">VERIFIED 200 OK</div>
+        <div class="f12-img-card">
+          <img class="f12-hero-img" src="assets/images/84ec0f1a3c0882c7_4b9fb9095a98f86a.png" alt="link accepted" />
         </div>
-        <div class="f12-tag" id="f12-tag">SERVER RESPONSE: 200 OK</div>
+      </div>
+      <div class="f12-text-card" id="f12-text">
+        <h1 class="f12-title">link accepted</h1>
+        <p class="f12-subtitle">still working on server</p>
       </div>
 
-      <div class="f12-headline" id="f12-headline">
-        <h1 class="f12-h1">
-          <span class="f12-green">link accepted</span><br>
-          <span class="f12-sub">still working.</span>
-        </h1>
-      </div>
     </div>
   </div>
 
@@ -45,81 +42,108 @@
     }
     .f12-container {
       position: absolute;
-      top: 400px;
-      left: 80px;
-      right: 80px;
+      top: 340px;
+      left: 70px;
+      right: 70px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 36px;
+      gap: 40px;
     }
-    .f12-badge-check {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
+    .f12-sticker-wrap {
+      position: relative;
+      filter: drop-shadow(0 26px 44px rgba(0,0,0,0.12));
       transform-origin: center center;
+      max-width: 940px;
+      width: 100%;
     }
-    .f12-check-circle {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
+    .f12-badge {
+      position: absolute;
+      top: -18px;
+      right: 28px;
       background: #10B981;
-      border: 8px solid #FFFFFF;
-      box-shadow: 0 24px 50px rgba(16, 185, 129, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .f12-tag {
-      background: #111111;
-      color: #5EFC8D;
-      font-size: 19px;
+      color: #FFFFFF;
+      font-size: 22px;
       font-weight: 800;
       letter-spacing: 0.08em;
-      padding: 6px 20px;
+      padding: 8px 24px;
       border-radius: 999px;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.14);
+      z-index: 10;
     }
-    .f12-headline {
+    .f12-img-card {
+      background: #FFFFFF;
+      border-radius: 36px;
+      padding: 16px;
+      border: 6px solid #FFFFFF;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .f12-hero-img {
+      width: 100%;
+      height: auto;
+      max-height: 820px;
+      object-fit: contain;
+      border-radius: 24px;
+      display: block;
+    }
+    .f12-text-card {
       text-align: center;
+      max-width: 900px;
+      width: 100%;
     }
-    .f12-h1 {
+    .f12-title {
       margin: 0;
-      font-size: 78px;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-    }
-    .f12-green {
-      color: #10B981;
+      font-size: 72px;
       font-weight: 900;
-    }
-    .f12-sub {
+      line-height: 1.15;
+      letter-spacing: -0.03em;
       color: #111111;
-      font-size: 64px;
-      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .f12-subtitle {
+      margin: 14px 0 0 0;
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1.25;
+      color: #52525B;
     }
   </style>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
   <script>
     (function() {
       var tl = gsap.timeline({ paused: true });
-      tl.from("#f12-check", {
-        scale: 0.3,
+
+      tl.from("#f12-card", {
+        scale: 0.7,
         opacity: 0,
-        duration: 0.45,
-        ease: "back.out(2.4)"
+        duration: 0.5,
+        ease: "back.out(1.8)"
       }, 0);
-      tl.from("#f12-tag", {
+      tl.from("#f12-badge", {
         scale: 0,
-        duration: 0.3,
+        opacity: 0,
+        duration: 0.35,
         ease: "back.out(2)"
       }, 0.15);
-      tl.from("#f12-headline", {
+      tl.from("#f12-text", {
         opacity: 0,
-        y: 25,
-        duration: 0.35,
+        y: 30,
+        duration: 0.45,
         ease: "power2.out"
-      }, 0.2);
+      }, 0.25);
+      tl.to("#f12-card", {
+        scale: 1.02,
+        duration: 0.9,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1
+      }, 0.5);
+
       tl.to({}, { duration: 1.92 }, 0);
       window.__timelines = window.__timelines || {};
       window.__timelines["12-link-accepted-still-working"] = tl;

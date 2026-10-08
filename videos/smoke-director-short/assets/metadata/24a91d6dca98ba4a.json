@@ -1,0 +1,16 @@
+{
+  "file": "assets/images/24a91d6dca98ba4a_823eabe988d4e622.png",
+  "source": "rendered_scene_07",
+  "query": "base64 encoding code terminal decode",
+  "query_key": "24a91d6dca98ba4a",
+  "kind": "images",
+  "dimensions": [
+    1080,
+    1080
+  ],
+  "usage": [
+    "scene_07"
+  ],
+  "sha256": "823eabe988d4e622415a5748847284f005dab0b2093f61c2229fe98fc15cb8c9",
+  "cached_at": "2026-10-08T08:49:16.387614+00:00"
+}

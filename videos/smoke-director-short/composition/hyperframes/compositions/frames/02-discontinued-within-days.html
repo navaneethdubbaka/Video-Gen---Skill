@@ -8,22 +8,15 @@
   >
     <div class="f02-bg"></div>
     <div class="f02-container">
-      <div class="f02-pill-badge" id="f02-pill">
-        <span class="f02-dot"></span> TIMELINE
-      </div>
 
-      <div class="f02-content" id="f02-headline">
-        <div class="f02-word-alert" id="f02-w1">discontinued</div>
-        <div class="f02-word-sub" id="f02-w2">within days.</div>
-      </div>
-
-      <div class="f02-meter-card" id="f02-meter">
-        <div class="f02-meter-label">LIFESPAN</div>
-        <div class="f02-meter-bar">
-          <div class="f02-meter-fill" id="f02-fill"></div>
+      <div class="f02-badge" id="f02-badge">ALERT</div>
+      <div class="f02-text-card" id="f02-card">
+        <div id="f02-text">
+          <h1 class="f02-title">discontinued</h1>
+          <p class="f02-subtitle">within a few days</p>
         </div>
-        <div class="f02-meter-val" id="f02-val">&lt; 7 DAYS ACTIVE</div>
       </div>
+
     </div>
   </div>
 
@@ -46,108 +39,102 @@
     }
     .f02-container {
       position: absolute;
-      top: 420px;
-      left: 80px;
-      right: 80px;
+      top: 340px;
+      left: 70px;
+      right: 70px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 36px;
+      gap: 40px;
     }
-    .f02-pill-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: #111111;
-      color: #FFFFFF;
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      padding: 10px 28px;
-      border-radius: 999px;
-    }
-    .f02-dot {
-      width: 12px;
-      height: 12px;
-      background: #EF4444;
-      border-radius: 50%;
-    }
-    .f02-content {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
-    .f02-word-alert {
-      font-size: 88px;
-      font-weight: 900;
-      color: #EF4444;
-      letter-spacing: -0.04em;
-      line-height: 1;
-      text-transform: lowercase;
+    .f02-sticker-wrap {
+      position: relative;
+      filter: drop-shadow(0 26px 44px rgba(0,0,0,0.12));
       transform-origin: center center;
+      max-width: 940px;
+      width: 100%;
     }
-    .f02-word-sub {
-      font-size: 68px;
-      font-weight: 800;
-      color: #111111;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-    }
-    .f02-meter-card {
-      margin-top: 24px;
-      background: #FFFFFF;
-      border-radius: 28px;
-      padding: 28px 44px;
-      width: 580px;
-      box-shadow: 0 20px 48px rgba(0,0,0,0.06);
-      border: 1px solid rgba(0,0,0,0.06);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .f02-meter-label {
-      font-size: 20px;
-      font-weight: 800;
-      color: #8A8A8A;
-      letter-spacing: 0.06em;
-    }
-    .f02-meter-bar {
-      height: 16px;
-      background: #E5E7EB;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-    .f02-meter-fill {
-      width: 18%;
-      height: 100%;
+    .f02-badge {
+      position: absolute;
+      top: -18px;
+      right: 28px;
       background: #EF4444;
-      border-radius: 999px;
-      transform-origin: left center;
-    }
-    .f02-meter-val {
-      font-size: 24px;
+      color: #FFFFFF;
+      font-size: 22px;
       font-weight: 800;
-      color: #EF4444;
-      text-align: right;
+      letter-spacing: 0.08em;
+      padding: 8px 24px;
+      border-radius: 999px;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.14);
+      z-index: 10;
+    }
+    .f02-img-card {
+      background: #FFFFFF;
+      border-radius: 36px;
+      padding: 16px;
+      border: 6px solid #FFFFFF;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .f02-hero-img {
+      width: 100%;
+      height: auto;
+      max-height: 820px;
+      object-fit: contain;
+      border-radius: 24px;
+      display: block;
+    }
+    .f02-text-card {
+      text-align: center;
+      max-width: 900px;
+      width: 100%;
+    }
+    .f02-title {
+      margin: 0;
+      font-size: 72px;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: #111111;
+      text-transform: uppercase;
+    }
+    .f02-subtitle {
+      margin: 14px 0 0 0;
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1.25;
+      color: #52525B;
     }
   </style>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
   <script>
     (function() {
       var tl = gsap.timeline({ paused: true });
-      tl.from("#f02-pill", { opacity: 0, y: -25, duration: 0.35 }, 0);
-      tl.from("#f02-w1", {
-        scale: 0.3,
+
+      tl.from("#f02-card", {
+        scale: 2.2,
         opacity: 0,
-        rotation: -4,
-        duration: 0.5,
-        ease: "back.out(2.4)"
-      }, 0.1);
-      tl.from("#f02-w2", { opacity: 0, y: 30, duration: 0.4, ease: "power2.out" }, 0.25);
-      tl.from("#f02-meter", { opacity: 0, y: 40, duration: 0.5, ease: "power3.out" }, 0.35);
-      tl.from("#f02-fill", { scaleX: 0, duration: 0.6, ease: "power2.out" }, 0.5);
+        duration: 0.45,
+        ease: "power4.out"
+      }, 0);
+      tl.from("#f02-badge", {
+        scale: 0,
+        opacity: 0,
+        duration: 0.35,
+        ease: "back.out(2)"
+      }, 0.15);
+      tl.to("#f02-card", {
+        x: "+=8",
+        yoyo: true,
+        repeat: 5,
+        duration: 0.05,
+        ease: "sine.inOut"
+      }, 0.45);
+
       tl.to({}, { duration: 2.36 }, 0);
       window.__timelines = window.__timelines || {};
       window.__timelines["02-discontinued-within-days"] = tl;

@@ -8,25 +8,18 @@
   >
     <div class="f07-bg"></div>
     <div class="f07-container">
-      <div class="f07-code-card" id="f07-card">
-        <div class="f07-code-top">
-          <span class="f07-fn-label">ANALYSIS RESULT</span>
-          <span class="f07-badge-code">RAW STRING</span>
-        </div>
-        <div class="f07-code-body">
-          <div class="f07-code-arrow">➜</div>
-          <div class="f07-code-string">atob(token)</div>
+
+      <div class="f07-sticker-wrap" id="f07-card">
+        <div class="f07-badge" id="f07-badge">ANALYSIS REVEAL</div>
+        <div class="f07-img-card">
+          <img class="f07-hero-img" src="assets/images/24a91d6dca98ba4a_823eabe988d4e622.png" alt="base64" />
         </div>
       </div>
-
-      <div class="f07-reveal-text" id="f07-reveal">
-        <div class="f07-base64-word">base64</div>
-        <div class="f07-encoding-word">encoding.</div>
+      <div class="f07-text-card" id="f07-text">
+        <h1 class="f07-title">base64</h1>
+        <p class="f07-subtitle">encoding discovered</p>
       </div>
 
-      <div class="f07-tag-pill" id="f07-pill">
-        STANDARD ENCODING ONLY
-      </div>
     </div>
   </div>
 
@@ -49,108 +42,108 @@
     }
     .f07-container {
       position: absolute;
-      top: 380px;
-      left: 80px;
-      right: 80px;
+      top: 340px;
+      left: 70px;
+      right: 70px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 40px;
     }
-    .f07-code-card {
-      width: 620px;
-      background: #111111;
-      border-radius: 32px;
-      padding: 36px 44px;
-      box-shadow: 0 28px 65px rgba(0,0,0,0.18);
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .f07-code-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .f07-fn-label {
-      color: #9CA3AF;
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-    }
-    .f07-badge-code {
-      background: #27272A;
-      color: #5EFC8D;
-      font-size: 16px;
-      font-weight: 800;
-      padding: 6px 16px;
-      border-radius: 8px;
-      letter-spacing: 0.05em;
-    }
-    .f07-code-body {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      font-family: monospace;
-      font-size: 40px;
-      color: #FFFFFF;
-      font-weight: 700;
-    }
-    .f07-code-arrow {
-      color: #5EFC8D;
-    }
-    .f07-reveal-text {
-      text-align: center;
+    .f07-sticker-wrap {
+      position: relative;
+      filter: drop-shadow(0 26px 44px rgba(0,0,0,0.12));
       transform-origin: center center;
+      max-width: 940px;
+      width: 100%;
     }
-    .f07-base64-word {
-      font-size: 105px;
-      font-weight: 900;
-      color: #111111;
-      letter-spacing: -0.04em;
-      line-height: 0.95;
-    }
-    .f07-encoding-word {
-      font-size: 72px;
-      font-weight: 800;
-      color: #6B7280;
-      letter-spacing: -0.03em;
-    }
-    .f07-tag-pill {
-      background: #FFFFFF;
-      border: 1px solid rgba(0,0,0,0.08);
-      padding: 12px 32px;
-      border-radius: 999px;
+    .f07-badge {
+      position: absolute;
+      top: -18px;
+      right: 28px;
+      background: #10B981;
+      color: #FFFFFF;
       font-size: 22px;
       font-weight: 800;
-      letter-spacing: 0.06em;
-      color: #EF4444;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+      letter-spacing: 0.08em;
+      padding: 8px 24px;
+      border-radius: 999px;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.14);
+      z-index: 10;
+    }
+    .f07-img-card {
+      background: #FFFFFF;
+      border-radius: 36px;
+      padding: 16px;
+      border: 6px solid #FFFFFF;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .f07-hero-img {
+      width: 100%;
+      height: auto;
+      max-height: 820px;
+      object-fit: contain;
+      border-radius: 24px;
+      display: block;
+    }
+    .f07-text-card {
+      text-align: center;
+      max-width: 900px;
+      width: 100%;
+    }
+    .f07-title {
+      margin: 0;
+      font-size: 72px;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: #111111;
+      text-transform: uppercase;
+    }
+    .f07-subtitle {
+      margin: 14px 0 0 0;
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1.25;
+      color: #52525B;
     }
   </style>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
   <script>
     (function() {
       var tl = gsap.timeline({ paused: true });
+
       tl.from("#f07-card", {
-        y: 50,
+        scale: 0.7,
         opacity: 0,
-        scale: 0.88,
-        duration: 0.6,
+        duration: 0.5,
         ease: "back.out(1.8)"
       }, 0);
-      tl.from("#f07-reveal", {
-        scale: 0.5,
+      tl.from("#f07-badge", {
+        scale: 0,
         opacity: 0,
-        duration: 0.55,
-        ease: "back.out(2.4)"
-      }, 0.25);
-      tl.from("#f07-pill", {
+        duration: 0.35,
+        ease: "back.out(2)"
+      }, 0.15);
+      tl.from("#f07-text", {
         opacity: 0,
-        y: 20,
-        duration: 0.4,
+        y: 30,
+        duration: 0.45,
         ease: "power2.out"
-      }, 0.4);
+      }, 0.25);
+      tl.to("#f07-card", {
+        scale: 1.02,
+        duration: 0.9,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1
+      }, 0.5);
+
       tl.to({}, { duration: 4.22 }, 0);
       window.__timelines = window.__timelines || {};
       window.__timelines["07-base64-encoding"] = tl;

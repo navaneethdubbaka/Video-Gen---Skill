@@ -86,15 +86,6 @@
     },
     {
       "id": "11",
-      "name": "pop",
-      "file": "assets/sfx/pop.mp3",
-      "source": "local",
-      "offset_s": 0,
-      "duration_s": 0.72,
-      "volume": 0.35
-    },
-    {
-      "id": "12",
       "name": "whoosh",
       "file": "assets/sfx/whoosh.mp3",
       "source": "local",
@@ -104,15 +95,6 @@
     },
     {
       "id": "13",
-      "name": "whoosh",
-      "file": "assets/sfx/whoosh.mp3",
-      "source": "local",
-      "offset_s": 0,
-      "duration_s": 0.57,
-      "volume": 0.35
-    },
-    {
-      "id": "14",
       "name": "whoosh",
       "file": "assets/sfx/whoosh.mp3",
       "source": "local",

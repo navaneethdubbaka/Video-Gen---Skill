@@ -8,15 +8,38 @@ For each meaningful narration window ask:
 
 1. What is being said?
 2. What concept is communicated?
-3. What visual communicates it best?
-4. Does the reference style suggest a treatment?
-5. Asset type: photograph / video clip / screenshot / diagram / icon / text-only / generated graphic / multiple?
-6. What on-screen text (same language as VO unless user asked to translate)?
-7. Which words to emphasize?
-8. What **in-frame motion**? (pop_in, float, punch_in, stagger_list — never “none/static”)
-9. What **inter-frame transition**? Prefer registry names: `zoom-through`, `push-slide LEFT`, `crossfade`, `blur-crossfade`, `squeeze`, or `hard_cut` — not all cuts.
-10. What **sfx** on entry? (`whoosh`, `pop`, `hit`, `rise`) — required almost every scene.
-11. When must the visual change? (align to segment boundaries)
+3. What **real visual** communicates it best? (photo / UI screenshot / icon PNG — not invented SVG)
+4. Does the reference style suggest a treatment (sticker, floating card, mockup)?
+5. Asset type — prefer: `photograph` | `screenshot` | `icon` | `video_clip` | `multiple`  
+   Use `text_only` rarely (≤20% of scenes).  
+   Do **not** use `generated_graphic` as a way to skip downloading an image.
+6. Write a precise `search_query` tied to the narration nouns.
+7. After Step 7 research, set `asset_path` to the cached file.
+8. What on-screen text (same language as VO unless user asked to translate)?
+9. Which words to emphasize?
+10. What **in-frame motion**? (pop_in, float, punch_in, stagger_list — never “none/static”)
+11. What **inter-frame transition**? Mix registry transitions with cuts.
+12. What **sfx** on entry? (`whoosh`, `pop`, `hit`, `rise`)
+13. When must the visual change? (align to segment boundaries)
+
+## Visual field (required shape)
+
+```json
+"visual": {
+  "type": "photograph",
+  "search_query": "smartphone food delivery app home screen",
+  "asset_path": "assets/images/<cached-file>.jpg",
+  "requirement": {
+    "subject": "…",
+    "composition": { "subject_position": "center", "negative_space": "lower_third" },
+    "purpose": "hero bed",
+    "minimum_resolution": "1080p",
+    "narration_link": "Swiggy Burstrex feature launch"
+  }
+}
+```
+
+`asset_path` may be empty **only** while drafting the storyboard; Step 7 must fill it before compose. Prefer writing the path as soon as the asset is cached.
 
 ## Timing
 
@@ -29,6 +52,8 @@ For each meaningful narration window ask:
 
 Default every scene to `style-spec` typography/motion/transition language.  
 Deliberate exceptions need a one-line reason in the scene `concept` or `motion.notes`.
+
+Style chrome (white sticker border, floating card) wraps a **real image** — chrome alone is not the visual.
 
 ## Output
 

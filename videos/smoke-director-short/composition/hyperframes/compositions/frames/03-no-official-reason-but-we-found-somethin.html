@@ -8,35 +8,18 @@
   >
     <div class="f03-bg"></div>
     <div class="f03-container">
-      <div class="f03-doc-card" id="f03-card">
-        <div class="f03-doc-header">
-          <div class="f03-doc-icon">
-            <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#111111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
-              <polyline points="10 9 9 9 8 9"></polyline>
-            </svg>
-          </div>
-          <div class="f03-doc-tag">PUBLIC STATEMENT</div>
+
+      <div class="f03-sticker-wrap" id="f03-card">
+        <div class="f03-badge" id="f03-badge">INVESTIGATION</div>
+        <div class="f03-img-card">
+          <img class="f03-hero-img" src="assets/images/5076bcec564057b1_a5afb5def58bfb29.jpg" alt="no official reason" />
         </div>
-        <div class="f03-doc-body">
-          <div class="f03-qmark" id="f03-qmark">?</div>
-          <div class="f03-doc-text">
-            <div class="f03-redacted"></div>
-            <div class="f03-redacted f03-short"></div>
-          </div>
-        </div>
-        <div class="f03-doc-footer">
-          <span class="f03-status-pill">NO OFFICIAL EXPLANATION</span>
-        </div>
+      </div>
+      <div class="f03-text-card" id="f03-text">
+        <h1 class="f03-title">no official reason</h1>
+        <p class="f03-subtitle">but we found something</p>
       </div>
 
-      <div class="f03-headline-block" id="f03-headline">
-        <div class="f03-h1">no official reason</div>
-        <div class="f03-h2">but we found something.</div>
-      </div>
     </div>
   </div>
 
@@ -59,137 +42,109 @@
     }
     .f03-container {
       position: absolute;
-      top: 360px;
-      left: 80px;
-      right: 80px;
+      top: 340px;
+      left: 70px;
+      right: 70px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 50px;
+      gap: 40px;
     }
-    .f03-doc-card {
-      width: 620px;
-      background: #FFFFFF;
-      border-radius: 36px;
-      padding: 44px 48px;
-      box-shadow: 0 30px 70px rgba(0,0,0,0.09);
-      border: 1px solid rgba(0,0,0,0.06);
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-    .f03-doc-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .f03-doc-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 16px;
-      background: #F4F4F6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .f03-doc-tag {
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      color: #8A8A8A;
-    }
-    .f03-doc-body {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      padding: 20px 0;
-    }
-    .f03-qmark {
-      font-size: 80px;
-      font-weight: 900;
-      color: #FC8019;
-      line-height: 1;
+    .f03-sticker-wrap {
+      position: relative;
+      filter: drop-shadow(0 26px 44px rgba(0,0,0,0.12));
       transform-origin: center center;
-    }
-    .f03-doc-text {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .f03-redacted {
-      height: 20px;
-      background: #E5E7EB;
-      border-radius: 8px;
+      max-width: 940px;
       width: 100%;
     }
-    .f03-short {
-      width: 65%;
-    }
-    .f03-doc-footer {
-      border-top: 1px solid #F3F4F6;
-      padding-top: 24px;
-      display: flex;
-      justify-content: flex-start;
-    }
-    .f03-status-pill {
-      background: #FEE2E2;
-      color: #DC2626;
-      font-size: 19px;
+    .f03-badge {
+      position: absolute;
+      top: -18px;
+      right: 28px;
+      background: #111111;
+      color: #FFFFFF;
+      font-size: 22px;
       font-weight: 800;
-      letter-spacing: 0.04em;
-      padding: 8px 20px;
+      letter-spacing: 0.08em;
+      padding: 8px 24px;
       border-radius: 999px;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.14);
+      z-index: 10;
     }
-    .f03-headline-block {
-      text-align: center;
+    .f03-img-card {
+      background: #FFFFFF;
+      border-radius: 36px;
+      padding: 16px;
+      border: 6px solid #FFFFFF;
+      overflow: hidden;
       display: flex;
-      flex-direction: column;
-      gap: 12px;
+      justify-content: center;
+      align-items: center;
     }
-    .f03-h1 {
-      font-size: 68px;
-      font-weight: 800;
-      color: #8A8A8A;
-      letter-spacing: -0.03em;
+    .f03-hero-img {
+      width: 100%;
+      height: auto;
+      max-height: 820px;
+      object-fit: contain;
+      border-radius: 24px;
+      display: block;
     }
-    .f03-h2 {
+    .f03-text-card {
+      text-align: center;
+      max-width: 900px;
+      width: 100%;
+    }
+    .f03-title {
+      margin: 0;
       font-size: 72px;
       font-weight: 900;
-      color: #111111;
+      line-height: 1.15;
       letter-spacing: -0.03em;
+      color: #111111;
+      text-transform: uppercase;
+    }
+    .f03-subtitle {
+      margin: 14px 0 0 0;
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1.25;
+      color: #52525B;
     }
   </style>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
   <script>
     (function() {
       var tl = gsap.timeline({ paused: true });
+
       tl.from("#f03-card", {
-        y: 70,
+        y: 100,
         opacity: 0,
         scale: 0.9,
         duration: 0.7,
         ease: "power3.out"
       }, 0);
-      tl.from("#f03-qmark", {
+      tl.from("#f03-badge", {
         scale: 0,
-        rotation: -20,
-        duration: 0.5,
-        ease: "back.out(2.5)"
-      }, 0.25);
-      tl.from("#f03-headline", {
         opacity: 0,
-        y: 35,
-        duration: 0.6,
+        duration: 0.4,
+        ease: "back.out(2)"
+      }, 0.25);
+      tl.from("#f03-text", {
+        opacity: 0,
+        y: 40,
+        duration: 0.5,
         ease: "power2.out"
       }, 0.35);
       tl.to("#f03-card", {
-        y: -10,
-        duration: 1.8,
+        y: -14,
+        duration: 1.6,
         ease: "sine.inOut",
         yoyo: true,
-        repeat: 1
-      }, 0.8);
+        repeat: -1
+      }, 0.7);
+
       tl.to({}, { duration: 5.26 }, 0);
       window.__timelines = window.__timelines || {};
       window.__timelines["03-no-official-reason-but-we-found-somethin"] = tl;

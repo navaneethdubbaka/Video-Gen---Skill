@@ -63,21 +63,24 @@ python <SKILL_DIR>/scripts/build_audio_meta_from_vo.py --project <PROJECT>
 
 Produces frame-keyed voices. `sfx` may still be empty until fetch-sfx.
 
-### E. Stage assets
+### E. Stage assets (required)
 
-Copy selected images into `composition/hyperframes/public/` or `assets/`. Prefer `resolve --adopt`.
+Copy every `visual.asset_path` into the HyperFrames tree (`public/` or `assets/images/`) so frame HTML can reference it with a stable relative path. Prefer `resolve --adopt`.
 
-### F. Build frames with real motion (agent) — CRITICAL
+If any storyboard scene (non-`text_only`) lacks a real file, **stop** and return to asset research — do not invent SVG placeholders.
+
+### F. Build frames with real images + motion (agent) — CRITICAL
 
 Follow faceless Step 4–5 + `/hyperframes-animation`:
 
 - One HTML file per frame: `compositions/frames/NN-<slug>.html` in `<template>`
-- **Every frame** must register a seekable GSAP timeline (`window.__timelines["id"]`)
-- Hero: entrance scale/opacity/y; captions: staggered dual-tone reveals
-- Idle micro-motion so holds never feel frozen
+- Hero must be a real media element: `<img src="…">` (or `<video muted>`) pointing at the staged asset for that scene
+- Style chrome (sticker border, floating card) **wraps** the image — chrome alone is not enough
+- **Every frame** must register a seekable GSAP timeline: `window.__timelines["<data-composition-id>"] = gsap.timeline({ paused: true })` with entrance tweens (not bare `gsap.from` fire-and-forget)
+- Captions: staggered dual-tone reveals; idle micro-float OK
 - Match style pack patterns; update `STORYBOARD.md` `src:` + `status: animated`
 
-Static full-bleed `<img>` with no timeline = reject and rebuild that frame.
+Reject and rebuild if: no `<img>`, or timeline not on `window.__timelines`, or image unrelated to narration.
 
 ### G. Captions
 

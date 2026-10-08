@@ -1,0 +1,16 @@
+{
+  "file": "assets/images/47f8b8bbfd547fbe_305f9199daba4e10.png",
+  "source": "rendered_scene_09",
+  "query": "JSON data card user ID name decoded plaintext",
+  "query_key": "47f8b8bbfd547fbe",
+  "kind": "images",
+  "dimensions": [
+    1080,
+    1080
+  ],
+  "usage": [
+    "scene_09"
+  ],
+  "sha256": "305f9199daba4e1071b9d4477507f829e681bb4894f4773144732a3b41cf11f1",
+  "cached_at": "2026-10-08T08:49:16.963575+00:00"
+}

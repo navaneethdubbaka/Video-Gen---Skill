@@ -10,13 +10,14 @@ Task Progress:
 - [ ] 3 probe + extract frames
 - [ ] 4 style_spec.json
 - [ ] 5 transcript.json
-- [ ] 6 storyboard.json
-- [ ] 7 assets cached / resolved
+- [ ] 6 storyboard.json (search_query per scene)
+- [ ] 7 assets researched + vision-inspected + cached
+- [ ] 7b every non-text_only scene has asset_path; qa_report image gate PASS
 - [ ] 8 HyperFrames init + bridge scripts
-- [ ] 8b compose frames with GSAP motion
+- [ ] 8b compose frames with real img + GSAP window.__timelines
 - [ ] 8c captions + fetch-sfx + assemble
 - [ ] 8d transitions.mjs inject + verify
-- [ ] 9 QA (structural + visual + motion/SFX)
+- [ ] 9 QA (structural + visual + motion/SFX + image relevance)
 - [ ] 9b iterate if needed
 - [ ] 10 final render promoted
 ```

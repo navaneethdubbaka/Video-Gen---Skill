@@ -8,33 +8,18 @@
   >
     <div class="f10-bg"></div>
     <div class="f10-container">
-      <div class="f10-tag" id="f10-tag">THE EXPLOIT CHAIN</div>
 
-      <div class="f10-steps">
-        <div class="f10-step" id="f10-s1">
-          <div class="f10-step-num">1</div>
-          <div class="f10-step-content">
-            <div class="f10-step-title">decode</div>
-            <div class="f10-step-desc">read raw json data</div>
-          </div>
-        </div>
-
-        <div class="f10-step" id="f10-s2">
-          <div class="f10-step-num">2</div>
-          <div class="f10-step-content">
-            <div class="f10-step-title">modify values</div>
-            <div class="f10-step-desc">change userId / permissions</div>
-          </div>
-        </div>
-
-        <div class="f10-step" id="f10-s3">
-          <div class="f10-step-num">3</div>
-          <div class="f10-step-content">
-            <div class="f10-step-title">re-encode</div>
-            <div class="f10-step-desc">btoa(newPayload)</div>
-          </div>
+      <div class="f10-sticker-wrap" id="f10-card">
+        <div class="f10-badge" id="f10-badge">EXPLOIT CYCLE</div>
+        <div class="f10-img-card">
+          <img class="f10-hero-img" src="assets/images/e34b1f42a10ff616_94b72fbb8c046b0b.png" alt="the exploit steps" />
         </div>
       </div>
+      <div class="f10-text-card" id="f10-text">
+        <h1 class="f10-title">the exploit steps</h1>
+        <p class="f10-subtitle">1. decode → 2. modify → 3. re-encode</p>
+      </div>
+
     </div>
   </div>
 
@@ -57,77 +42,109 @@
     }
     .f10-container {
       position: absolute;
-      top: 360px;
-      left: 80px;
-      right: 80px;
+      top: 340px;
+      left: 70px;
+      right: 70px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 36px;
+      gap: 40px;
     }
-    .f10-tag {
-      background: #111111;
+    .f10-sticker-wrap {
+      position: relative;
+      filter: drop-shadow(0 26px 44px rgba(0,0,0,0.12));
+      transform-origin: center center;
+      max-width: 940px;
+      width: 100%;
+    }
+    .f10-badge {
+      position: absolute;
+      top: -18px;
+      right: 28px;
+      background: #8B5CF6;
       color: #FFFFFF;
       font-size: 22px;
       font-weight: 800;
       letter-spacing: 0.08em;
-      padding: 10px 28px;
+      padding: 8px 24px;
       border-radius: 999px;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.14);
+      z-index: 10;
     }
-    .f10-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      width: 680px;
-    }
-    .f10-step {
+    .f10-img-card {
       background: #FFFFFF;
-      border-radius: 28px;
-      padding: 26px 36px;
+      border-radius: 36px;
+      padding: 16px;
+      border: 6px solid #FFFFFF;
+      overflow: hidden;
       display: flex;
-      align-items: center;
-      gap: 24px;
-      box-shadow: 0 18px 45px rgba(0,0,0,0.06);
-      border: 1px solid rgba(0,0,0,0.06);
-    }
-    .f10-step-num {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: #111111;
-      color: #FFFFFF;
-      font-size: 30px;
-      font-weight: 900;
-      display: flex;
-      align-items: center;
       justify-content: center;
-      flex-shrink: 0;
+      align-items: center;
     }
-    .f10-step-content {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+    .f10-hero-img {
+      width: 100%;
+      height: auto;
+      max-height: 820px;
+      object-fit: contain;
+      border-radius: 24px;
+      display: block;
     }
-    .f10-step-title {
-      font-size: 42px;
-      font-weight: 800;
+    .f10-text-card {
+      text-align: center;
+      max-width: 900px;
+      width: 100%;
+    }
+    .f10-title {
+      margin: 0;
+      font-size: 72px;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
       color: #111111;
-      letter-spacing: -0.02em;
+      text-transform: uppercase;
     }
-    .f10-step-desc {
-      font-size: 22px;
+    .f10-subtitle {
+      margin: 14px 0 0 0;
+      font-size: 48px;
       font-weight: 600;
-      color: #555555;
+      line-height: 1.25;
+      color: #52525B;
     }
   </style>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
   <script>
     (function() {
       var tl = gsap.timeline({ paused: true });
-      tl.from("#f10-tag", { opacity: 0, y: -20, duration: 0.4 }, 0);
-      tl.from("#f10-s1", { x: -60, opacity: 0, duration: 0.5, ease: "back.out(1.6)" }, 0.2);
-      tl.from("#f10-s2", { x: -60, opacity: 0, duration: 0.5, ease: "back.out(1.6)" }, 0.65);
-      tl.from("#f10-s3", { x: -60, opacity: 0, duration: 0.5, ease: "back.out(1.6)" }, 1.1);
+
+      tl.from("#f10-card", {
+        x: -120,
+        opacity: 0,
+        rotation: -5,
+        duration: 0.65,
+        ease: "power3.out"
+      }, 0);
+      tl.from("#f10-badge", {
+        scale: 0,
+        opacity: 0,
+        duration: 0.4,
+        ease: "back.out(2)"
+      }, 0.2);
+      tl.from("#f10-text", {
+        opacity: 0,
+        y: 35,
+        duration: 0.5,
+        ease: "power3.out"
+      }, 0.3);
+      tl.to("#f10-card", {
+        y: -10,
+        duration: 1.3,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1
+      }, 0.65);
+
       tl.to({}, { duration: 5.98 }, 0);
       window.__timelines = window.__timelines || {};
       window.__timelines["10-1-decode-2-modify-values-3-re-encode"] = tl;

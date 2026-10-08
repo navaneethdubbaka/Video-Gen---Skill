@@ -8,6 +8,8 @@ Reusable agent skill that creates short-form videos from:
 
 Composition and rendering are delegated to the existing **HyperFrames** skills. This repo does not fork HyperFrames.
 
+**Hard requirements for every video:** narration-relevant cached images (not SVG-only fakes), GSAP motion, mixed transitions, and boundary SFX.
+
 ## Skill location
 
 ```text

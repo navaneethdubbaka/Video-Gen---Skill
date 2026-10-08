@@ -8,29 +8,18 @@
   >
     <div class="f09-bg"></div>
     <div class="f09-container">
-      <div class="f09-json-card" id="f09-card">
-        <div class="f09-card-header">
-          <div class="f09-tag">DECODED PAYLOAD</div>
-          <div class="f09-alert-badge" id="f09-badge">EXPOSED</div>
+
+      <div class="f09-sticker-wrap" id="f09-card">
+        <div class="f09-badge" id="f09-badge">DATA EXPOSURE</div>
+        <div class="f09-img-card">
+          <img class="f09-hero-img" src="assets/images/47f8b8bbfd547fbe_305f9199daba4e10.png" alt="user ID + name" />
         </div>
-        <div class="f09-json-body">
-          <div class="f09-line"><span class="f09-brace">{</span></div>
-          <div class="f09-line f09-indent">
-            <span class="f09-key">"userId"</span>: <span class="f09-val f09-danger">"78492"</span>,
-          </div>
-          <div class="f09-line f09-indent">
-            <span class="f09-key">"name"</span>: <span class="f09-val f09-danger">"Rahul Sharma"</span>
-          </div>
-          <div class="f09-line"><span class="f09-brace">}</span></div>
-        </div>
+      </div>
+      <div class="f09-text-card" id="f09-text">
+        <h1 class="f09-title">user ID + name</h1>
+        <p class="f09-subtitle">exposed in plaintext</p>
       </div>
 
-      <div class="f09-headline" id="f09-headline">
-        <h1 class="f09-title">
-          <span class="f09-bold">user ID + name</span><br>
-          <span class="f09-sub">exposed in plaintext</span>
-        </h1>
-      </div>
     </div>
   </div>
 
@@ -53,110 +42,109 @@
     }
     .f09-container {
       position: absolute;
-      top: 360px;
-      left: 80px;
-      right: 80px;
+      top: 340px;
+      left: 70px;
+      right: 70px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 46px;
+      gap: 40px;
     }
-    .f09-json-card {
-      width: 660px;
-      background: #FFFFFF;
-      border-radius: 36px;
-      padding: 38px 44px;
-      box-shadow: 0 28px 70px rgba(0,0,0,0.08);
-      border: 1px solid rgba(0,0,0,0.06);
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
+    .f09-sticker-wrap {
+      position: relative;
+      filter: drop-shadow(0 26px 44px rgba(0,0,0,0.12));
+      transform-origin: center center;
+      max-width: 940px;
+      width: 100%;
     }
-    .f09-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #F3F4F6;
-      padding-bottom: 18px;
-    }
-    .f09-tag {
-      font-size: 20px;
+    .f09-badge {
+      position: absolute;
+      top: -18px;
+      right: 28px;
+      background: #DC2626;
+      color: #FFFFFF;
+      font-size: 22px;
       font-weight: 800;
       letter-spacing: 0.08em;
-      color: #8A8A8A;
-    }
-    .f09-alert-badge {
-      background: #EF4444;
-      color: #FFFFFF;
-      font-size: 18px;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      padding: 6px 18px;
+      padding: 8px 24px;
       border-radius: 999px;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.14);
+      z-index: 10;
     }
-    .f09-json-body {
-      background: #18181B;
+    .f09-img-card {
+      background: #FFFFFF;
+      border-radius: 36px;
+      padding: 16px;
+      border: 6px solid #FFFFFF;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .f09-hero-img {
+      width: 100%;
+      height: auto;
+      max-height: 820px;
+      object-fit: contain;
       border-radius: 24px;
-      padding: 28px 36px;
-      font-family: monospace;
-      font-size: 32px;
-      line-height: 1.6;
-      color: #F4F4F5;
+      display: block;
     }
-    .f09-indent {
-      padding-left: 32px;
-    }
-    .f09-brace { color: #A1A1AA; }
-    .f09-key { color: #38BDF8; }
-    .f09-val { color: #FBBF24; }
-    .f09-danger {
-      background: rgba(239, 68, 68, 0.25);
-      color: #F87171;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-weight: 700;
-    }
-    .f09-headline {
+    .f09-text-card {
       text-align: center;
+      max-width: 900px;
+      width: 100%;
     }
     .f09-title {
       margin: 0;
-      font-size: 74px;
+      font-size: 72px;
+      font-weight: 900;
       line-height: 1.15;
       letter-spacing: -0.03em;
-    }
-    .f09-bold {
-      font-weight: 900;
       color: #111111;
+      text-transform: uppercase;
     }
-    .f09-sub {
-      font-weight: 700;
-      color: #EF4444;
-      font-size: 60px;
+    .f09-subtitle {
+      margin: 14px 0 0 0;
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1.25;
+      color: #52525B;
     }
   </style>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
   <script>
     (function() {
       var tl = gsap.timeline({ paused: true });
+
       tl.from("#f09-card", {
-        y: 60,
+        y: 100,
         opacity: 0,
-        scale: 0.92,
-        duration: 0.65,
+        scale: 0.9,
+        duration: 0.7,
         ease: "power3.out"
       }, 0);
       tl.from("#f09-badge", {
         scale: 0,
+        opacity: 0,
         duration: 0.4,
         ease: "back.out(2)"
       }, 0.25);
-      tl.from("#f09-headline", {
+      tl.from("#f09-text", {
         opacity: 0,
-        y: 30,
-        duration: 0.55,
+        y: 40,
+        duration: 0.5,
         ease: "power2.out"
-      }, 0.3);
+      }, 0.35);
+      tl.to("#f09-card", {
+        y: -14,
+        duration: 1.6,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1
+      }, 0.7);
+
       tl.to({}, { duration: 6.02 }, 0);
       window.__timelines = window.__timelines || {};
       window.__timelines["09-user-id-name-exposed-in-plaintext"] = tl;

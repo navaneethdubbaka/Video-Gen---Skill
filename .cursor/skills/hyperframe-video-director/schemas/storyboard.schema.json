@@ -54,7 +54,8 @@
                     }
                   },
                   "purpose": { "type": "string" },
-                  "minimum_resolution": { "type": "string" }
+                  "minimum_resolution": { "type": "string" },
+                  "narration_link": { "type": "string" }
                 }
               }
             }

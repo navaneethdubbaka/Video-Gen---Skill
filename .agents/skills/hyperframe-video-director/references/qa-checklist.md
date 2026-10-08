@@ -14,6 +14,14 @@ python <SKILL_DIR>/scripts/qa_report.py --project <PROJECT>
 - [ ] No scene ends before its narration ends
 - [ ] No scene lingers long after its narration
 
+## Images (fail before compose if any miss)
+
+- [ ] ≤20% scenes are `text_only`
+- [ ] Every other scene has `search_query` + `asset_path` on disk
+- [ ] Assets vision-checked as narration-relevant (not generic filler)
+- [ ] Frame HTML uses `<img>`/`<video>` for those assets (not SVG-only fakes)
+- [ ] `python …/qa_report.py --project <PROJECT> --phase assets` PASSes
+
 ## Motion / transitions / SFX (fail the draft if any miss)
 
 - [ ] Every frame has GSAP entrance (hero + captions) — not a frozen poster

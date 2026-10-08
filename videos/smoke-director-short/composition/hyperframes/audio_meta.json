@@ -1108,7 +1108,7 @@
     {
       "frame": 14,
       "path": "assets/voices/14.wav",
-      "duration_s": 1.08,
+      "duration_s": 2.12,
       "words": [
         {
           "id": "w169",
@@ -1197,13 +1197,6 @@
     },
     {
       "frame": 11,
-      "file": "assets/sfx/pop.mp3",
-      "offset_s": 0,
-      "duration_s": 0.72,
-      "volume": 0.35
-    },
-    {
-      "frame": 12,
       "file": "assets/sfx/whoosh.mp3",
       "offset_s": 0,
       "duration_s": 0.57,
@@ -1211,13 +1204,6 @@
     },
     {
       "frame": 13,
-      "file": "assets/sfx/whoosh.mp3",
-      "offset_s": 0,
-      "duration_s": 0.57,
-      "volume": 0.35
-    },
-    {
-      "frame": 14,
       "file": "assets/sfx/whoosh.mp3",
       "offset_s": 0,
       "duration_s": 0.57,

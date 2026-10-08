@@ -40,6 +40,7 @@ Optional instructions: …
 7. If a **style pack** is named (see [styles/README.md](styles/README.md)), load it and **skip** open-ended Step 4 analysis unless the user also supplies a new reference to re-analyze.
 8. Style packs that forbid watermarks must ship **zero** channel URL footers (e.g. never `insiderforce.io`).
 9. **Motion + transitions + SFX are mandatory.** Static HTML slides with silent hard cuts are a failed run. See [references/motion-and-sfx.md](references/motion-and-sfx.md).
+10. **Relevant real images are mandatory.** Every scene (except ≤20% kinetic `text_only`) must research, download, vision-inspect, and cache a narration-matching image; set `visual.asset_path` and use it in frame HTML. Invented SVG/CSS-only “fake assets” are a failed run. See [references/asset-research.md](references/asset-research.md).
 
 ## Style packs
 
@@ -66,8 +67,9 @@ Task Progress:
 - [ ] 4 style_spec.json (agent)
 - [ ] 5 transcribe VO → transcript.json
 - [ ] 6 storyboard.json (agent)
-- [ ] 7 assets (agent + cache)
-- [ ] 8 HyperFrames handoff + compose
+- [ ] 7 assets researched + cached + asset_path set (GATE)
+- [ ] 7b qa_report assets pass
+- [ ] 8 HyperFrames handoff + compose (frames use real imgs)
 - [ ] 9 render draft → QA → iterate
 - [ ] 10 promote final
 ```
@@ -75,6 +77,7 @@ Task Progress:
 Full checklist: [references/workflow.md](references/workflow.md)  
 Handoff details: [references/hyperframes-handoff.md](references/hyperframes-handoff.md)  
 Motion / SFX: [references/motion-and-sfx.md](references/motion-and-sfx.md)  
+Assets: [references/asset-research.md](references/asset-research.md)  
 Safety: [references/safety.md](references/safety.md)
 
 ---
@@ -169,23 +172,37 @@ Read [references/storyboard-guide.md](references/storyboard-guide.md).
 Build `storyboard/storyboard.json` from transcript segments + style-spec + user instructions.  
 Schema: [schemas/storyboard.schema.json](schemas/storyboard.schema.json).
 
-Each scene: narration window, concept, visual type/query, on-screen text, **motion**, **transition**, **sfx** — timed to VO.
+Each scene: narration window, concept, **visual.search_query**, on-screen text, **motion**, **transition**, **sfx** — timed to VO.
+
+Prefer `visual.type`: `photograph` | `screenshot` | `icon` | `video_clip`.  
+`text_only` ≤20% of scenes. Do **not** default to `generated_graphic` to skip research.
 
 Do not leave `transition: hard_cut` on every scene. Mix `zoom-through`, `push-slide`, `crossfade`, `blur-crossfade`, `squeeze` with cuts. Every scene needs an `sfx` cue (`whoosh` / `pop` / `hit` / `rise`). See [references/motion-and-sfx.md](references/motion-and-sfx.md).
 
 ---
 
-## Step 7 — Assets (agent)
+## Step 7 — Assets (agent) — HARD GATE
 
-Read [references/asset-research.md](references/asset-research.md).
+Read [references/asset-research.md](references/asset-research.md). **Do this before any frame HTML.**
 
-For each scene needing media:
+For **every** non-`text_only` scene:
 
-1. Prefer `/media-use`:
+1. Write a narration-specific `search_query` + `requirement.narration_link`.
+2. Prefer `/media-use`:
    `node <media-use>/scripts/resolve.mjs --type image --intent "…" --project <PROJECT>/composition/hyperframes`
-2. Else search/download candidates, **inspect with vision**, then:
+3. Else web search → download 2–4 candidates → **vision-inspect for relevance** → pick one.
+4. Cache:
    `python <SKILL_DIR>/scripts/cache_asset.py --project <PROJECT> --file <path> --query "…" --kind images --usage scene_03`
-3. Reject assets that fight caption placement (subject filling the text zone).
+5. Set `visual.asset_path` in `storyboard.json` to the cached file.
+6. Reject irrelevant, watermarked, or caption-hostile crops.
+
+Then:
+
+```bash
+python <SKILL_DIR>/scripts/qa_report.py --project <PROJECT> --phase assets
+```
+
+**STOP** if image-related errors remain (`missing_asset_path`, `too_many_text_only`, `asset_file_missing`, …). Do not compose frames yet.
 
 ---
 
@@ -206,7 +223,7 @@ python <SKILL_DIR>/scripts/storyboard_to_hyperframes.py --project <PROJECT>
 python <SKILL_DIR>/scripts/build_audio_meta_from_vo.py --project <PROJECT>
 ```
 
-5. Agent builds `compositions/frames/NN-*.html` with **GSAP entrances** (faceless frame-worker + `/hyperframes-animation`). No static posters.
+5. Agent builds `compositions/frames/NN-*.html` with **real `<img>` heroes from `asset_path`** + **GSAP entrances** on `window.__timelines[id]` (faceless frame-worker + `/hyperframes-animation`). No SVG-only fake assets. No static posters.
 6. Faceless pipeline — **do not TTS** the user's VO:
 
 ```bash

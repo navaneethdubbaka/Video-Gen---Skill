@@ -15,6 +15,7 @@
       "visual": {
         "type": "photograph",
         "search_query": "person using smartphone outdoors natural light",
+        "asset_path": "assets/images/smartphone_01.jpg",
         "requirement": {
           "subject": "person using smartphone",
           "composition": {
@@ -22,7 +23,8 @@
             "negative_space": "left"
           },
           "purpose": "background for headline",
-          "minimum_resolution": "1080p"
+          "minimum_resolution": "1080p",
+          "narration_link": "Sentence one of the voiceover"
         }
       },
       "text": {
@@ -30,7 +32,8 @@
         "emphasis": ["CLAIM"]
       },
       "motion": { "type": "zoom_in" },
-      "transition": "hard_cut"
+      "transition": "cut",
+      "sfx": ["pop"]
     },
     {
       "scene_id": 2,
@@ -40,14 +43,22 @@
       "concept": "Show the tension or problem",
       "visual": {
         "type": "photograph",
-        "search_query": "crowded city street motion blur"
+        "search_query": "crowded city street motion blur",
+        "asset_path": "assets/images/city_street_01.jpg",
+        "requirement": {
+          "subject": "crowded city street",
+          "purpose": "problem bed",
+          "minimum_resolution": "1080p",
+          "narration_link": "Sentence two of the voiceover"
+        }
       },
       "text": {
         "content": "THE PROBLEM",
         "emphasis": ["PROBLEM"]
       },
       "motion": { "type": "slow_pan" },
-      "transition": "hard_cut"
+      "transition": "zoom-through",
+      "sfx": ["whoosh", "hit"]
     },
     {
       "scene_id": 3,
@@ -63,7 +74,8 @@
         "emphasis": ["TAKEAWAY"]
       },
       "motion": { "type": "punch_in" },
-      "transition": "hard_cut"
+      "transition": "push-slide LEFT",
+      "sfx": ["whoosh"]
     }
   ]
 }

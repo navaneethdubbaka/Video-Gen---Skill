@@ -15,7 +15,8 @@
       "scene_pattern": "A",
       "visual": {
         "type": "generated_graphic",
-        "search_query": "Swiggy app icon sticker cutout white border"
+        "search_query": "Swiggy app icon sticker cutout white border",
+        "asset_path": "assets/images/ea92f525735690d7_cec8d10cfe98941d.jpg"
       },
       "text": {
         "content": "Swiggy Burstrex\nnew feature launched",
@@ -68,7 +69,8 @@
       "scene_pattern": "D",
       "visual": {
         "type": "generated_graphic",
-        "search_query": "official document card with question mark mystery"
+        "search_query": "official document card with question mark mystery",
+        "asset_path": "assets/images/5076bcec564057b1_a5afb5def58bfb29.jpg"
       },
       "text": {
         "content": "no official reason\nbut we found something",
@@ -95,7 +97,8 @@
       "scene_pattern": "A",
       "visual": {
         "type": "generated_graphic",
-        "search_query": "security shield warning icon red alert sticker"
+        "search_query": "security shield warning icon red alert sticker",
+        "asset_path": "assets/images/895ad66088f1cb71_e833f7c3c35907fe.jpg"
       },
       "text": {
         "content": "security issue\nfound while live",
@@ -121,7 +124,8 @@
       "scene_pattern": "C",
       "visual": {
         "type": "generated_graphic",
-        "search_query": "browser URL bar with highlighted token parameter"
+        "search_query": "browser URL bar with highlighted token parameter",
+        "asset_path": "assets/images/52a0fd7bfefc6dc4_6b52ca0ae5422c24.png"
       },
       "text": {
         "content": "every link has a\nrandom token",
@@ -146,7 +150,9 @@
       "concept": "False sense of security \u2014 looks like secured token (Pattern J)",
       "scene_pattern": "J",
       "visual": {
-        "type": "text_only"
+        "type": "generated_graphic",
+        "search_query": "secured token lock credential card",
+        "asset_path": "assets/images/9fba2d8defbb67d3_dd22220a653e3ec1.png"
       },
       "text": {
         "content": "looks like a\nsecured token",
@@ -172,7 +178,8 @@
       "scene_pattern": "B",
       "visual": {
         "type": "generated_graphic",
-        "search_query": "base64 encoding code terminal decode"
+        "search_query": "base64 encoding code terminal decode",
+        "asset_path": "assets/images/24a91d6dca98ba4a_823eabe988d4e622.png"
       },
       "text": {
         "content": "base64\nencoding",
@@ -198,7 +205,8 @@
       "scene_pattern": "H",
       "visual": {
         "type": "generated_graphic",
-        "search_query": "security checklist deny list icon"
+        "search_query": "security checklist deny list icon",
+        "asset_path": "assets/images/f83bfc07bebba4f1_968a8610253d26b4.png"
       },
       "text": {
         "content": "\u2715 not encryption\n\u2715 easily decoded",
@@ -225,7 +233,8 @@
       "scene_pattern": "C",
       "visual": {
         "type": "generated_graphic",
-        "search_query": "JSON data card user ID name decoded plaintext"
+        "search_query": "JSON data card user ID name decoded plaintext",
+        "asset_path": "assets/images/47f8b8bbfd547fbe_305f9199daba4e10.png"
       },
       "text": {
         "content": "user ID + name\nexposed in plaintext",
@@ -253,7 +262,8 @@
       "scene_pattern": "H",
       "visual": {
         "type": "generated_graphic",
-        "search_query": "decode modify encode cycle arrows"
+        "search_query": "decode modify encode cycle arrows",
+        "asset_path": "assets/images/e34b1f42a10ff616_94b72fbb8c046b0b.png"
       },
       "text": {
         "content": "1. decode\n2. modify values\n3. re-encode",
@@ -280,7 +290,9 @@
       "concept": "We tested it \u2014 action confirmation (Pattern J kinetic type)",
       "scene_pattern": "J",
       "visual": {
-        "type": "text_only"
+        "type": "generated_graphic",
+        "search_query": "API testing client console verifying crafted token",
+        "asset_path": "assets/images/6b8150f02725c8ba_aeb25bcd81e18e77.png"
       },
       "text": {
         "content": "that's exactly\nwhat we did",
@@ -306,7 +318,8 @@
       "scene_pattern": "B",
       "visual": {
         "type": "generated_graphic",
-        "search_query": "green checkmark accepted verified badge"
+        "search_query": "green checkmark accepted verified badge",
+        "asset_path": "assets/images/84ec0f1a3c0882c7_4b9fb9095a98f86a.png"
       },
       "text": {
         "content": "link accepted\nstill working",
@@ -332,7 +345,8 @@
       "scene_pattern": "D",
       "visual": {
         "type": "generated_graphic",
-        "search_query": "bug report document security vulnerability report card"
+        "search_query": "bug report document security vulnerability report card",
+        "asset_path": "assets/images/e129f134d37d7e80_87e98fc8ceca7536.png"
       },
       "text": {
         "content": "reported to Swiggy\ndetails in next part",
@@ -353,7 +367,7 @@
     {
       "scene_id": 14,
       "start": 63.76,
-      "end": 64.84,
+      "end": 65.88,
       "narration": "And follow for more.",
       "concept": "CTA \u2014 follow (Pattern K dot-grid, no watermark)",
       "scene_pattern": "K",

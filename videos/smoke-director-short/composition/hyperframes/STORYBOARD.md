@@ -25,6 +25,8 @@ Hook — Swiggy sticker with new feature reveal (Pattern A)
 
 Motion required: GSAP entrance on hero + staggered captions; idle micro-float OK.
 
+Asset: `assets/images/ea92f525735690d7_cec8d10cfe98941d.jpg`
+
 Search: Swiggy app icon sticker cutout white border
 
 ## Frame 2 — discontinued within days
@@ -63,6 +65,8 @@ Mystery / no official reason — doc card with question mark (Pattern D)
 
 Motion required: GSAP entrance on hero + staggered captions; idle micro-float OK.
 
+Asset: `assets/images/5076bcec564057b1_a5afb5def58bfb29.jpg`
+
 Search: official document card with question mark mystery
 
 ## Frame 4 — security issue found while live
@@ -82,6 +86,8 @@ Search: official document card with question mark mystery
 Security issue reveal — sticker + alert (Pattern A)
 
 Motion required: GSAP entrance on hero + staggered captions; idle micro-float OK.
+
+Asset: `assets/images/895ad66088f1cb71_e833f7c3c35907fe.jpg`
 
 Search: security shield warning icon red alert sticker
 
@@ -103,6 +109,8 @@ URL pattern with suspicious token — floating browser card (Pattern C)
 
 Motion required: GSAP entrance on hero + staggered captions; idle micro-float OK.
 
+Asset: `assets/images/52a0fd7bfefc6dc4_6b52ca0ae5422c24.png`
+
 Search: browser URL bar with highlighted token parameter
 
 ## Frame 6 — looks like a secured token
@@ -116,12 +124,16 @@ Search: browser URL bar with highlighted token parameter
 - src: compositions/frames/06-looks-like-a-secured-token.html
 - start_s: 21.44
 - end_s: 25.96
-- visual_type: text_only
+- visual_type: generated_graphic
 - motion: zoom_in
 
 False sense of security — looks like secured token (Pattern J)
 
 Motion required: GSAP entrance on hero + staggered captions; idle micro-float OK.
+
+Asset: `assets/images/9fba2d8defbb67d3_dd22220a653e3ec1.png`
+
+Search: secured token lock credential card
 
 ## Frame 7 — base64 encoding
 
@@ -140,6 +152,8 @@ Motion required: GSAP entrance on hero + staggered captions; idle micro-float OK
 Reveal — it's just base64 encoding (Pattern B big number/code reveal)
 
 Motion required: GSAP entrance on hero + staggered captions; idle micro-float OK.
+
+Asset: `assets/images/24a91d6dca98ba4a_823eabe988d4e622.png`
 
 Search: base64 encoding code terminal decode
 
@@ -161,6 +175,8 @@ Not encryption — deny list (Pattern H)
 
 Motion required: GSAP entrance on hero + staggered captions; idle micro-float OK.
 
+Asset: `assets/images/f83bfc07bebba4f1_968a8610253d26b4.png`
+
 Search: security checklist deny list icon
 
 ## Frame 9 — user ID + name exposed in plaintext
@@ -181,13 +197,15 @@ Shocking decoded data — user ID + name exposed (Pattern C floating card)
 
 Motion required: GSAP entrance on hero + staggered captions; idle micro-float OK.
 
+Asset: `assets/images/47f8b8bbfd547fbe_305f9199daba4e10.png`
+
 Search: JSON data card user ID name decoded plaintext
 
 ## Frame 10 — 1. decode 2. modify values 3. re-encode
 
 - scene: The exploit — decode, change, re-encode (Pattern H allow/deny list)
 - duration: 5.98s
-- transition_in: push-slide UP
+- transition_in: push-slide LEFT
 - sfx: whoosh
 - status: built
 - voiceover: "So theoretically మనం దీన్ని decode చేసి values మార్చవచ్చు. And మళ్ళీ అదే formatలో encode చేయొచ్చు."
@@ -201,6 +219,8 @@ The exploit — decode, change, re-encode (Pattern H allow/deny list)
 
 Motion required: GSAP entrance on hero + staggered captions; idle micro-float OK.
 
+Asset: `assets/images/e34b1f42a10ff616_94b72fbb8c046b0b.png`
+
 Search: decode modify encode cycle arrows
 
 ## Frame 11 — that's exactly what we did
@@ -208,25 +228,29 @@ Search: decode modify encode cycle arrows
 - scene: We tested it — action confirmation (Pattern J kinetic type)
 - duration: 5.60s
 - transition_in: cut
-- sfx: pop
+- sfx: whoosh
 - status: built
 - voiceover: "And that's exactly what we did. So కొత్త valuesతో ఒక token generate చేసి దాన్ని మేము test చేశాం."
 - src: compositions/frames/11-that-s-exactly-what-we-did.html
 - start_s: 48.82
 - end_s: 54.42
-- visual_type: text_only
+- visual_type: generated_graphic
 - motion: punch_in
 
 We tested it — action confirmation (Pattern J kinetic type)
 
 Motion required: GSAP entrance on hero + staggered captions; idle micro-float OK.
 
+Asset: `assets/images/6b8150f02725c8ba_aeb25bcd81e18e77.png`
+
+Search: API testing client console verifying crafted token
+
 ## Frame 12 — link accepted still working
 
 - scene: Shocking result — link accepted (Pattern B big reveal)
 - duration: 1.92s
 - transition_in: squeeze
-- sfx: whoosh
+- sfx: hit
 - status: built
 - voiceover: "And that link was still being accepted."
 - src: compositions/frames/12-link-accepted-still-working.html
@@ -238,6 +262,8 @@ Motion required: GSAP entrance on hero + staggered captions; idle micro-float OK
 Shocking result — link accepted (Pattern B big reveal)
 
 Motion required: GSAP entrance on hero + staggered captions; idle micro-float OK.
+
+Asset: `assets/images/84ec0f1a3c0882c7_4b9fb9095a98f86a.png`
 
 Search: green checkmark accepted verified badge
 
@@ -259,19 +285,21 @@ Reported to Swiggy — doc/paper card (Pattern D)
 
 Motion required: GSAP entrance on hero + staggered captions; idle micro-float OK.
 
+Asset: `assets/images/e129f134d37d7e80_87e98fc8ceca7536.png`
+
 Search: bug report document security vulnerability report card
 
 ## Frame 14 — follow for more
 
 - scene: CTA — follow (Pattern K dot-grid, no watermark)
-- duration: 1.08s
+- duration: 2.12s
 - transition_in: zoom-through
-- sfx: whoosh, hit
+- sfx: hit
 - status: built
 - voiceover: "And follow for more."
 - src: compositions/frames/14-follow-for-more.html
 - start_s: 63.76
-- end_s: 64.84
+- end_s: 65.88
 - visual_type: text_only
 - motion: pop_scale_in
 
