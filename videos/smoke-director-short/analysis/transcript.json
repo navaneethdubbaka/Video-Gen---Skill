@@ -1,0 +1,117 @@
+{
+  "language": "en",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.0,
+      "text": "This is a short test."
+    },
+    {
+      "start": 2.0,
+      "end": 4.0,
+      "text": "Style guides the look."
+    },
+    {
+      "start": 4.0,
+      "end": 6.0,
+      "text": "Voice owns the timing."
+    }
+  ],
+  "words": [
+    {
+      "text": "This",
+      "start": 0.0,
+      "end": 0.25,
+      "id": "w0",
+      "type": "word"
+    },
+    {
+      "text": "is",
+      "start": 0.25,
+      "end": 0.4,
+      "id": "w1",
+      "type": "word"
+    },
+    {
+      "text": "a",
+      "start": 0.4,
+      "end": 0.5,
+      "id": "w2",
+      "type": "word"
+    },
+    {
+      "text": "short",
+      "start": 0.5,
+      "end": 0.9,
+      "id": "w3",
+      "type": "word"
+    },
+    {
+      "text": "test.",
+      "start": 0.9,
+      "end": 1.4,
+      "id": "w4",
+      "type": "word"
+    },
+    {
+      "text": "Style",
+      "start": 2.0,
+      "end": 2.4,
+      "id": "w5",
+      "type": "word"
+    },
+    {
+      "text": "guides",
+      "start": 2.4,
+      "end": 2.9,
+      "id": "w6",
+      "type": "word"
+    },
+    {
+      "text": "the",
+      "start": 2.9,
+      "end": 3.1,
+      "id": "w7",
+      "type": "word"
+    },
+    {
+      "text": "look.",
+      "start": 3.1,
+      "end": 3.6,
+      "id": "w8",
+      "type": "word"
+    },
+    {
+      "text": "Voice",
+      "start": 4.0,
+      "end": 4.35,
+      "id": "w9",
+      "type": "word"
+    },
+    {
+      "text": "owns",
+      "start": 4.35,
+      "end": 4.7,
+      "id": "w10",
+      "type": "word"
+    },
+    {
+      "text": "the",
+      "start": 4.7,
+      "end": 4.9,
+      "id": "w11",
+      "type": "word"
+    },
+    {
+      "text": "timing.",
+      "start": 4.9,
+      "end": 5.5,
+      "id": "w12",
+      "type": "word"
+    }
+  ],
+  "text": "This is a short test. Style guides the look. Voice owns the timing.",
+  "language_probability": 1.0,
+  "audio_duration_secs": 6.0,
+  "provider": "fixture"
+}

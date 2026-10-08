@@ -1,0 +1,8 @@
+.env
+*.pyc
+__pycache__/
+**/__pycache__/
+videos/*/composition/hyperframes/node_modules/
+videos/*/renders/
+.DS_Store
+Thumbs.db

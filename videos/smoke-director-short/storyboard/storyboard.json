@@ -1,0 +1,70 @@
+{
+  "project": "smoke-director-short",
+  "language": "en",
+  "message": "Smoke test short",
+  "total_duration_s": 6.0,
+  "style_spec_path": "analysis/style-spec.json",
+  "instructions": "smoke",
+  "scenes": [
+    {
+      "scene_id": 1,
+      "start": 0.0,
+      "end": 2.0,
+      "narration": "This is a short test.",
+      "concept": "Hook",
+      "visual": {
+        "type": "text_only"
+      },
+      "text": {
+        "content": "SHORT TEST",
+        "emphasis": [
+          "TEST"
+        ]
+      },
+      "motion": {
+        "type": "punch_in"
+      },
+      "transition": "hard_cut"
+    },
+    {
+      "scene_id": 2,
+      "start": 2.0,
+      "end": 4.0,
+      "narration": "Style guides the look.",
+      "concept": "Style",
+      "visual": {
+        "type": "text_only"
+      },
+      "text": {
+        "content": "STYLE",
+        "emphasis": [
+          "STYLE"
+        ]
+      },
+      "motion": {
+        "type": "zoom_in"
+      },
+      "transition": "hard_cut"
+    },
+    {
+      "scene_id": 3,
+      "start": 4.0,
+      "end": 6.0,
+      "narration": "Voice owns the timing.",
+      "concept": "Timing",
+      "visual": {
+        "type": "text_only"
+      },
+      "text": {
+        "content": "TIMING",
+        "emphasis": [
+          "TIMING"
+        ]
+      },
+      "motion": {
+        "type": "punch_in"
+      },
+      "transition": "hard_cut"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "language": "en",
+  "language_probability": 1.0,
+  "text": "This is a short test. Style guides the look. Voice owns the timing.",
+  "audio_duration_secs": 6.0,
+  "provider": "fixture",
+  "segments": [
+    { "start": 0.0, "end": 2.0, "text": "This is a short test." },
+    { "start": 2.0, "end": 4.0, "text": "Style guides the look." },
+    { "start": 4.0, "end": 6.0, "text": "Voice owns the timing." }
+  ],
+  "words": [
+    { "id": "w0", "text": "This", "start": 0.0, "end": 0.25, "type": "word" },
+    { "id": "w1", "text": "is", "start": 0.25, "end": 0.4, "type": "word" },
+    { "id": "w2", "text": "a", "start": 0.4, "end": 0.5, "type": "word" },
+    { "id": "w3", "text": "short", "start": 0.5, "end": 0.9, "type": "word" },
+    { "id": "w4", "text": "test.", "start": 0.9, "end": 1.4, "type": "word" },
+    { "id": "w5", "text": "Style", "start": 2.0, "end": 2.4, "type": "word" },
+    { "id": "w6", "text": "guides", "start": 2.4, "end": 2.9, "type": "word" },
+    { "id": "w7", "text": "the", "start": 2.9, "end": 3.1, "type": "word" },
+    { "id": "w8", "text": "look.", "start": 3.1, "end": 3.6, "type": "word" },
+    { "id": "w9", "text": "Voice", "start": 4.0, "end": 4.35, "type": "word" },
+    { "id": "w10", "text": "owns", "start": 4.35, "end": 4.7, "type": "word" },
+    { "id": "w11", "text": "the", "start": 4.7, "end": 4.9, "type": "word" },
+    { "id": "w12", "text": "timing.", "start": 4.9, "end": 5.5, "type": "word" }
+  ]
+}

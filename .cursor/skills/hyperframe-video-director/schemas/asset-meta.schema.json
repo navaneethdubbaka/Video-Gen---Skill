@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "asset-meta.schema.json",
+  "title": "AssetMetadata",
+  "type": "object",
+  "required": ["file", "query"],
+  "properties": {
+    "file": { "type": "string" },
+    "source": { "type": "string" },
+    "query": { "type": "string" },
+    "kind": { "type": "string" },
+    "dimensions": {
+      "type": "array",
+      "items": { "type": "integer" },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "usage": { "type": "array", "items": { "type": "string" } },
+    "sha256": { "type": "string" },
+    "cached_at": { "type": "string" }
+  },
+  "additionalProperties": true
+}

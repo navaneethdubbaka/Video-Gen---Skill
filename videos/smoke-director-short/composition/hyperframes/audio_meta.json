@@ -1,0 +1,117 @@
+{
+  "voices": [
+    {
+      "frame": 1,
+      "path": "assets/voices/01.wav",
+      "duration_s": 2.0,
+      "words": [
+        {
+          "id": "w0",
+          "text": "This",
+          "start": 0.0,
+          "end": 0.25
+        },
+        {
+          "id": "w1",
+          "text": "is",
+          "start": 0.25,
+          "end": 0.4
+        },
+        {
+          "id": "w2",
+          "text": "a",
+          "start": 0.4,
+          "end": 0.5
+        },
+        {
+          "id": "w3",
+          "text": "short",
+          "start": 0.5,
+          "end": 0.9
+        },
+        {
+          "id": "w4",
+          "text": "test.",
+          "start": 0.9,
+          "end": 1.4
+        },
+        {
+          "id": "w5",
+          "text": "Style",
+          "start": 2.0,
+          "end": 2.4
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "path": "assets/voices/02.wav",
+      "duration_s": 2.0,
+      "words": [
+        {
+          "id": "w5",
+          "text": "Style",
+          "start": 0.0,
+          "end": 0.4
+        },
+        {
+          "id": "w6",
+          "text": "guides",
+          "start": 0.4,
+          "end": 0.9
+        },
+        {
+          "id": "w7",
+          "text": "the",
+          "start": 0.9,
+          "end": 1.1
+        },
+        {
+          "id": "w8",
+          "text": "look.",
+          "start": 1.1,
+          "end": 1.6
+        },
+        {
+          "id": "w9",
+          "text": "Voice",
+          "start": 2.0,
+          "end": 2.35
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "path": "assets/voices/03.wav",
+      "duration_s": 2.0,
+      "words": [
+        {
+          "id": "w9",
+          "text": "Voice",
+          "start": 0.0,
+          "end": 0.35
+        },
+        {
+          "id": "w10",
+          "text": "owns",
+          "start": 0.35,
+          "end": 0.7
+        },
+        {
+          "id": "w11",
+          "text": "the",
+          "start": 0.7,
+          "end": 0.9
+        },
+        {
+          "id": "w12",
+          "text": "timing.",
+          "start": 0.9,
+          "end": 1.5
+        }
+      ]
+    }
+  ],
+  "bgm": null,
+  "sfx": []
+}

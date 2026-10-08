@@ -1,0 +1,41 @@
+{
+  "format": {
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "pacing": {
+    "average_shot_duration": 2.0,
+    "cut_style": "fast",
+    "scene_density": "medium",
+    "narration_driven_cuts": true
+  },
+  "typography": {
+    "style": "bold sans serif",
+    "position": "lower_center",
+    "emphasis": "keyword",
+    "keyword_emphasis": true
+  },
+  "color": {
+    "palette": [
+      "#1a1a2e",
+      "#eaeaea",
+      "#e94560"
+    ],
+    "background_treatment": "solid dark",
+    "contrast": "high"
+  },
+  "imagery": {
+    "treatment": "full_screen",
+    "motion": "slow_zoom",
+    "uses_photographs": false
+  },
+  "transitions": {
+    "style": "hard_cut",
+    "common": [
+      "hard_cut"
+    ]
+  },
+  "notes": "smoke fixture style"
+}
