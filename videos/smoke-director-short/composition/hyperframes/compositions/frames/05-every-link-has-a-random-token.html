@@ -1,0 +1,171 @@
+<template id="05-every-link-has-a-random-token-template">
+  <div
+    data-composition-id="05-every-link-has-a-random-token"
+    data-width="1080"
+    data-height="1920"
+    data-duration="6.94"
+    id="f05-root"
+  >
+    <div class="f05-bg"></div>
+    <div class="f05-container">
+      <div class="f05-browser-card" id="f05-card">
+        <div class="f05-browser-bar">
+          <div class="f05-browser-dots">
+            <span class="f05-dot-r"></span>
+            <span class="f05-dot-y"></span>
+            <span class="f05-dot-g"></span>
+          </div>
+          <div class="f05-lock-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#6B7280" stroke-width="2.5">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <div class="f05-url-text">swiggy.com/burstrex/play</div>
+        </div>
+        <div class="f05-token-container">
+          <span class="f05-param-name">?token=</span>
+          <span class="f05-token-highlight" id="f05-highlight">eyJ1c2VySWQiOiI3ODQ5MiIsIm5hbWUiOiJTdXNodSJ9</span>
+        </div>
+      </div>
+
+      <div class="f05-headline-wrap" id="f05-headline">
+        <h1 class="f05-h1">
+          <span class="f05-sub">every link has a</span><br>
+          <span class="f05-key">random token</span>
+        </h1>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #f05-root {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+      background: #F4F4F6;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow: hidden;
+    }
+    .f05-bg {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(#d1d5db 1.5px, transparent 1.5px);
+      background-size: 32px 32px;
+      opacity: 0.6;
+    }
+    .f05-container {
+      position: absolute;
+      top: 360px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+    }
+    .f05-browser-card {
+      width: 680px;
+      background: #FFFFFF;
+      border-radius: 32px;
+      padding: 36px 40px;
+      box-shadow: 0 28px 65px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .f05-browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #F4F4F6;
+      padding: 16px 24px;
+      border-radius: 20px;
+    }
+    .f05-browser-dots {
+      display: flex;
+      gap: 8px;
+    }
+    .f05-dot-r { width: 12px; height: 12px; border-radius: 50%; background: #EF4444; }
+    .f05-dot-y { width: 12px; height: 12px; border-radius: 50%; background: #F59E0B; }
+    .f05-dot-g { width: 12px; height: 12px; border-radius: 50%; background: #10B981; }
+    .f05-url-text {
+      font-size: 22px;
+      font-weight: 600;
+      color: #374151;
+      font-family: monospace;
+    }
+    .f05-token-container {
+      background: #FAF5FF;
+      border: 2px dashed #C084FC;
+      border-radius: 20px;
+      padding: 24px 28px;
+      word-break: break-all;
+      font-family: monospace;
+      font-size: 25px;
+      line-height: 1.4;
+    }
+    .f05-param-name {
+      color: #9333EA;
+      font-weight: 700;
+    }
+    .f05-token-highlight {
+      background: #F3E8FF;
+      color: #6B21A8;
+      padding: 4px 8px;
+      border-radius: 8px;
+      font-weight: 800;
+    }
+    .f05-headline-wrap {
+      text-align: center;
+    }
+    .f05-h1 {
+      margin: 0;
+      font-size: 74px;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+    .f05-sub {
+      color: #8A8A8A;
+      font-weight: 700;
+      font-size: 60px;
+    }
+    .f05-key {
+      color: #111111;
+      font-weight: 900;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function() {
+      var tl = gsap.timeline({ paused: true });
+      tl.from("#f05-card", {
+        y: 60,
+        opacity: 0,
+        rotation: -2,
+        scale: 0.92,
+        duration: 0.7,
+        ease: "power3.out"
+      }, 0);
+      tl.from("#f05-headline", {
+        opacity: 0,
+        y: 30,
+        duration: 0.55,
+        ease: "power2.out"
+      }, 0.3);
+      tl.to("#f05-highlight", {
+        backgroundColor: "#FEF08A",
+        color: "#854D0E",
+        duration: 0.4,
+        ease: "power1.inOut",
+        repeat: 3,
+        yoyo: true
+      }, 0.8);
+      tl.to({}, { duration: 6.44 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["05-every-link-has-a-random-token"] = tl;
+    })();
+  </script>
+</template>

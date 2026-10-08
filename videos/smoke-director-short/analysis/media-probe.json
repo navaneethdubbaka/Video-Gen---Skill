@@ -1,26 +1,16 @@
 {
-  "reference": {
-    "path": "E:/Video Gen Skill/videos/smoke-director-short/input/reference.mp4",
-    "duration_s": 6.0,
-    "width": 1080,
-    "height": 1920,
-    "aspect_ratio": "9:16",
-    "fps": 25.0,
-    "video_codec": "h264",
-    "audio_codec": "aac",
-    "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
-    "size_bytes": 70317
-  },
+  "reference": null,
+  "reference_note": "Using insider-force-short style pack; no reference video needed",
   "voiceover": {
-    "path": "E:/Video Gen Skill/videos/smoke-director-short/input/voiceover.wav",
-    "duration_s": 6.0,
+    "path": "E:/Video Gen Skill/videos/smoke-director-short/input/voiceover.mp3",
+    "duration_s": 65.88,
     "width": null,
     "height": null,
     "aspect_ratio": null,
     "fps": null,
     "video_codec": null,
-    "audio_codec": "pcm_s16le",
-    "format_name": "wav",
-    "size_bytes": 529278
+    "audio_codec": "mp3",
+    "format_name": "mp3",
+    "size_bytes": 1054241
   }
 }

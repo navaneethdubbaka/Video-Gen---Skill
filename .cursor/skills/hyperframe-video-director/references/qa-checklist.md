@@ -14,6 +14,13 @@ python <SKILL_DIR>/scripts/qa_report.py --project <PROJECT>
 - [ ] No scene ends before its narration ends
 - [ ] No scene lingers long after its narration
 
+## Motion / transitions / SFX (fail the draft if any miss)
+
+- [ ] Every frame has GSAP entrance (hero + captions) — not a frozen poster
+- [ ] Inter-frame transitions injected (`transitions.mjs verify` passes; not all-cuts unless requested)
+- [ ] `audio_meta.json` `sfx` non-empty; whoosh/pop/hit audible on scene changes
+- [ ] Optional BGM ducked under VO (if present)
+
 ## Visual quality
 
 - [ ] No overlapping / colliding elements

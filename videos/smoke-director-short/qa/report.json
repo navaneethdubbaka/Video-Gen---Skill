@@ -1,8 +1,14 @@
 {
   "ok": true,
   "error_count": 0,
-  "warn_count": 0,
-  "scene_count": 3,
-  "voiceover_duration_s": 6.0,
-  "issues": []
+  "warn_count": 1,
+  "scene_count": 14,
+  "voiceover_duration_s": 65.88,
+  "issues": [
+    {
+      "level": "warn",
+      "code": "duration_mismatch",
+      "msg": "storyboard end 64.84s vs VO 65.88s (tol 0.35)"
+    }
+  ]
 }

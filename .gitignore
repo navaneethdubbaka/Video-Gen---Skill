@@ -1,8 +1,94 @@
+# Secrets — keep .env.example tracked
 .env
-*.pyc
+.env.local
+.env.*.local
+*.pem
+*.key
+credentials.json
+secrets.json
+
+# Python
 __pycache__/
-**/__pycache__/
-videos/*/composition/hyperframes/node_modules/
-videos/*/renders/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Node / HyperFrames composition deps
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# OS
 .DS_Store
+.AppleDouble
+.LSOverride
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Editors / IDEs (keep .cursor/ — skill lives there)
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs & temp
+*.log
+*.tmp
+*.temp
+*.bak
+*.orig
+.cache/
+tmp/
+temp/
+.turbo/
+
+# Ad-hoc media dropped at repo root (fixtures & style packs stay tracked)
+/*.mp4
+/*.mov
+/*.mkv
+/*.webm
+/*.avi
+/*.wav
+/*.mp3
+/*.m4a
+/*.aac
+/*.flac
+/reference.*
+/voiceover.*
+
+# Per-project generated / heavy outputs under videos/<slug>/
+videos/*/renders/
+videos/*/composition/hyperframes/node_modules/
+videos/*/composition/hyperframes/.media/
+videos/*/composition/hyperframes/snapshots/
+videos/*/composition/hyperframes/out/
+videos/*/composition/hyperframes/dist/
+videos/*/analysis/frames/
+videos/*/assets/cache/
+
+# yt-dlp / download leftovers
+*.part
+*.ytdl
+*.download

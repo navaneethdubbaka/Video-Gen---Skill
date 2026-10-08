@@ -1,0 +1,147 @@
+<template id="06-looks-like-a-secured-token-template">
+  <div
+    data-composition-id="06-looks-like-a-secured-token"
+    data-width="1080"
+    data-height="1920"
+    data-duration="4.52"
+    id="f06-root"
+  >
+    <div class="f06-bg"></div>
+    <div class="f06-container">
+      <div class="f06-lock-card" id="f06-card">
+        <div class="f06-lock-badge">
+          <svg viewBox="0 0 24 24" width="60" height="60" fill="none" stroke="#111111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <div class="f06-assumption">ASSUMPTION</div>
+        <div class="f06-lock-status">"SECURED TOKEN"</div>
+      </div>
+
+      <div class="f06-text-block" id="f06-text">
+        <h1 class="f06-h1">
+          <span class="f06-w1">looks like a</span><br>
+          <span class="f06-w2">secured token</span>
+        </h1>
+        <p class="f06-sub">or is it really?</p>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #f06-root {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+      background: #F4F4F6;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow: hidden;
+    }
+    .f06-bg {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(#d1d5db 1.5px, transparent 1.5px);
+      background-size: 32px 32px;
+      opacity: 0.6;
+    }
+    .f06-container {
+      position: absolute;
+      top: 380px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 44px;
+    }
+    .f06-lock-card {
+      width: 540px;
+      background: #FFFFFF;
+      border-radius: 36px;
+      padding: 40px;
+      box-shadow: 0 28px 65px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    .f06-lock-badge {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #F4F4F6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .f06-assumption {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: #8A8A8A;
+    }
+    .f06-lock-status {
+      font-size: 38px;
+      font-weight: 900;
+      color: #111111;
+      letter-spacing: -0.02em;
+    }
+    .f06-text-block {
+      text-align: center;
+    }
+    .f06-h1 {
+      margin: 0;
+      font-size: 78px;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+    .f06-w1 {
+      font-size: 64px;
+      color: #8A8A8A;
+      font-weight: 700;
+    }
+    .f06-w2 {
+      font-size: 82px;
+      color: #111111;
+      font-weight: 900;
+    }
+    .f06-sub {
+      margin-top: 16px;
+      font-size: 32px;
+      color: #6B7280;
+      font-weight: 600;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function() {
+      var tl = gsap.timeline({ paused: true });
+      tl.from("#f06-card", {
+        scale: 0.75,
+        opacity: 0,
+        y: 40,
+        duration: 0.65,
+        ease: "back.out(1.8)"
+      }, 0);
+      tl.from("#f06-text", {
+        opacity: 0,
+        y: 30,
+        duration: 0.55,
+        ease: "power2.out"
+      }, 0.25);
+      tl.to("#f06-card", {
+        scale: 1.05,
+        duration: 2.0,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: 1
+      }, 0.7);
+      tl.to({}, { duration: 4.52 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["06-looks-like-a-secured-token"] = tl;
+    })();
+  </script>
+</template>

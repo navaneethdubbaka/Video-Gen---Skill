@@ -1,0 +1,176 @@
+<template id="01-swiggy-burstrex-new-feature-launched-template">
+  <div
+    data-composition-id="01-swiggy-burstrex-new-feature-launched"
+    data-width="1080"
+    data-height="1920"
+    data-duration="3.16"
+    id="f01-root"
+  >
+    <div class="f01-bg"></div>
+    <div class="f01-container">
+      <div class="f01-sticker-wrap" id="f01-sticker">
+        <div class="f01-badge" id="f01-badge">NEW RELEASE</div>
+        <div class="f01-sticker-card">
+          <div class="f01-brand-icon" id="f01-icon">
+            <svg viewBox="0 0 100 100" class="f01-swiggy-svg">
+              <rect width="100" height="100" rx="24" fill="#FC8019"/>
+              <path d="M50 20 C35 20 28 32 28 44 C28 62 48 76 50 82 C52 76 72 62 72 44 C72 32 65 20 50 20 Z" fill="#FFFFFF"/>
+              <circle cx="50" cy="42" r="10" fill="#FC8019"/>
+            </svg>
+          </div>
+          <div class="f01-brand-info">
+            <span class="f01-brand-name">Swiggy</span>
+            <span class="f01-feature-name">Burstrex</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="f01-text-card" id="f01-text">
+        <h1 class="f01-title">
+          <span class="f01-keyword">Swiggy Burstrex</span><br>
+          <span class="f01-subtitle">new feature launched</span>
+        </h1>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #f01-root {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+      background: #F4F4F6;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow: hidden;
+    }
+    .f01-bg {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(#d1d5db 1.5px, transparent 1.5px);
+      background-size: 32px 32px;
+      opacity: 0.6;
+    }
+    .f01-container {
+      position: absolute;
+      top: 360px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 48px;
+    }
+    .f01-sticker-wrap {
+      position: relative;
+      filter: drop-shadow(0 28px 48px rgba(0,0,0,0.12));
+      transform-origin: center center;
+    }
+    .f01-badge {
+      position: absolute;
+      top: -18px;
+      right: 20px;
+      background: #111111;
+      color: #5EFC8D;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 8px 24px;
+      border-radius: 999px;
+      border: 3px solid #FFFFFF;
+      z-index: 10;
+    }
+    .f01-sticker-card {
+      background: #FFFFFF;
+      border-radius: 36px;
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      border: 6px solid #FFFFFF;
+    }
+    .f01-brand-icon {
+      width: 110px;
+      height: 110px;
+      transform-origin: center center;
+    }
+    .f01-swiggy-svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 8px 16px rgba(252, 128, 25, 0.3));
+    }
+    .f01-brand-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .f01-brand-name {
+      font-size: 28px;
+      font-weight: 700;
+      color: #8A8A8A;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .f01-feature-name {
+      font-size: 58px;
+      font-weight: 800;
+      color: #111111;
+      letter-spacing: -0.02em;
+    }
+    .f01-text-card {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .f01-title {
+      margin: 0;
+      font-size: 74px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+    .f01-keyword {
+      color: #111111;
+    }
+    .f01-subtitle {
+      color: #71717A;
+      font-weight: 600;
+      font-size: 56px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function() {
+      var tl = gsap.timeline({ paused: true });
+      tl.from("#f01-sticker", {
+        scale: 0.5,
+        opacity: 0,
+        y: 60,
+        rotation: -6,
+        duration: 0.65,
+        ease: "back.out(1.8)"
+      }, 0);
+      tl.from("#f01-badge", {
+        scale: 0,
+        opacity: 0,
+        duration: 0.4,
+        ease: "back.out(2.2)"
+      }, 0.2);
+      tl.from("#f01-text", {
+        opacity: 0,
+        y: 40,
+        duration: 0.55,
+        ease: "power3.out"
+      }, 0.35);
+      tl.to("#f01-sticker", {
+        y: -12,
+        duration: 1.0,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: 1
+      }, 0.7);
+      tl.to({}, { duration: 2.76 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["01-swiggy-burstrex-new-feature-launched"] = tl;
+    })();
+  </script>
+</template>

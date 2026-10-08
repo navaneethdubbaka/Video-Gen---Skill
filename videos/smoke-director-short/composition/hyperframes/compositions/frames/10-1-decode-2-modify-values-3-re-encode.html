@@ -1,0 +1,136 @@
+<template id="10-1-decode-2-modify-values-3-re-encode-template">
+  <div
+    data-composition-id="10-1-decode-2-modify-values-3-re-encode"
+    data-width="1080"
+    data-height="1920"
+    data-duration="5.98"
+    id="f10-root"
+  >
+    <div class="f10-bg"></div>
+    <div class="f10-container">
+      <div class="f10-tag" id="f10-tag">THE EXPLOIT CHAIN</div>
+
+      <div class="f10-steps">
+        <div class="f10-step" id="f10-s1">
+          <div class="f10-step-num">1</div>
+          <div class="f10-step-content">
+            <div class="f10-step-title">decode</div>
+            <div class="f10-step-desc">read raw json data</div>
+          </div>
+        </div>
+
+        <div class="f10-step" id="f10-s2">
+          <div class="f10-step-num">2</div>
+          <div class="f10-step-content">
+            <div class="f10-step-title">modify values</div>
+            <div class="f10-step-desc">change userId / permissions</div>
+          </div>
+        </div>
+
+        <div class="f10-step" id="f10-s3">
+          <div class="f10-step-num">3</div>
+          <div class="f10-step-content">
+            <div class="f10-step-title">re-encode</div>
+            <div class="f10-step-desc">btoa(newPayload)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #f10-root {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+      background: #F4F4F6;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow: hidden;
+    }
+    .f10-bg {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(#d1d5db 1.5px, transparent 1.5px);
+      background-size: 32px 32px;
+      opacity: 0.6;
+    }
+    .f10-container {
+      position: absolute;
+      top: 360px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 36px;
+    }
+    .f10-tag {
+      background: #111111;
+      color: #FFFFFF;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 10px 28px;
+      border-radius: 999px;
+    }
+    .f10-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 680px;
+    }
+    .f10-step {
+      background: #FFFFFF;
+      border-radius: 28px;
+      padding: 26px 36px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .f10-step-num {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #111111;
+      color: #FFFFFF;
+      font-size: 30px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .f10-step-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .f10-step-title {
+      font-size: 42px;
+      font-weight: 800;
+      color: #111111;
+      letter-spacing: -0.02em;
+    }
+    .f10-step-desc {
+      font-size: 22px;
+      font-weight: 600;
+      color: #555555;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function() {
+      var tl = gsap.timeline({ paused: true });
+      tl.from("#f10-tag", { opacity: 0, y: -20, duration: 0.4 }, 0);
+      tl.from("#f10-s1", { x: -60, opacity: 0, duration: 0.5, ease: "back.out(1.6)" }, 0.2);
+      tl.from("#f10-s2", { x: -60, opacity: 0, duration: 0.5, ease: "back.out(1.6)" }, 0.65);
+      tl.from("#f10-s3", { x: -60, opacity: 0, duration: 0.5, ease: "back.out(1.6)" }, 1.1);
+      tl.to({}, { duration: 5.98 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["10-1-decode-2-modify-values-3-re-encode"] = tl;
+    })();
+  </script>
+</template>

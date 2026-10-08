@@ -1,70 +1,379 @@
 {
   "project": "smoke-director-short",
-  "language": "en",
-  "message": "Smoke test short",
-  "total_duration_s": 6.0,
+  "language": "tel",
+  "message": "Swiggy Burstrex security vulnerability expos\u00e9 \u2014 base64 token flaw found and reported",
+  "total_duration_s": 65.88,
   "style_spec_path": "analysis/style-spec.json",
-  "instructions": "smoke",
+  "instructions": "insider-force-short style pack; no watermark; clean tech sticker look; Telugu+English bilingual VO",
   "scenes": [
     {
       "scene_id": 1,
-      "start": 0.0,
-      "end": 2.0,
-      "narration": "This is a short test.",
-      "concept": "Hook",
+      "start": 0.14,
+      "end": 2.9,
+      "narration": "Recently Swiggy Burstrex \u0c05\u0c28\u0c47 \u0c15\u0c4a\u0c24\u0c4d\u0c24 feature launch \u0c1a\u0c47\u0c38\u0c3f\u0c02\u0c26\u0c3f.",
+      "concept": "Hook \u2014 Swiggy sticker with new feature reveal (Pattern A)",
+      "scene_pattern": "A",
       "visual": {
-        "type": "text_only"
+        "type": "generated_graphic",
+        "search_query": "Swiggy app icon sticker cutout white border"
       },
       "text": {
-        "content": "SHORT TEST",
+        "content": "Swiggy Burstrex\nnew feature launched",
         "emphasis": [
-          "TEST"
+          "Swiggy",
+          "Burstrex"
         ]
       },
       "motion": {
-        "type": "punch_in"
+        "type": "pop_scale_in",
+        "notes": "sticker pop \u2192 caption words reveal"
       },
-      "transition": "hard_cut"
+      "transition": "cut",
+      "sfx": [
+        "pop"
+      ]
     },
     {
       "scene_id": 2,
-      "start": 2.0,
-      "end": 4.0,
-      "narration": "Style guides the look.",
-      "concept": "Style",
+      "start": 3.46,
+      "end": 5.82,
+      "narration": "But within few days \u0c32\u0c4b\u0c28\u0c47 \u0c35\u0c3e\u0c33\u0c4d\u0c33\u0c41 discontinue \u0c1a\u0c47\u0c36\u0c3e\u0c30\u0c41.",
+      "concept": "Tension \u2014 discontinued quickly (Pattern J kinetic type)",
+      "scene_pattern": "J",
       "visual": {
         "type": "text_only"
       },
       "text": {
-        "content": "STYLE",
+        "content": "discontinued\nwithin days",
         "emphasis": [
-          "STYLE"
+          "discontinued"
         ]
       },
       "motion": {
-        "type": "zoom_in"
+        "type": "punch_in",
+        "notes": "keyword punch on 'discontinued'"
       },
-      "transition": "hard_cut"
+      "transition": "zoom-through",
+      "sfx": [
+        "whoosh",
+        "hit"
+      ]
     },
     {
       "scene_id": 3,
-      "start": 4.0,
-      "end": 6.0,
-      "narration": "Voice owns the timing.",
-      "concept": "Timing",
+      "start": 6.14,
+      "end": 11.4,
+      "narration": "Swiggy \u0c26\u0c40\u0c28\u0c4d\u0c28\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c41 discontinue \u0c1a\u0c47\u0c36\u0c3e\u0c30\u0c4b officially\u0c17\u0c3e \u0c0f\u0c2e\u0c3f \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c32\u0c47\u0c26\u0c41. And I am not saying this is the reason \u0c05\u0c28\u0c3f.",
+      "concept": "Mystery / no official reason \u2014 doc card with question mark (Pattern D)",
+      "scene_pattern": "D",
+      "visual": {
+        "type": "generated_graphic",
+        "search_query": "official document card with question mark mystery"
+      },
+      "text": {
+        "content": "no official reason\nbut we found something",
+        "emphasis": [
+          "no official",
+          "found"
+        ]
+      },
+      "motion": {
+        "type": "float_settle",
+        "notes": "doc card rises and settles"
+      },
+      "transition": "cut",
+      "sfx": [
+        "whoosh"
+      ]
+    },
+    {
+      "scene_id": 4,
+      "start": 11.7,
+      "end": 14.48,
+      "narration": "But \u0c08 feature live\u0c32\u0c4b \u0c09\u0c28\u0c4d\u0c28\u0c2a\u0c4d\u0c2a\u0c41\u0c21\u0c41 we found a security issue.",
+      "concept": "Security issue reveal \u2014 sticker + alert (Pattern A)",
+      "scene_pattern": "A",
+      "visual": {
+        "type": "generated_graphic",
+        "search_query": "security shield warning icon red alert sticker"
+      },
+      "text": {
+        "content": "security issue\nfound while live",
+        "emphasis": [
+          "security issue"
+        ]
+      },
+      "motion": {
+        "type": "pop_scale_in",
+        "notes": "alert icon pops in \u2192 text lands"
+      },
+      "transition": "push-slide",
+      "sfx": [
+        "whoosh"
+      ]
+    },
+    {
+      "scene_id": 5,
+      "start": 14.76,
+      "end": 21.2,
+      "narration": "\u0c0f\u0c02\u0c1f\u0c3f \u0c05\u0c02\u0c1f\u0c47 \u0c2a\u0c4d\u0c30\u0c24\u0c3f Burstrex\u0c32\u0c4b link \u0c1a\u0c3f\u0c35\u0c30\u0c4d\u0c32\u0c4b \u0c2e\u0c28\u0c15\u0c4a\u0c15 similar pattern \u0c15\u0c28\u0c3f\u0c2a\u0c3f\u0c38\u0c4d\u0c24\u0c41\u0c02\u0c26\u0c3f. Like \u0c12\u0c15 random token \u0c32\u0c3e\u0c17\u0c3e.",
+      "concept": "URL pattern with suspicious token \u2014 floating browser card (Pattern C)",
+      "scene_pattern": "C",
+      "visual": {
+        "type": "generated_graphic",
+        "search_query": "browser URL bar with highlighted token parameter"
+      },
+      "text": {
+        "content": "every link has a\nrandom token",
+        "emphasis": [
+          "random token"
+        ]
+      },
+      "motion": {
+        "type": "float_settle",
+        "notes": "browser card rises with slight tilt"
+      },
+      "transition": "cut",
+      "sfx": [
+        "whoosh"
+      ]
+    },
+    {
+      "scene_id": 6,
+      "start": 21.44,
+      "end": 25.96,
+      "narration": "normal\u0c17\u0c3e \u0c1a\u0c42\u0c38\u0c3f\u0c28\u0c2a\u0c4d\u0c2a\u0c41\u0c21\u0c41 \u0c2e\u0c28\u0c15\u0c3f \u0c07\u0c26\u0c3f just \u0c12\u0c15 probably \u0c12\u0c15 secured token \u0c05\u0c28\u0c3f\u0c2a\u0c3f\u0c02\u0c1a\u0c4a\u0c1a\u0c4d\u0c1a\u0c41.",
+      "concept": "False sense of security \u2014 looks like secured token (Pattern J)",
+      "scene_pattern": "J",
       "visual": {
         "type": "text_only"
       },
       "text": {
-        "content": "TIMING",
+        "content": "looks like a\nsecured token",
         "emphasis": [
-          "TIMING"
+          "secured token"
         ]
       },
       "motion": {
-        "type": "punch_in"
+        "type": "zoom_in",
+        "notes": "slow push-in on text"
       },
-      "transition": "hard_cut"
+      "transition": "crossfade",
+      "sfx": [
+        "rise"
+      ]
+    },
+    {
+      "scene_id": 7,
+      "start": 26.36,
+      "end": 30.58,
+      "narration": "But \u0c2e\u0c28\u0c02 \u0c26\u0c40\u0c28\u0c4d\u0c28\u0c3f proper\u0c17\u0c3e analyze \u0c1a\u0c47\u0c38\u0c4d\u0c24\u0c47 \u0c07\u0c26\u0c3f base64 encoding \u0c05\u0c28\u0c3f \u0c2e\u0c28\u0c15\u0c41 \u0c24\u0c46\u0c32\u0c41\u0c38\u0c4d\u0c24\u0c41\u0c02\u0c26\u0c3f.",
+      "concept": "Reveal \u2014 it's just base64 encoding (Pattern B big number/code reveal)",
+      "scene_pattern": "B",
+      "visual": {
+        "type": "generated_graphic",
+        "search_query": "base64 encoding code terminal decode"
+      },
+      "text": {
+        "content": "base64\nencoding",
+        "emphasis": [
+          "base64"
+        ]
+      },
+      "motion": {
+        "type": "punch_in",
+        "notes": "big text punch on 'base64'"
+      },
+      "transition": "cut",
+      "sfx": [
+        "pop"
+      ]
+    },
+    {
+      "scene_id": 8,
+      "start": 30.84,
+      "end": 36.04,
+      "narration": "And base64 encoding \u0c05\u0c28\u0c47\u0c26\u0c3f any encryption technique \u0c15\u0c3e\u0c26\u0c41. And \u0c26\u0c40\u0c28\u0c4d\u0c28\u0c3f \u0c2e\u0c28\u0c02 easy\u0c17\u0c3e decode \u0c1a\u0c47\u0c2f\u0c17\u0c32\u0c02.",
+      "concept": "Not encryption \u2014 deny list (Pattern H)",
+      "scene_pattern": "H",
+      "visual": {
+        "type": "generated_graphic",
+        "search_query": "security checklist deny list icon"
+      },
+      "text": {
+        "content": "\u2715 not encryption\n\u2715 easily decoded",
+        "emphasis": [
+          "not encryption",
+          "easily decoded"
+        ]
+      },
+      "motion": {
+        "type": "line_reveal",
+        "notes": "progressive reveal line-by-line"
+      },
+      "transition": "blur-crossfade",
+      "sfx": [
+        "rise"
+      ]
+    },
+    {
+      "scene_id": 9,
+      "start": 36.28,
+      "end": 42.3,
+      "narration": "And surprisingly \u0c26\u0c40\u0c28\u0c4d\u0c28\u0c3f decode \u0c1a\u0c47\u0c38\u0c4d\u0c24\u0c47 \u0c32\u0c4b\u0c2a\u0c32 basically \u0c12\u0c15 user ID and name \u0c09\u0c28\u0c4d\u0c28\u0c3e\u0c2f\u0c3f. Something like this.",
+      "concept": "Shocking decoded data \u2014 user ID + name exposed (Pattern C floating card)",
+      "scene_pattern": "C",
+      "visual": {
+        "type": "generated_graphic",
+        "search_query": "JSON data card user ID name decoded plaintext"
+      },
+      "text": {
+        "content": "user ID + name\nexposed in plaintext",
+        "emphasis": [
+          "user ID",
+          "name",
+          "exposed"
+        ]
+      },
+      "motion": {
+        "type": "float_settle",
+        "notes": "data card floats up with shadow"
+      },
+      "transition": "cut",
+      "sfx": [
+        "whoosh"
+      ]
+    },
+    {
+      "scene_id": 10,
+      "start": 42.62,
+      "end": 48.6,
+      "narration": "So theoretically \u0c2e\u0c28\u0c02 \u0c26\u0c40\u0c28\u0c4d\u0c28\u0c3f decode \u0c1a\u0c47\u0c38\u0c3f values \u0c2e\u0c3e\u0c30\u0c4d\u0c1a\u0c35\u0c1a\u0c4d\u0c1a\u0c41. And \u0c2e\u0c33\u0c4d\u0c33\u0c40 \u0c05\u0c26\u0c47 format\u0c32\u0c4b encode \u0c1a\u0c47\u0c2f\u0c4a\u0c1a\u0c4d\u0c1a\u0c41.",
+      "concept": "The exploit \u2014 decode, change, re-encode (Pattern H allow/deny list)",
+      "scene_pattern": "H",
+      "visual": {
+        "type": "generated_graphic",
+        "search_query": "decode modify encode cycle arrows"
+      },
+      "text": {
+        "content": "1. decode\n2. modify values\n3. re-encode",
+        "emphasis": [
+          "decode",
+          "modify",
+          "re-encode"
+        ]
+      },
+      "motion": {
+        "type": "line_reveal",
+        "notes": "steps reveal one by one"
+      },
+      "transition": "push-slide",
+      "sfx": [
+        "whoosh"
+      ]
+    },
+    {
+      "scene_id": 11,
+      "start": 48.82,
+      "end": 54.42,
+      "narration": "And that's exactly what we did. So \u0c15\u0c4a\u0c24\u0c4d\u0c24 values\u0c24\u0c4b \u0c12\u0c15 token generate \u0c1a\u0c47\u0c38\u0c3f \u0c26\u0c3e\u0c28\u0c4d\u0c28\u0c3f \u0c2e\u0c47\u0c2e\u0c41 test \u0c1a\u0c47\u0c36\u0c3e\u0c02.",
+      "concept": "We tested it \u2014 action confirmation (Pattern J kinetic type)",
+      "scene_pattern": "J",
+      "visual": {
+        "type": "text_only"
+      },
+      "text": {
+        "content": "that's exactly\nwhat we did",
+        "emphasis": [
+          "exactly"
+        ]
+      },
+      "motion": {
+        "type": "punch_in",
+        "notes": "confident punch on 'exactly'"
+      },
+      "transition": "cut",
+      "sfx": [
+        "whoosh"
+      ]
+    },
+    {
+      "scene_id": 12,
+      "start": 54.68,
+      "end": 56.6,
+      "narration": "And that link was still being accepted.",
+      "concept": "Shocking result \u2014 link accepted (Pattern B big reveal)",
+      "scene_pattern": "B",
+      "visual": {
+        "type": "generated_graphic",
+        "search_query": "green checkmark accepted verified badge"
+      },
+      "text": {
+        "content": "link accepted\nstill working",
+        "emphasis": [
+          "accepted"
+        ]
+      },
+      "motion": {
+        "type": "punch_in",
+        "notes": "dramatic punch"
+      },
+      "transition": "squeeze",
+      "sfx": [
+        "hit"
+      ]
+    },
+    {
+      "scene_id": 13,
+      "start": 56.8,
+      "end": 63.58,
+      "narration": "So immediate\u0c17\u0c3e \u0c2e\u0c47\u0c2e\u0c41 \u0c0f\u0c02 \u0c1a\u0c47\u0c36\u0c3e\u0c2e\u0c02\u0c1f\u0c47 Swiggy\u0c15\u0c3f \u0c08 issue \u0c15\u0c4b\u0c38\u0c02 report \u0c1a\u0c47\u0c36\u0c3e\u0c02. And \u0c26\u0c40\u0c28\u0c3f \u0c17\u0c41\u0c30\u0c3f\u0c02\u0c1a\u0c3f \u0c2e\u0c28\u0c02 detailed\u0c17\u0c3e next part\u0c32\u0c4b \u0c1a\u0c42\u0c26\u0c4d\u0c26\u0c3e\u0c02.",
+      "concept": "Reported to Swiggy \u2014 doc/paper card (Pattern D)",
+      "scene_pattern": "D",
+      "visual": {
+        "type": "generated_graphic",
+        "search_query": "bug report document security vulnerability report card"
+      },
+      "text": {
+        "content": "reported to Swiggy\ndetails in next part",
+        "emphasis": [
+          "reported",
+          "Swiggy"
+        ]
+      },
+      "motion": {
+        "type": "float_settle",
+        "notes": "report card floats in"
+      },
+      "transition": "cut",
+      "sfx": [
+        "whoosh"
+      ]
+    },
+    {
+      "scene_id": 14,
+      "start": 63.76,
+      "end": 64.84,
+      "narration": "And follow for more.",
+      "concept": "CTA \u2014 follow (Pattern K dot-grid, no watermark)",
+      "scene_pattern": "K",
+      "visual": {
+        "type": "text_only"
+      },
+      "text": {
+        "content": "follow\nfor more",
+        "emphasis": [
+          "follow"
+        ]
+      },
+      "motion": {
+        "type": "pop_scale_in",
+        "notes": "gentle pop"
+      },
+      "transition": "zoom-through",
+      "sfx": [
+        "hit"
+      ]
     }
   ]
 }

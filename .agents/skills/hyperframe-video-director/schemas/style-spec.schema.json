@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "style-spec.schema.json",
+  "title": "VisualStyleSpec",
+  "type": "object",
+  "required": ["format", "pacing", "typography", "imagery", "transitions"],
+  "properties": {
+    "format": {
+      "type": "object",
+      "required": ["aspect_ratio"],
+      "properties": {
+        "aspect_ratio": { "type": "string", "description": "e.g. 9:16, 16:9, 1:1" },
+        "width": { "type": "integer" },
+        "height": { "type": "integer" },
+        "fps": { "type": "number" }
+      }
+    },
+    "pacing": {
+      "type": "object",
+      "properties": {
+        "average_shot_duration": { "type": "number" },
+        "cut_style": { "type": "string" },
+        "cut_frequency": { "type": "string" },
+        "scene_density": { "type": "string" },
+        "sound_driven_cuts": { "type": "boolean" },
+        "narration_driven_cuts": { "type": "boolean" }
+      }
+    },
+    "typography": {
+      "type": "object",
+      "properties": {
+        "style": { "type": "string" },
+        "font_characteristics": { "type": "string" },
+        "text_size": { "type": "string" },
+        "position": { "type": "string" },
+        "caption_style": { "type": "string" },
+        "emphasis": { "type": "string" },
+        "keyword_emphasis": { "type": "boolean" }
+      }
+    },
+    "color": {
+      "type": "object",
+      "properties": {
+        "palette": { "type": "array", "items": { "type": "string" } },
+        "background_treatment": { "type": "string" },
+        "contrast": { "type": "string" }
+      }
+    },
+    "imagery": {
+      "type": "object",
+      "properties": {
+        "treatment": { "type": "string" },
+        "motion": { "type": "string" },
+        "subject_positioning": { "type": "string" },
+        "uses_photographs": { "type": "boolean" },
+        "uses_screenshots": { "type": "boolean" },
+        "uses_illustrations": { "type": "boolean" },
+        "uses_icons": { "type": "boolean" },
+        "uses_diagrams": { "type": "boolean" },
+        "uses_charts": { "type": "boolean" }
+      }
+    },
+    "motion_graphics": {
+      "type": "object",
+      "properties": {
+        "zoom_behavior": { "type": "string" },
+        "pan_behavior": { "type": "string" },
+        "parallax": { "type": "boolean" },
+        "overlays": { "type": "array", "items": { "type": "string" } },
+        "shapes": { "type": "array", "items": { "type": "string" } },
+        "borders": { "type": "string" },
+        "gradients": { "type": "string" },
+        "blur": { "type": "string" },
+        "shadows": { "type": "string" }
+      }
+    },
+    "transitions": {
+      "type": "object",
+      "properties": {
+        "style": { "type": "string" },
+        "common": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "hierarchy": {
+      "type": "object",
+      "properties": {
+        "visual_hierarchy": { "type": "string" },
+        "emphasis_timing": { "type": "string" }
+      }
+    },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": true
+}

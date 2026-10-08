@@ -1,0 +1,69 @@
+{
+  "project": "example-short",
+  "language": "en",
+  "message": "One idea, three beats, clear CTA",
+  "total_duration_s": 7.1,
+  "style_spec_path": "analysis/style-spec.json",
+  "instructions": "fast-paced documentary-style short",
+  "scenes": [
+    {
+      "scene_id": 1,
+      "start": 0.0,
+      "end": 2.2,
+      "narration": "Sentence one of the voiceover.",
+      "concept": "Hook the viewer with the core claim",
+      "visual": {
+        "type": "photograph",
+        "search_query": "person using smartphone outdoors natural light",
+        "requirement": {
+          "subject": "person using smartphone",
+          "composition": {
+            "subject_position": "right",
+            "negative_space": "left"
+          },
+          "purpose": "background for headline",
+          "minimum_resolution": "1080p"
+        }
+      },
+      "text": {
+        "content": "THE CLAIM",
+        "emphasis": ["CLAIM"]
+      },
+      "motion": { "type": "zoom_in" },
+      "transition": "hard_cut"
+    },
+    {
+      "scene_id": 2,
+      "start": 2.2,
+      "end": 4.8,
+      "narration": "Sentence two of the voiceover.",
+      "concept": "Show the tension or problem",
+      "visual": {
+        "type": "photograph",
+        "search_query": "crowded city street motion blur"
+      },
+      "text": {
+        "content": "THE PROBLEM",
+        "emphasis": ["PROBLEM"]
+      },
+      "motion": { "type": "slow_pan" },
+      "transition": "hard_cut"
+    },
+    {
+      "scene_id": 3,
+      "start": 4.8,
+      "end": 7.1,
+      "narration": "Sentence three of the voiceover.",
+      "concept": "Resolve with the takeaway",
+      "visual": {
+        "type": "text_only"
+      },
+      "text": {
+        "content": "THE TAKEAWAY",
+        "emphasis": ["TAKEAWAY"]
+      },
+      "motion": { "type": "punch_in" },
+      "transition": "hard_cut"
+    }
+  ]
+}

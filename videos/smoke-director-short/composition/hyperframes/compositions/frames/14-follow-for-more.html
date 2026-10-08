@@ -1,0 +1,103 @@
+<template id="14-follow-for-more-template">
+  <div
+    data-composition-id="14-follow-for-more"
+    data-width="1080"
+    data-height="1920"
+    data-duration="1.08"
+    id="f14-root"
+  >
+    <div class="f14-bg"></div>
+    <div class="f14-container">
+      <div class="f14-bell-circle" id="f14-bell">
+        <svg viewBox="0 0 24 24" width="70" height="70" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+      </div>
+
+      <div class="f14-cta" id="f14-cta">
+        <div class="f14-follow">follow</div>
+        <div class="f14-more">for more.</div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #f01-root, #f14-root {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+      background: #F4F4F6;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow: hidden;
+    }
+    .f14-bg {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(#d1d5db 1.5px, transparent 1.5px);
+      background-size: 32px 32px;
+      opacity: 0.6;
+    }
+    .f14-container {
+      position: absolute;
+      top: 420px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 36px;
+    }
+    .f14-bell-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: #111111;
+      border: 6px solid #FFFFFF;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-origin: center center;
+    }
+    .f14-cta {
+      text-align: center;
+    }
+    .f14-follow {
+      font-size: 96px;
+      font-weight: 900;
+      color: #111111;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .f14-more {
+      font-size: 68px;
+      font-weight: 800;
+      color: #8A8A8A;
+      letter-spacing: -0.02em;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function() {
+      var tl = gsap.timeline({ paused: true });
+      tl.from("#f14-bell", {
+        scale: 0.3,
+        opacity: 0,
+        rotation: -15,
+        duration: 0.4,
+        ease: "back.out(2.4)"
+      }, 0);
+      tl.from("#f14-cta", {
+        opacity: 0,
+        y: 20,
+        duration: 0.35,
+        ease: "power2.out"
+      }, 0.15);
+      tl.to({}, { duration: 1.08 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["14-follow-for-more"] = tl;
+    })();
+  </script>
+</template>

@@ -13,8 +13,10 @@ Task Progress:
 - [ ] 6 storyboard.json
 - [ ] 7 assets cached / resolved
 - [ ] 8 HyperFrames init + bridge scripts
-- [ ] 8b compose frames + captions + assemble
-- [ ] 9 QA (structural + visual)
+- [ ] 8b compose frames with GSAP motion
+- [ ] 8c captions + fetch-sfx + assemble
+- [ ] 8d transitions.mjs inject + verify
+- [ ] 9 QA (structural + visual + motion/SFX)
 - [ ] 9b iterate if needed
 - [ ] 10 final render promoted
 ```

@@ -76,6 +76,20 @@ Pick one pattern per storyboard scene. Match the narration concept, not the refe
 
 ---
 
+## Motion + SFX (all patterns)
+
+Every pattern above **must** include:
+
+| Layer | Default |
+| --- | --- |
+| Hero entrance | 0.4s scale 0.92→1 + opacity 0→1 + slight y (power3.out) |
+| Captions | Staggered dual-tone word/line reveals |
+| Idle | Slow 8–12s yoyo float or Ken-Burns on mockups |
+| Boundary SFX | `pop` (sticker/icon), `whoosh` (cut/slide), `hit` (big number), `rise` (crossfade) |
+| Inter-frame | Alternate `cut` with `zoom-through` / `push-slide` / `crossfade` |
+
+Never ship a pattern as a static PNG/HTML still.
+
 ## Caption recipe (all patterns)
 
 ```text

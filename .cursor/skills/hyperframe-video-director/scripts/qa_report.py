@@ -101,6 +101,63 @@ def main() -> int:
             path = hf / v.get("path", "")
             if v.get("path") and not path.is_file():
                 issues.append({"level": "error", "code": "missing_voice_file", "msg": v.get("path")})
+        sfx = meta.get("sfx") or []
+        if not sfx:
+            issues.append(
+                {
+                    "level": "error",
+                    "code": "missing_sfx",
+                    "msg": "audio_meta.sfx empty — run faceless audio.mjs fetch-sfx before render",
+                }
+            )
+
+    # Storyboard liveliness: transitions + sfx fields
+    cut_only = 0
+    sfx_missing = 0
+    for scene in scenes:
+        t = (scene.get("transition") or "hard_cut").lower().replace("-", "_")
+        if t in ("hard_cut", "cut", "hard", ""):
+            cut_only += 1
+        sfx = scene.get("sfx")
+        if not sfx:
+            sfx_missing += 1
+    if scenes and cut_only == len(scenes) and len(scenes) >= 3:
+        issues.append(
+            {
+                "level": "error",
+                "code": "all_hard_cuts",
+                "msg": "every scene is hard_cut — mix zoom-through/push-slide/crossfade (see motion-and-sfx.md)",
+            }
+        )
+    if scenes and sfx_missing == len(scenes):
+        issues.append(
+            {
+                "level": "warn",
+                "code": "storyboard_sfx_empty",
+                "msg": "no scene.sfx in storyboard.json — bridge auto-fills STORYBOARD.md, but prefer explicit cues",
+            }
+        )
+
+    story_md = hf / "STORYBOARD.md"
+    if story_md.is_file():
+        text = story_md.read_text(encoding="utf-8")
+        if "- sfx:" not in text.lower():
+            issues.append(
+                {
+                    "level": "error",
+                    "code": "storyboard_md_no_sfx",
+                    "msg": "STORYBOARD.md has no sfx: lines — re-run storyboard_to_hyperframes.py",
+                }
+            )
+        non_cut_tokens = ("zoom-through", "push-slide", "crossfade", "blur-crossfade", "squeeze")
+        if len(scenes) >= 3 and not any(tok in text for tok in non_cut_tokens):
+            issues.append(
+                {
+                    "level": "error",
+                    "code": "storyboard_md_all_cuts",
+                    "msg": "STORYBOARD.md has no non-cut transition_in — transitions.mjs will inject 0 effects",
+                }
+            )
 
     errors = [i for i in issues if i["level"] == "error"]
     warns = [i for i in issues if i["level"] == "warn"]

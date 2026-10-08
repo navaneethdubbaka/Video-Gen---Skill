@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "transcript.schema.json",
+  "title": "Transcript",
+  "type": "object",
+  "required": ["language", "segments"],
+  "properties": {
+    "language": { "type": "string", "description": "ISO language code, e.g. en, te" },
+    "language_probability": { "type": "number" },
+    "text": { "type": "string" },
+    "audio_duration_secs": { "type": "number" },
+    "provider": { "type": "string" },
+    "segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["start", "end", "text"],
+        "properties": {
+          "start": { "type": "number" },
+          "end": { "type": "number" },
+          "text": { "type": "string" }
+        }
+      }
+    },
+    "words": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text", "start", "end"],
+        "properties": {
+          "id": { "type": "string" },
+          "text": { "type": "string" },
+          "start": { "type": "number" },
+          "end": { "type": "number" },
+          "type": { "type": "string" }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

@@ -13,9 +13,10 @@ For each meaningful narration window ask:
 5. Asset type: photograph / video clip / screenshot / diagram / icon / text-only / generated graphic / multiple?
 6. What on-screen text (same language as VO unless user asked to translate)?
 7. Which words to emphasize?
-8. What motion?
-9. What transition?
-10. When must the visual change? (align to segment boundaries)
+8. What **in-frame motion**? (pop_in, float, punch_in, stagger_list — never “none/static”)
+9. What **inter-frame transition**? Prefer registry names: `zoom-through`, `push-slide LEFT`, `crossfade`, `blur-crossfade`, `squeeze`, or `hard_cut` — not all cuts.
+10. What **sfx** on entry? (`whoosh`, `pop`, `hit`, `rise`) — required almost every scene.
+11. When must the visual change? (align to segment boundaries)
 
 ## Timing
 

@@ -1,0 +1,137 @@
+<template id="08-not-encryption-easily-decoded-template">
+  <div
+    data-composition-id="08-not-encryption-easily-decoded"
+    data-width="1080"
+    data-height="1920"
+    data-duration="5.20"
+    id="f08-root"
+  >
+    <div class="f08-bg"></div>
+    <div class="f08-container">
+      <div class="f08-header-tag" id="f08-tag">SECURITY CLARIFICATION</div>
+
+      <div class="f08-list" id="f08-items">
+        <div class="f08-item" id="f08-item1">
+          <div class="f08-badge-x">✕</div>
+          <div class="f08-item-text">
+            <span class="f08-item-main">not encryption</span>
+            <span class="f08-item-sub">no secret key required</span>
+          </div>
+        </div>
+
+        <div class="f08-item" id="f08-item2">
+          <div class="f08-badge-x">✕</div>
+          <div class="f08-item-text">
+            <span class="f08-item-main">easily decoded</span>
+            <span class="f08-item-sub">1 click in browser console</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #f08-root {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+      background: #F4F4F6;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow: hidden;
+    }
+    .f08-bg {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(#d1d5db 1.5px, transparent 1.5px);
+      background-size: 32px 32px;
+      opacity: 0.6;
+    }
+    .f08-container {
+      position: absolute;
+      top: 380px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 36px;
+    }
+    .f08-header-tag {
+      background: #111111;
+      color: #FFFFFF;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 10px 28px;
+      border-radius: 999px;
+    }
+    .f08-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 680px;
+    }
+    .f08-item {
+      background: #FFFFFF;
+      border-radius: 28px;
+      padding: 28px 36px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      box-shadow: 0 20px 48px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .f08-badge-x {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #111111;
+      color: #EF4444;
+      font-size: 32px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .f08-item-text {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .f08-item-main {
+      font-size: 46px;
+      font-weight: 800;
+      color: #111111;
+      letter-spacing: -0.02em;
+    }
+    .f08-item-sub {
+      font-size: 24px;
+      font-weight: 600;
+      color: #555555;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function() {
+      var tl = gsap.timeline({ paused: true });
+      tl.from("#f08-tag", { opacity: 0, y: -25, duration: 0.4 }, 0);
+      tl.from("#f08-item1", {
+        x: -60,
+        opacity: 0,
+        duration: 0.55,
+        ease: "back.out(1.7)"
+      }, 0.2);
+      tl.from("#f08-item2", {
+        x: -60,
+        opacity: 0,
+        duration: 0.55,
+        ease: "back.out(1.7)"
+      }, 0.7);
+      tl.to({}, { duration: 5.20 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["08-not-encryption-easily-decoded"] = tl;
+    })();
+  </script>
+</template>

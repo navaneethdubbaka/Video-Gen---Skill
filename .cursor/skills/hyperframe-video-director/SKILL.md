@@ -39,6 +39,7 @@ Optional instructions: …
 6. Resume from existing artifacts; do not redo completed gates.
 7. If a **style pack** is named (see [styles/README.md](styles/README.md)), load it and **skip** open-ended Step 4 analysis unless the user also supplies a new reference to re-analyze.
 8. Style packs that forbid watermarks must ship **zero** channel URL footers (e.g. never `insiderforce.io`).
+9. **Motion + transitions + SFX are mandatory.** Static HTML slides with silent hard cuts are a failed run. See [references/motion-and-sfx.md](references/motion-and-sfx.md).
 
 ## Style packs
 
@@ -73,6 +74,7 @@ Task Progress:
 
 Full checklist: [references/workflow.md](references/workflow.md)  
 Handoff details: [references/hyperframes-handoff.md](references/hyperframes-handoff.md)  
+Motion / SFX: [references/motion-and-sfx.md](references/motion-and-sfx.md)  
 Safety: [references/safety.md](references/safety.md)
 
 ---
@@ -167,7 +169,9 @@ Read [references/storyboard-guide.md](references/storyboard-guide.md).
 Build `storyboard/storyboard.json` from transcript segments + style-spec + user instructions.  
 Schema: [schemas/storyboard.schema.json](schemas/storyboard.schema.json).
 
-Each scene: narration window, concept, visual type/query, on-screen text, motion, transition — timed to VO.
+Each scene: narration window, concept, visual type/query, on-screen text, **motion**, **transition**, **sfx** — timed to VO.
+
+Do not leave `transition: hard_cut` on every scene. Mix `zoom-through`, `push-slide`, `crossfade`, `blur-crossfade`, `squeeze` with cuts. Every scene needs an `sfx` cue (`whoosh` / `pop` / `hit` / `rise`). See [references/motion-and-sfx.md](references/motion-and-sfx.md).
 
 ---
 
@@ -202,9 +206,20 @@ python <SKILL_DIR>/scripts/storyboard_to_hyperframes.py --project <PROJECT>
 python <SKILL_DIR>/scripts/build_audio_meta_from_vo.py --project <PROJECT>
 ```
 
-5. Agent builds `compositions/frames/NN-*.html` per style + storyboard (faceless frame-worker pattern).
-6. Reuse faceless `captions.mjs` + `assemble-index.mjs` — **do not TTS** the user's VO.
-7. `npx hyperframes lint` → `check` → `snapshot`.
+5. Agent builds `compositions/frames/NN-*.html` with **GSAP entrances** (faceless frame-worker + `/hyperframes-animation`). No static posters.
+6. Faceless pipeline — **do not TTS** the user's VO:
+
+```bash
+# cwd = composition/hyperframes
+node <FACELESS>/scripts/captions.mjs build --storyboard ./STORYBOARD.md --audio-meta ./audio_meta.json --hyperframes .
+node <FACELESS>/scripts/audio.mjs fetch-sfx --storyboard ./STORYBOARD.md --hyperframes . --audio-meta ./audio_meta.json
+node <FACELESS>/scripts/assemble-index.mjs --storyboard ./STORYBOARD.md --hyperframes . --audio-meta ./audio_meta.json
+node <FACELESS>/scripts/transitions.mjs inject --storyboard ./STORYBOARD.md --hyperframes .
+node <FACELESS>/scripts/transitions.mjs verify --storyboard ./STORYBOARD.md --index ./index.html
+```
+
+7. Confirm `audio_meta.json` has non-empty `sfx` and transitions inject is not `0 transitions` (unless jump-cut-only was requested).
+8. `npx hyperframes lint` → `check` → `snapshot`.
 
 ---
 

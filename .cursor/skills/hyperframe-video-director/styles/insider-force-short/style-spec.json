@@ -71,8 +71,16 @@
     "shadows": "large soft diffuse shadow (y+12..24, blur 40..80, opacity ~0.18)"
   },
   "transitions": {
-    "style": "hard_cut",
-    "common": ["hard_cut"]
+    "style": "punchy_mixed",
+    "common": ["cut", "zoom-through", "push-slide LEFT", "crossfade", "blur-crossfade"],
+    "min_non_cut_ratio": 0.4,
+    "sfx_required": true,
+    "default_sfx": ["whoosh", "pop", "hit", "rise"]
+  },
+  "audio": {
+    "voiceover_authoritative": true,
+    "sfx_on_boundaries": true,
+    "bgm": "optional light bed ducked under VO"
   },
   "hierarchy": {
     "visual_hierarchy": "hero asset upper-mid → kinetic caption mid/lower → empty footer",

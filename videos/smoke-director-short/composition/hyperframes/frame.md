@@ -12,42 +12,42 @@
 ## Pacing
 
 - Average shot duration: 2.0s
-- Cut style: fast
-- Density: medium
+- Cut style: hard_cut
+- Density: dense
 - Narration-driven cuts: True
 
 ## Typography
 
-- Style: bold sans serif
-- Characteristics: 
-- Size: large
-- Position: lower_center
-- Caption style: 
-- Emphasis: keyword
+- Style: clean geometric sans
+- Characteristics: modern grotesque; heavy for keywords, regular for support words; often lowercase
+- Size: large_display_for_hooks
+- Position: lower_center_or_mid_center
+- Caption style: dual_tone_kinetic
+- Emphasis: keyword_weight
 
 Prefer expressive non-default display fonts that match the grammar (avoid Inter/Roboto/Arial unless the style-spec demands them).
 
 ## Color
 
-- Palette: #1a1a2e, #eaeaea, #e94560
-- Background: solid dark
+- Palette: #F2F2F2, #EDEDED, #111111, #8A8A8A, #FFFFFF, #5EFC8D
+- Background: flat light studio gray/off-white; optional subtle dot-grid inset panel
 - Contrast: high
 
 ## Imagery
 
-- Treatment: full_screen
-- Motion: slow_zoom
-- Subject positioning: 
-- Photos: False · Icons: False · Diagrams: False
+- Treatment: floating_card_or_centered_mockup
+- Motion: soft_float_plus_scale_punch
+- Subject positioning: center_with_caption_below_or_above
+- Photos: True · Icons: True · Diagrams: False
 
 ## Motion graphics
 
-- Zoom: 
-- Pan: 
+- Zoom: slow push-in on mockups; punch-in on keyword reveals
+- Pan: rare
 - Parallax: False
-- Overlays: none
-- Gradients / scrims: 
-- Shadows: 
+- Overlays: soft drop shadow under cards, optional brand logo ghost behind sticker
+- Gradients / scrims: none on canvas; soft shadow falloff only
+- Shadows: large soft diffuse shadow (y+12..24, blur 40..80, opacity ~0.18)
 
 ## Transitions
 
@@ -56,9 +56,9 @@ Prefer expressive non-default display fonts that match the grammar (avoid Inter/
 
 ## Hierarchy
 
-- 
-- Emphasis timing: 
+- hero asset upper-mid → kinetic caption mid/lower → empty footer
+- Emphasis timing: caption words land with stressed syllables; lists reveal line-by-line
 
 ## Notes
 
-smoke fixture style
+Clean-tech sticker explainer grammar. Original assets only. Never emit reference channel watermark.

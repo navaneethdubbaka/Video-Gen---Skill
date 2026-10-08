@@ -1,0 +1,159 @@
+<template id="07-base64-encoding-template">
+  <div
+    data-composition-id="07-base64-encoding"
+    data-width="1080"
+    data-height="1920"
+    data-duration="4.82"
+    id="f07-root"
+  >
+    <div class="f07-bg"></div>
+    <div class="f07-container">
+      <div class="f07-code-card" id="f07-card">
+        <div class="f07-code-top">
+          <span class="f07-fn-label">ANALYSIS RESULT</span>
+          <span class="f07-badge-code">RAW STRING</span>
+        </div>
+        <div class="f07-code-body">
+          <div class="f07-code-arrow">➜</div>
+          <div class="f07-code-string">atob(token)</div>
+        </div>
+      </div>
+
+      <div class="f07-reveal-text" id="f07-reveal">
+        <div class="f07-base64-word">base64</div>
+        <div class="f07-encoding-word">encoding.</div>
+      </div>
+
+      <div class="f07-tag-pill" id="f07-pill">
+        STANDARD ENCODING ONLY
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #f07-root {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+      background: #F4F4F6;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow: hidden;
+    }
+    .f07-bg {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(#d1d5db 1.5px, transparent 1.5px);
+      background-size: 32px 32px;
+      opacity: 0.6;
+    }
+    .f07-container {
+      position: absolute;
+      top: 380px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+    .f07-code-card {
+      width: 620px;
+      background: #111111;
+      border-radius: 32px;
+      padding: 36px 44px;
+      box-shadow: 0 28px 65px rgba(0,0,0,0.18);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .f07-code-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .f07-fn-label {
+      color: #9CA3AF;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+    .f07-badge-code {
+      background: #27272A;
+      color: #5EFC8D;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 6px 16px;
+      border-radius: 8px;
+      letter-spacing: 0.05em;
+    }
+    .f07-code-body {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: monospace;
+      font-size: 40px;
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+    .f07-code-arrow {
+      color: #5EFC8D;
+    }
+    .f07-reveal-text {
+      text-align: center;
+      transform-origin: center center;
+    }
+    .f07-base64-word {
+      font-size: 105px;
+      font-weight: 900;
+      color: #111111;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+    }
+    .f07-encoding-word {
+      font-size: 72px;
+      font-weight: 800;
+      color: #6B7280;
+      letter-spacing: -0.03em;
+    }
+    .f07-tag-pill {
+      background: #FFFFFF;
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 12px 32px;
+      border-radius: 999px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: #EF4444;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function() {
+      var tl = gsap.timeline({ paused: true });
+      tl.from("#f07-card", {
+        y: 50,
+        opacity: 0,
+        scale: 0.88,
+        duration: 0.6,
+        ease: "back.out(1.8)"
+      }, 0);
+      tl.from("#f07-reveal", {
+        scale: 0.5,
+        opacity: 0,
+        duration: 0.55,
+        ease: "back.out(2.4)"
+      }, 0.25);
+      tl.from("#f07-pill", {
+        opacity: 0,
+        y: 20,
+        duration: 0.4,
+        ease: "power2.out"
+      }, 0.4);
+      tl.to({}, { duration: 4.22 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["07-base64-encoding"] = tl;
+    })();
+  </script>
+</template>

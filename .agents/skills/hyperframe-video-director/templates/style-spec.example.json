@@ -1,0 +1,61 @@
+{
+  "format": {
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "pacing": {
+    "average_shot_duration": 1.4,
+    "cut_style": "fast",
+    "cut_frequency": "high",
+    "scene_density": "dense",
+    "narration_driven_cuts": true,
+    "sound_driven_cuts": false
+  },
+  "typography": {
+    "style": "bold sans serif",
+    "font_characteristics": "heavy weight, tight tracking",
+    "text_size": "large",
+    "position": "lower_center",
+    "caption_style": "keyword punch",
+    "emphasis": "keyword",
+    "keyword_emphasis": true
+  },
+  "color": {
+    "palette": ["#0B0B0B", "#F5F5F0", "#E8C547"],
+    "background_treatment": "dark full-bleed photo with gradient scrim",
+    "contrast": "high"
+  },
+  "imagery": {
+    "treatment": "full_screen",
+    "motion": "slow_zoom",
+    "subject_positioning": "rule_of_thirds",
+    "uses_photographs": true,
+    "uses_screenshots": false,
+    "uses_illustrations": false,
+    "uses_icons": true,
+    "uses_diagrams": false,
+    "uses_charts": false
+  },
+  "motion_graphics": {
+    "zoom_behavior": "slow push-in",
+    "pan_behavior": "rare",
+    "parallax": false,
+    "overlays": ["soft bottom gradient", "thin accent bar"],
+    "shapes": [],
+    "borders": "none",
+    "gradients": "bottom scrim for captions",
+    "blur": "none",
+    "shadows": "text drop shadow"
+  },
+  "transitions": {
+    "style": "hard_cut",
+    "common": ["hard_cut"]
+  },
+  "hierarchy": {
+    "visual_hierarchy": "image bed → keyword type → caption rail",
+    "emphasis_timing": "punch keywords on stressed syllables"
+  },
+  "notes": "Grammar only — do not recreate source frames."
+}
