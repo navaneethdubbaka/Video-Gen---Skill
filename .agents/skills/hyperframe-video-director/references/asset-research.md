@@ -4,6 +4,20 @@ Relevant **real images** are not optional decoration. They are a hard deliverabl
 
 Invented SVG/CSS-only frames (fake logos, empty cards, generic icons drawn in HTML) are a **failed** director run when the narration names a concrete subject, product, place, UI, or concept that can be pictured.
 
+## Public figures & famous companies
+
+If the narration names a recognizable person, company, brand, or product, **fetch that entity’s image first** (do not draw a fake logo).
+
+See [entity-images.md](entity-images.md):
+
+```bash
+# after writing analysis/entities.json
+python <SKILL_DIR>/scripts/fetch_entity_image.py --project <PROJECT> --entities analysis/entities.json
+python <SKILL_DIR>/scripts/apply_entity_assets.py --project <PROJECT>
+```
+
+Then continue with normal research for any remaining scenes.
+
 ## Hard gates
 
 Before building any HyperFrames HTML:

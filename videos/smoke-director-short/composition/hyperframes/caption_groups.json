@@ -35,17 +35,17 @@
       "frame": 1,
       "start": 1.46,
       "end": 1.94,
-      "text": "అనే కొత్త",
+      "text": "ane kotta",
       "words": [
         {
           "id": "caption-word-1-0",
-          "text": "అనే",
+          "text": "ane",
           "start": 1.46,
           "end": 1.58
         },
         {
           "id": "caption-word-1-1",
-          "text": "కొత్త",
+          "text": "kotta",
           "start": 1.68,
           "end": 1.88
         }
@@ -77,11 +77,11 @@
       "frame": 1,
       "start": 2.42,
       "end": 2.76,
-      "text": "చేసింది.",
+      "text": "chesindi.",
       "words": [
         {
           "id": "caption-word-3-0",
-          "text": "చేసింది.",
+          "text": "chesindi.",
           "start": 2.42,
           "end": 2.76
         }
@@ -134,11 +134,11 @@
       "frame": 2,
       "start": 3.62,
       "end": 3.98,
-      "text": "లోనే",
+      "text": "lone",
       "words": [
         {
           "id": "caption-word-6-0",
-          "text": "లోనే",
+          "text": "lone",
           "start": 3.62,
           "end": 3.86
         }
@@ -149,11 +149,11 @@
       "frame": 2,
       "start": 4.16,
       "end": 4.9,
-      "text": "వాళ్ళు discontinue",
+      "text": "vaallu discontinue",
       "words": [
         {
           "id": "caption-word-7-0",
-          "text": "వాళ్ళు",
+          "text": "vaallu",
           "start": 4.16,
           "end": 4.32
         },
@@ -170,11 +170,11 @@
       "frame": 2,
       "start": 4.9,
       "end": 5.12,
-      "text": "చేశారు.",
+      "text": "cheshaaru.",
       "words": [
         {
           "id": "caption-word-8-0",
-          "text": "చేశారు.",
+          "text": "cheshaaru.",
           "start": 4.9,
           "end": 5.12
         }
@@ -185,7 +185,7 @@
       "frame": 3,
       "start": 5.12,
       "end": 5.64,
-      "text": "Swiggy దీన్ని",
+      "text": "Swiggy deenni",
       "words": [
         {
           "id": "caption-word-9-0",
@@ -195,7 +195,7 @@
         },
         {
           "id": "caption-word-9-1",
-          "text": "దీన్ని",
+          "text": "deenni",
           "start": 5.44,
           "end": 5.62
         }
@@ -206,11 +206,11 @@
       "frame": 3,
       "start": 5.64,
       "end": 6.94,
-      "text": "ఎందుకు discontinue చేశారో",
+      "text": "enduku discontinue cheshaaro",
       "words": [
         {
           "id": "caption-word-10-0",
-          "text": "ఎందుకు",
+          "text": "enduku",
           "start": 5.64,
           "end": 5.84
         },
@@ -222,7 +222,7 @@
         },
         {
           "id": "caption-word-10-2",
-          "text": "చేశారో",
+          "text": "cheshaaro",
           "start": 6.4,
           "end": 6.82
         }
@@ -233,23 +233,23 @@
       "frame": 3,
       "start": 7.04,
       "end": 8.26,
-      "text": "officiallyగా ఏమి చెప్పలేదు.",
+      "text": "officiallygaa emi cheppaledu.",
       "words": [
         {
           "id": "caption-word-11-0",
-          "text": "officiallyగా",
+          "text": "officiallygaa",
           "start": 7.04,
           "end": 7.48
         },
         {
           "id": "caption-word-11-1",
-          "text": "ఏమి",
+          "text": "emi",
           "start": 7.54,
           "end": 7.68
         },
         {
           "id": "caption-word-11-2",
-          "text": "చెప్పలేదు.",
+          "text": "cheppaledu.",
           "start": 7.72,
           "end": 8.14
         }
@@ -359,11 +359,11 @@
       "frame": 3,
       "start": 10.24,
       "end": 10.38,
-      "text": "అని.",
+      "text": "ani.",
       "words": [
         {
           "id": "caption-word-17-0",
-          "text": "అని.",
+          "text": "ani.",
           "start": 10.24,
           "end": 10.38
         }
@@ -389,11 +389,11 @@
       "frame": 4,
       "start": 10.72,
       "end": 11.14,
-      "text": "ఈ feature",
+      "text": "ee feature",
       "words": [
         {
           "id": "caption-word-19-0",
-          "text": "ఈ",
+          "text": "ee",
           "start": 10.72,
           "end": 10.76
         },
@@ -410,17 +410,17 @@
       "frame": 4,
       "start": 11.14,
       "end": 11.9,
-      "text": "liveలో ఉన్నప్పుడు",
+      "text": "livelo unnappudu",
       "words": [
         {
           "id": "caption-word-20-0",
-          "text": "liveలో",
+          "text": "livelo",
           "start": 11.14,
           "end": 11.42
         },
         {
           "id": "caption-word-20-1",
-          "text": "ఉన్నప్పుడు",
+          "text": "unnappudu",
           "start": 11.46,
           "end": 11.84
         }
@@ -488,17 +488,17 @@
       "frame": 5,
       "start": 13.16,
       "end": 13.88,
-      "text": "ఏంటి అంటే",
+      "text": "enti ante",
       "words": [
         {
           "id": "caption-word-24-0",
-          "text": "ఏంటి",
+          "text": "enti",
           "start": 13.16,
           "end": 13.42
         },
         {
           "id": "caption-word-24-1",
-          "text": "అంటే",
+          "text": "ante",
           "start": 13.5,
           "end": 13.76
         }
@@ -509,17 +509,17 @@
       "frame": 5,
       "start": 14.02,
       "end": 15.2,
-      "text": "ప్రతి Burstrexలో",
+      "text": "prati Burstrexlo",
       "words": [
         {
           "id": "caption-word-25-0",
-          "text": "ప్రతి",
+          "text": "prati",
           "start": 14.02,
           "end": 14.3
         },
         {
           "id": "caption-word-25-1",
-          "text": "Burstrexలో",
+          "text": "Burstrexlo",
           "start": 14.36,
           "end": 15.08
         }
@@ -530,7 +530,7 @@
       "frame": 5,
       "start": 15.4,
       "end": 16.62,
-      "text": "link చివర్లో మనకొక",
+      "text": "link chivarlo manakoka",
       "words": [
         {
           "id": "caption-word-26-0",
@@ -540,13 +540,13 @@
         },
         {
           "id": "caption-word-26-1",
-          "text": "చివర్లో",
+          "text": "chivarlo",
           "start": 15.68,
           "end": 16.14
         },
         {
           "id": "caption-word-26-2",
-          "text": "మనకొక",
+          "text": "manakoka",
           "start": 16.26,
           "end": 16.56
         }
@@ -557,7 +557,7 @@
       "frame": 5,
       "start": 16.62,
       "end": 17.88,
-      "text": "similar pattern కనిపిస్తుంది.",
+      "text": "similar pattern kanipistundi.",
       "words": [
         {
           "id": "caption-word-27-0",
@@ -573,7 +573,7 @@
         },
         {
           "id": "caption-word-27-2",
-          "text": "కనిపిస్తుంది.",
+          "text": "kanipistundi.",
           "start": 17.26,
           "end": 17.76
         }
@@ -584,7 +584,7 @@
       "frame": 5,
       "start": 18.26,
       "end": 18.74,
-      "text": "Like ఒక",
+      "text": "Like oka",
       "words": [
         {
           "id": "caption-word-28-0",
@@ -594,7 +594,7 @@
         },
         {
           "id": "caption-word-28-1",
-          "text": "ఒక",
+          "text": "oka",
           "start": 18.56,
           "end": 18.7
         }
@@ -626,11 +626,11 @@
       "frame": 5,
       "start": 19.38,
       "end": 19.6,
-      "text": "లాగా.",
+      "text": "laagaa.",
       "words": [
         {
           "id": "caption-word-30-0",
-          "text": "లాగా.",
+          "text": "laagaa.",
           "start": 19.38,
           "end": 19.6
         }
@@ -641,17 +641,17 @@
       "frame": 6,
       "start": 19.6,
       "end": 20.7,
-      "text": "normalగా చూసినప్పుడు",
+      "text": "normalgaa choosinappudu",
       "words": [
         {
           "id": "caption-word-31-0",
-          "text": "normalగా",
+          "text": "normalgaa",
           "start": 19.6,
           "end": 19.98
         },
         {
           "id": "caption-word-31-1",
-          "text": "చూసినప్పుడు",
+          "text": "choosinappudu",
           "start": 20,
           "end": 20.58
         }
@@ -662,11 +662,11 @@
       "frame": 6,
       "start": 20.86,
       "end": 21.36,
-      "text": "మనకి",
+      "text": "manaki",
       "words": [
         {
           "id": "caption-word-32-0",
-          "text": "మనకి",
+          "text": "manaki",
           "start": 20.86,
           "end": 21.24
         }
@@ -677,11 +677,11 @@
       "frame": 6,
       "start": 21.44,
       "end": 22.02,
-      "text": "ఇది just",
+      "text": "idi just",
       "words": [
         {
           "id": "caption-word-33-0",
-          "text": "ఇది",
+          "text": "idi",
           "start": 21.44,
           "end": 21.58
         },
@@ -698,11 +698,11 @@
       "frame": 6,
       "start": 22.08,
       "end": 22.74,
-      "text": "ఒక probably",
+      "text": "oka probably",
       "words": [
         {
           "id": "caption-word-34-0",
-          "text": "ఒక",
+          "text": "oka",
           "start": 22.08,
           "end": 22.22
         },
@@ -719,11 +719,11 @@
       "frame": 6,
       "start": 22.74,
       "end": 23.28,
-      "text": "ఒక secured",
+      "text": "oka secured",
       "words": [
         {
           "id": "caption-word-35-0",
-          "text": "ఒక",
+          "text": "oka",
           "start": 22.74,
           "end": 22.88
         },
@@ -740,7 +740,7 @@
       "frame": 6,
       "start": 23.28,
       "end": 24.12,
-      "text": "token అనిపించొచ్చు.",
+      "text": "token anipinchochchu.",
       "words": [
         {
           "id": "caption-word-36-0",
@@ -750,7 +750,7 @@
         },
         {
           "id": "caption-word-36-1",
-          "text": "అనిపించొచ్చు.",
+          "text": "anipinchochchu.",
           "start": 23.54,
           "end": 24.12
         }
@@ -776,17 +776,17 @@
       "frame": 7,
       "start": 24.64,
       "end": 25.08,
-      "text": "మనం దీన్ని",
+      "text": "manam deenni",
       "words": [
         {
           "id": "caption-word-38-0",
-          "text": "మనం",
+          "text": "manam",
           "start": 24.64,
           "end": 24.82
         },
         {
           "id": "caption-word-38-1",
-          "text": "దీన్ని",
+          "text": "deenni",
           "start": 24.86,
           "end": 25.04
         }
@@ -797,11 +797,11 @@
       "frame": 7,
       "start": 25.08,
       "end": 26.36,
-      "text": "properగా analyze చేస్తే",
+      "text": "propergaa analyze cheste",
       "words": [
         {
           "id": "caption-word-39-0",
-          "text": "properగా",
+          "text": "propergaa",
           "start": 25.08,
           "end": 25.46
         },
@@ -813,7 +813,7 @@
         },
         {
           "id": "caption-word-39-2",
-          "text": "చేస్తే",
+          "text": "cheste",
           "start": 25.84,
           "end": 26.26
         }
@@ -824,11 +824,11 @@
       "frame": 7,
       "start": 26.36,
       "end": 27.62,
-      "text": "ఇది base64 encoding",
+      "text": "idi base64 encoding",
       "words": [
         {
           "id": "caption-word-40-0",
-          "text": "ఇది",
+          "text": "idi",
           "start": 26.36,
           "end": 26.5
         },
@@ -851,17 +851,17 @@
       "frame": 7,
       "start": 27.62,
       "end": 27.92,
-      "text": "అని మనకు",
+      "text": "ani manaku",
       "words": [
         {
           "id": "caption-word-41-0",
-          "text": "అని",
+          "text": "ani",
           "start": 27.62,
           "end": 27.7
         },
         {
           "id": "caption-word-41-1",
-          "text": "మనకు",
+          "text": "manaku",
           "start": 27.72,
           "end": 27.88
         }
@@ -872,11 +872,11 @@
       "frame": 7,
       "start": 27.92,
       "end": 28.34,
-      "text": "తెలుస్తుంది.",
+      "text": "telustundi.",
       "words": [
         {
           "id": "caption-word-42-0",
-          "text": "తెలుస్తుంది.",
+          "text": "telustundi.",
           "start": 27.92,
           "end": 28.34
         }
@@ -902,7 +902,7 @@
       "frame": 8,
       "start": 28.72,
       "end": 30.4,
-      "text": "base64 encoding అనేది any",
+      "text": "base64 encoding anedi any",
       "words": [
         {
           "id": "caption-word-44-0",
@@ -918,7 +918,7 @@
         },
         {
           "id": "caption-word-44-2",
-          "text": "అనేది",
+          "text": "anedi",
           "start": 29.84,
           "end": 30.119
         },
@@ -935,7 +935,7 @@
       "frame": 8,
       "start": 30.4,
       "end": 31.58,
-      "text": "encryption technique కాదు.",
+      "text": "encryption technique kaadu.",
       "words": [
         {
           "id": "caption-word-45-0",
@@ -951,7 +951,7 @@
         },
         {
           "id": "caption-word-45-2",
-          "text": "కాదు.",
+          "text": "kaadu.",
           "start": 31.22,
           "end": 31.46
         }
@@ -977,17 +977,17 @@
       "frame": 8,
       "start": 32.08,
       "end": 32.54,
-      "text": "దీన్ని మనం",
+      "text": "deenni manam",
       "words": [
         {
           "id": "caption-word-47-0",
-          "text": "దీన్ని",
+          "text": "deenni",
           "start": 32.08,
           "end": 32.28
         },
         {
           "id": "caption-word-47-1",
-          "text": "మనం",
+          "text": "manam",
           "start": 32.32,
           "end": 32.44
         }
@@ -998,11 +998,11 @@
       "frame": 8,
       "start": 32.54,
       "end": 33.54,
-      "text": "easyగా decode చేయగలం.",
+      "text": "easygaa decode cheyagalam.",
       "words": [
         {
           "id": "caption-word-48-0",
-          "text": "easyగా",
+          "text": "easygaa",
           "start": 32.54,
           "end": 32.88
         },
@@ -1014,7 +1014,7 @@
         },
         {
           "id": "caption-word-48-2",
-          "text": "చేయగలం.",
+          "text": "cheyagalam.",
           "start": 33.22,
           "end": 33.54
         }
@@ -1046,11 +1046,11 @@
       "frame": 9,
       "start": 34.7,
       "end": 35.8,
-      "text": "దీన్ని decode చేస్తే",
+      "text": "deenni decode cheste",
       "words": [
         {
           "id": "caption-word-50-0",
-          "text": "దీన్ని",
+          "text": "deenni",
           "start": 34.7,
           "end": 34.88
         },
@@ -1062,7 +1062,7 @@
         },
         {
           "id": "caption-word-50-2",
-          "text": "చేస్తే",
+          "text": "cheste",
           "start": 35.32,
           "end": 35.72
         }
@@ -1073,11 +1073,11 @@
       "frame": 9,
       "start": 35.8,
       "end": 36.3,
-      "text": "లోపల",
+      "text": "lopala",
       "words": [
         {
           "id": "caption-word-51-0",
-          "text": "లోపల",
+          "text": "lopala",
           "start": 35.8,
           "end": 36.18
         }
@@ -1088,7 +1088,7 @@
       "frame": 9,
       "start": 36.4,
       "end": 37.46,
-      "text": "basically ఒక user",
+      "text": "basically oka user",
       "words": [
         {
           "id": "caption-word-52-0",
@@ -1098,7 +1098,7 @@
         },
         {
           "id": "caption-word-52-1",
-          "text": "ఒక",
+          "text": "oka",
           "start": 36.9,
           "end": 37.08
         },
@@ -1151,11 +1151,11 @@
       "frame": 9,
       "start": 38.36,
       "end": 38.68,
-      "text": "ఉన్నాయి.",
+      "text": "unnaayi.",
       "words": [
         {
           "id": "caption-word-55-0",
-          "text": "ఉన్నాయి.",
+          "text": "unnaayi.",
           "start": 38.36,
           "end": 38.56
         }
@@ -1202,7 +1202,7 @@
       "frame": 10,
       "start": 39.56,
       "end": 40.8,
-      "text": "So theoretically మనం",
+      "text": "So theoretically manam",
       "words": [
         {
           "id": "caption-word-58-0",
@@ -1218,7 +1218,7 @@
         },
         {
           "id": "caption-word-58-2",
-          "text": "మనం",
+          "text": "manam",
           "start": 40.52,
           "end": 40.74
         }
@@ -1229,11 +1229,11 @@
       "frame": 10,
       "start": 40.8,
       "end": 42.12,
-      "text": "దీన్ని decode చేసి",
+      "text": "deenni decode chesi",
       "words": [
         {
           "id": "caption-word-59-0",
-          "text": "దీన్ని",
+          "text": "deenni",
           "start": 40.8,
           "end": 41.08
         },
@@ -1245,7 +1245,7 @@
         },
         {
           "id": "caption-word-59-2",
-          "text": "చేసి",
+          "text": "chesi",
           "start": 41.46,
           "end": 42.04
         }
@@ -1256,7 +1256,7 @@
       "frame": 10,
       "start": 42.12,
       "end": 43.2,
-      "text": "values మార్చవచ్చు.",
+      "text": "values maarchavachchu.",
       "words": [
         {
           "id": "caption-word-60-0",
@@ -1266,7 +1266,7 @@
         },
         {
           "id": "caption-word-60-1",
-          "text": "మార్చవచ్చు.",
+          "text": "maarchavachchu.",
           "start": 42.48,
           "end": 43.08
         }
@@ -1292,23 +1292,23 @@
       "frame": 10,
       "start": 43.86,
       "end": 44.86,
-      "text": "మళ్ళీ అదే formatలో",
+      "text": "mallee ade formatlo",
       "words": [
         {
           "id": "caption-word-62-0",
-          "text": "మళ్ళీ",
+          "text": "mallee",
           "start": 43.86,
           "end": 44.08
         },
         {
           "id": "caption-word-62-1",
-          "text": "అదే",
+          "text": "ade",
           "start": 44.14,
           "end": 44.34
         },
         {
           "id": "caption-word-62-2",
-          "text": "formatలో",
+          "text": "formatlo",
           "start": 44.4,
           "end": 44.82
         }
@@ -1319,7 +1319,7 @@
       "frame": 10,
       "start": 44.86,
       "end": 45.54,
-      "text": "encode చేయొచ్చు.",
+      "text": "encode cheyochchu.",
       "words": [
         {
           "id": "caption-word-63-0",
@@ -1329,7 +1329,7 @@
         },
         {
           "id": "caption-word-63-1",
-          "text": "చేయొచ్చు.",
+          "text": "cheyochchu.",
           "start": 45.16,
           "end": 45.54
         }
@@ -1427,17 +1427,17 @@
       "frame": 11,
       "start": 47.88,
       "end": 48.64,
-      "text": "కొత్త valuesతో",
+      "text": "kotta valuesto",
       "words": [
         {
           "id": "caption-word-69-0",
-          "text": "కొత్త",
+          "text": "kotta",
           "start": 47.88,
           "end": 48.08
         },
         {
           "id": "caption-word-69-1",
-          "text": "valuesతో",
+          "text": "valuesto",
           "start": 48.14,
           "end": 48.6
         }
@@ -1448,11 +1448,11 @@
       "frame": 11,
       "start": 48.64,
       "end": 49.24,
-      "text": "ఒక token",
+      "text": "oka token",
       "words": [
         {
           "id": "caption-word-70-0",
-          "text": "ఒక",
+          "text": "oka",
           "start": 48.64,
           "end": 48.8
         },
@@ -1469,7 +1469,7 @@
       "frame": 11,
       "start": 49.24,
       "end": 50.1,
-      "text": "generate చేసి",
+      "text": "generate chesi",
       "words": [
         {
           "id": "caption-word-71-0",
@@ -1479,7 +1479,7 @@
         },
         {
           "id": "caption-word-71-1",
-          "text": "చేసి",
+          "text": "chesi",
           "start": 49.62,
           "end": 49.98
         }
@@ -1490,17 +1490,17 @@
       "frame": 11,
       "start": 50.2,
       "end": 50.62,
-      "text": "దాన్ని మేము",
+      "text": "daanni memu",
       "words": [
         {
           "id": "caption-word-72-0",
-          "text": "దాన్ని",
+          "text": "daanni",
           "start": 50.2,
           "end": 50.4
         },
         {
           "id": "caption-word-72-1",
-          "text": "మేము",
+          "text": "memu",
           "start": 50.44,
           "end": 50.58
         }
@@ -1511,7 +1511,7 @@
       "frame": 11,
       "start": 50.62,
       "end": 51.14,
-      "text": "test చేశాం.",
+      "text": "test cheshaam.",
       "words": [
         {
           "id": "caption-word-73-0",
@@ -1521,7 +1521,7 @@
         },
         {
           "id": "caption-word-73-1",
-          "text": "చేశాం.",
+          "text": "cheshaam.",
           "start": 50.82,
           "end": 51.14
         }
@@ -1610,7 +1610,7 @@
       "frame": 13,
       "start": 53.06,
       "end": 54.08,
-      "text": "So immediateగా మేము",
+      "text": "So immediategaa memu",
       "words": [
         {
           "id": "caption-word-78-0",
@@ -1620,13 +1620,13 @@
         },
         {
           "id": "caption-word-78-1",
-          "text": "immediateగా",
+          "text": "immediategaa",
           "start": 53.38,
           "end": 53.84
         },
         {
           "id": "caption-word-78-2",
-          "text": "మేము",
+          "text": "memu",
           "start": 53.9,
           "end": 54.04
         }
@@ -1637,23 +1637,23 @@
       "frame": 13,
       "start": 54.08,
       "end": 55.56,
-      "text": "ఏం చేశామంటే Swiggyకి",
+      "text": "em cheshaamante Swiggyki",
       "words": [
         {
           "id": "caption-word-79-0",
-          "text": "ఏం",
+          "text": "em",
           "start": 54.08,
           "end": 54.16
         },
         {
           "id": "caption-word-79-1",
-          "text": "చేశామంటే",
+          "text": "cheshaamante",
           "start": 54.2,
           "end": 54.8
         },
         {
           "id": "caption-word-79-2",
-          "text": "Swiggyకి",
+          "text": "Swiggyki",
           "start": 54.92,
           "end": 55.44
         }
@@ -1664,11 +1664,11 @@
       "frame": 13,
       "start": 55.78,
       "end": 56.12,
-      "text": "ఈ issue",
+      "text": "ee issue",
       "words": [
         {
           "id": "caption-word-80-0",
-          "text": "ఈ",
+          "text": "ee",
           "start": 55.78,
           "end": 55.88
         },
@@ -1685,11 +1685,11 @@
       "frame": 13,
       "start": 56.12,
       "end": 57.12,
-      "text": "కోసం report చేశాం.",
+      "text": "kosam report cheshaam.",
       "words": [
         {
           "id": "caption-word-81-0",
-          "text": "కోసం",
+          "text": "kosam",
           "start": 56.12,
           "end": 56.36
         },
@@ -1701,7 +1701,7 @@
         },
         {
           "id": "caption-word-81-2",
-          "text": "చేశాం.",
+          "text": "cheshaam.",
           "start": 56.68,
           "end": 57
         }
@@ -1727,17 +1727,17 @@
       "frame": 13,
       "start": 57.8,
       "end": 58.32,
-      "text": "దీని గురించి",
+      "text": "deeni gurinchi",
       "words": [
         {
           "id": "caption-word-83-0",
-          "text": "దీని",
+          "text": "deeni",
           "start": 57.8,
           "end": 57.98
         },
         {
           "id": "caption-word-83-1",
-          "text": "గురించి",
+          "text": "gurinchi",
           "start": 58.02,
           "end": 58.28
         }
@@ -1748,17 +1748,17 @@
       "frame": 13,
       "start": 58.32,
       "end": 59.06,
-      "text": "మనం detailedగా",
+      "text": "manam detailedgaa",
       "words": [
         {
           "id": "caption-word-84-0",
-          "text": "మనం",
+          "text": "manam",
           "start": 58.32,
           "end": 58.5
         },
         {
           "id": "caption-word-84-1",
-          "text": "detailedగా",
+          "text": "detailedgaa",
           "start": 58.54,
           "end": 58.98
         }
@@ -1769,7 +1769,7 @@
       "frame": 13,
       "start": 59.06,
       "end": 59.56,
-      "text": "next partలో",
+      "text": "next partlo",
       "words": [
         {
           "id": "caption-word-85-0",
@@ -1779,7 +1779,7 @@
         },
         {
           "id": "caption-word-85-1",
-          "text": "partలో",
+          "text": "partlo",
           "start": 59.28,
           "end": 59.52
         }
@@ -1790,11 +1790,11 @@
       "frame": 13,
       "start": 59.56,
       "end": 59.84,
-      "text": "చూద్దాం.",
+      "text": "chooddaam.",
       "words": [
         {
           "id": "caption-word-86-0",
-          "text": "చూద్దాం.",
+          "text": "chooddaam.",
           "start": 59.56,
           "end": 59.84
         }

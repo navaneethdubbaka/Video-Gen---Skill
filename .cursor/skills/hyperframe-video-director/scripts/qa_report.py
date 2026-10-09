@@ -97,6 +97,18 @@ def main() -> int:
         query = (visual.get("search_query") or "").strip()
         asset_path = (visual.get("asset_path") or "").strip()
 
+        # Entity tagged but unresolved
+        ent = visual.get("entity") or (visual.get("requirement") or {}).get("entity")
+        if ent and not asset_path:
+            issues.append(
+                {
+                    "level": "error",
+                    "code": "entity_unresolved",
+                    "scene": sid,
+                    "msg": f"visual.entity={ent!r} but no asset_path - run fetch_entity_image.py + apply_entity_assets.py",
+                }
+            )
+
         if vtype == "text_only":
             text_only_count += 1
         else:

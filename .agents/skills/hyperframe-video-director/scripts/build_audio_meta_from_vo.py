@@ -121,26 +121,10 @@ def main() -> int:
             }
         )
 
+    meta = {"voices": voices, "bgm": None, "sfx": []}
     out = hf / "audio_meta.json"
-    existing_sfx = []
-    existing_bgm = None
-    if out.is_file():
-        try:
-            old = read_json(out)
-            existing_sfx = old.get("sfx") or []
-            existing_bgm = old.get("bgm")
-        except Exception:
-            pass
-    if not existing_sfx and (hf / "audio_engine_meta.json").is_file():
-        try:
-            aem = read_json(hf / "audio_engine_meta.json")
-            existing_sfx = aem.get("sfx") or []
-        except Exception:
-            pass
-
-    meta = {"voices": voices, "bgm": existing_bgm, "sfx": existing_sfx}
     write_json(out, meta)
-    print(f"wrote {out} ({len(voices)} voice clips, {len(existing_sfx)} sfx cues)")
+    print(f"wrote {out} ({len(voices)} voice clips)")
     return 0
 
 

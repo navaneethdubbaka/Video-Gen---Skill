@@ -11,8 +11,9 @@ Task Progress:
 - [ ] 4 style_spec.json
 - [ ] 5 transcript.json
 - [ ] 6 storyboard.json (search_query per scene)
-- [ ] 7 assets researched + vision-inspected + cached
-- [ ] 7b every non-text_only scene has asset_path; qa_report image gate PASS
+- [ ] 7a entities.json + fetch_entity_image + apply_entity_assets (public figures/companies)
+- [ ] 7b remaining assets researched + vision-inspected + cached
+- [ ] 7c every non-text_only scene has asset_path; qa_report --phase assets PASS
 - [ ] 8 HyperFrames init + bridge scripts
 - [ ] 8b compose frames with real img + GSAP window.__timelines
 - [ ] 8c captions + fetch-sfx + assemble

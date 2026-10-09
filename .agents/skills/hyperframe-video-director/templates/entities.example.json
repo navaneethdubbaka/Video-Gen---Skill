@@ -1,0 +1,16 @@
+{
+  "entities": [
+    {
+      "name": "Swiggy",
+      "type": "company",
+      "scene_ids": [1, 2, 4],
+      "reason": "Product company named in VO"
+    },
+    {
+      "name": "Jensen Huang",
+      "type": "person",
+      "scene_ids": [1],
+      "reason": "Public figure in hook"
+    }
+  ]
+}

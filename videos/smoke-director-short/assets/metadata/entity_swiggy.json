@@ -1,0 +1,16 @@
+{
+  "file": "assets/images/entities/entity_swiggy_company.webp",
+  "source": "https://commons.wikimedia.org/wiki/File%3ASwiggy_Logo_2024.webp",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Swiggy_Logo_2024.webp?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "query": "entity:company:Swiggy",
+  "kind": "images",
+  "entity": {
+    "name": "Swiggy",
+    "type": "company"
+  },
+  "usage": [
+    "scene_01",
+    "scene_02",
+    "scene_04"
+  ]
+}

@@ -42,6 +42,10 @@
               },
               "search_query": { "type": "string" },
               "asset_path": { "type": "string" },
+              "entity": {
+                "type": "string",
+                "description": "Public figure or famous company/brand name to fetch via entity-images pipeline"
+              },
               "requirement": {
                 "type": "object",
                 "properties": {
@@ -55,7 +59,12 @@
                   },
                   "purpose": { "type": "string" },
                   "minimum_resolution": { "type": "string" },
-                  "narration_link": { "type": "string" }
+                  "narration_link": { "type": "string" },
+                  "entity": { "type": "string" },
+                  "entity_type": {
+                    "type": "string",
+                    "enum": ["person", "company", "organization", "brand", "product", "other"]
+                  }
                 }
               }
             }

@@ -97,6 +97,18 @@ def main() -> int:
         query = (visual.get("search_query") or "").strip()
         asset_path = (visual.get("asset_path") or "").strip()
 
+        # Entity tagged but unresolved
+        ent = visual.get("entity") or (visual.get("requirement") or {}).get("entity")
+        if ent and not asset_path:
+            issues.append(
+                {
+                    "level": "error",
+                    "code": "entity_unresolved",
+                    "scene": sid,
+                    "msg": f"visual.entity={ent!r} but no asset_path - run fetch_entity_image.py + apply_entity_assets.py",
+                }
+            )
+
         if vtype == "text_only":
             text_only_count += 1
         else:
@@ -163,34 +175,33 @@ def main() -> int:
             )
 
     # Frame HTML must reference images once composed
-    if args.phase != "assets":
-        frames_dir = hf / "compositions" / "frames"
-        if frames_dir.is_dir():
-            frame_files = list(frames_dir.glob("*.html"))
-            img_frames = 0
-            timeline_frames = 0
-            for ff in frame_files:
-                text = ff.read_text(encoding="utf-8", errors="replace")
-                if re.search(r"<img\b", text, re.I) or re.search(r"<video\b", text, re.I):
-                    img_frames += 1
-                if "__timelines" in text:
-                    timeline_frames += 1
-            if frame_files and img_frames < max(1, int(len(frame_files) * 0.7)):
-                issues.append(
-                    {
-                        "level": "error",
-                        "code": "frames_missing_img",
-                        "msg": f"only {img_frames}/{len(frame_files)} frame HTML files contain <img>/<video> - rebuild with real assets",
-                    }
-                )
-            if frame_files and timeline_frames < len(frame_files):
-                issues.append(
-                    {
-                        "level": "error",
-                        "code": "frames_missing_timelines",
-                        "msg": f"only {timeline_frames}/{len(frame_files)} frames register window.__timelines - fix GSAP registration",
-                    }
-                )
+    frames_dir = hf / "compositions" / "frames"
+    if frames_dir.is_dir():
+        frame_files = list(frames_dir.glob("*.html"))
+        img_frames = 0
+        timeline_frames = 0
+        for ff in frame_files:
+            text = ff.read_text(encoding="utf-8", errors="replace")
+            if re.search(r"<img\b", text, re.I) or re.search(r"<video\b", text, re.I):
+                img_frames += 1
+            if "__timelines" in text:
+                timeline_frames += 1
+        if frame_files and img_frames < max(1, int(len(frame_files) * 0.7)):
+            issues.append(
+                {
+                    "level": "error",
+                    "code": "frames_missing_img",
+                    "msg": f"only {img_frames}/{len(frame_files)} frame HTML files contain <img>/<video> - rebuild with real assets",
+                }
+            )
+        if frame_files and timeline_frames < len(frame_files):
+            issues.append(
+                {
+                    "level": "error",
+                    "code": "frames_missing_timelines",
+                    "msg": f"only {timeline_frames}/{len(frame_files)} frames register window.__timelines - fix GSAP registration",
+                }
+            )
 
     vo_dur = None
     if probe.get("voiceover") and probe["voiceover"].get("duration_s"):

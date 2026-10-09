@@ -1,0 +1,14 @@
+{
+  "file": "assets/images/entities/entity_nvidia_company.jpg",
+  "source": "https://en.wikipedia.org/wiki/Nvidia",
+  "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/2788-2888_San_Tomas_Expwy.jpg/3840px-2788-2888_San_Tomas_Expwy.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "query": "entity:company:NVIDIA",
+  "kind": "images",
+  "entity": {
+    "name": "NVIDIA",
+    "type": "company"
+  },
+  "usage": [
+    "scene_01"
+  ]
+}

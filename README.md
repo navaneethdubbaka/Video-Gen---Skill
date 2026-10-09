@@ -10,6 +10,8 @@ Composition and rendering are delegated to the existing **HyperFrames** skills. 
 
 **Hard requirements for every video:** narration-relevant cached images (not SVG-only fakes), GSAP motion, mixed transitions, and boundary SFX.
 
+**Entity images:** when VO names a public figure or famous company/brand, the skill fetches their Wikipedia/Commons image via `scripts/fetch_entity_image.py` and wires it into those scenes.
+
 ## Skill location
 
 ```text

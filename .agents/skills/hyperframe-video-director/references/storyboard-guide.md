@@ -13,14 +13,15 @@ For each meaningful narration window ask:
 5. Asset type — prefer: `photograph` | `screenshot` | `icon` | `video_clip` | `multiple`  
    Use `text_only` rarely (≤20% of scenes).  
    Do **not** use `generated_graphic` as a way to skip downloading an image.
-6. Write a precise `search_query` tied to the narration nouns.
-7. After Step 7 research, set `asset_path` to the cached file.
-8. What on-screen text (same language as VO unless user asked to translate)?
-9. Which words to emphasize?
-10. What **in-frame motion**? (pop_in, float, punch_in, stagger_list — never “none/static”)
-11. What **inter-frame transition**? Mix registry transitions with cuts.
-12. What **sfx** on entry? (`whoosh`, `pop`, `hit`, `rise`)
-13. When must the visual change? (align to segment boundaries)
+6. If a **public figure / famous company / brand / product** is named, set `visual.entity` (e.g. `"Swiggy"`, `"Jensen Huang"`) and include them in `analysis/entities.json` — Step 7a fetches their image automatically ([entity-images.md](entity-images.md)).
+7. Write a precise `search_query` tied to the narration nouns.
+8. After Step 7 research, set `asset_path` to the cached file.
+9. What on-screen text (same language as VO unless user asked to translate)?
+10. Which words to emphasize?
+11. What **in-frame motion**? (pop_in, float, punch_in, stagger_list — never “none/static”)
+12. What **inter-frame transition**? Mix registry transitions with cuts.
+13. What **sfx** on entry? (`whoosh`, `pop`, `hit`, `rise`)
+14. When must the visual change? (align to segment boundaries)
 
 ## Visual field (required shape)
 

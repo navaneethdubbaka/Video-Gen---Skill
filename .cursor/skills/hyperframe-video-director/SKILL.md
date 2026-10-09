@@ -34,13 +34,15 @@ Optional instructions: …
 1. Voice-over timestamps are the **authoritative timeline** — never stretch/compress VO to fit visuals.
 2. Reference video = **visual grammar only**. Never copy frames, footage, logos, or proprietary assets.
 3. Prefer independently sourced assets (`/media-use` resolve, then cache).
-4. Do not translate Telugu/English captions unless the user asks.
-5. Secrets only from `ELEVENLABS_API_KEY` (env or local `.env`). Never hardcode keys.
-6. Resume from existing artifacts; do not redo completed gates.
-7. If a **style pack** is named (see [styles/README.md](styles/README.md)), load it and **skip** open-ended Step 4 analysis unless the user also supplies a new reference to re-analyze.
-8. Style packs that forbid watermarks must ship **zero** channel URL footers (e.g. never `insiderforce.io`).
-9. **Motion + transitions + SFX are mandatory.** Static HTML slides with silent hard cuts are a failed run. See [references/motion-and-sfx.md](references/motion-and-sfx.md).
-10. **Relevant real images are mandatory.** Every scene (except ≤20% kinetic `text_only`) must research, download, vision-inspect, and cache a narration-matching image; set `visual.asset_path` and use it in frame HTML. Invented SVG/CSS-only “fake assets” are a failed run. See [references/asset-research.md](references/asset-research.md).
+4. **Do not translate** Telugu meaning into English. For on-screen captions, **romanize** Telugu script into Latin/English spellings (e.g. `ane kotta chesindi`) via `prepare_captions.py`. Keep English words as-is.
+5. **Karaoke captions are mandatory.** Spoken words must use `.is-active` / `.is-spoken` highlight (not a plain dual-tone pill). Run `prepare_captions.py` after `captions.mjs build`.
+6. Secrets only from `ELEVENLABS_API_KEY` (env or local `.env`). Never hardcode keys.
+7. Resume from existing artifacts; do not redo completed gates.
+8. If a **style pack** is named (see [styles/README.md](styles/README.md)), load it and **skip** open-ended Step 4 analysis unless the user also supplies a new reference to re-analyze.
+9. Style packs that forbid watermarks must ship **zero** channel URL footers (e.g. never `insiderforce.io`).
+10. **Motion + transitions + SFX are mandatory.** Static HTML slides with silent hard cuts are a failed run. See [references/motion-and-sfx.md](references/motion-and-sfx.md).
+11. **Relevant real images are mandatory.** Every scene (except ≤20% kinetic `text_only`) must research, download, vision-inspect, and cache a narration-matching image; set `visual.asset_path` and use it in frame HTML. Invented SVG/CSS-only “fake assets” are a failed run. See [references/asset-research.md](references/asset-research.md).
+12. **Public figures & famous companies:** when VO names a recognizable person, company, brand, or product, fetch that entity’s image (Wikipedia/Wikimedia via script) and use it in those scenes. See [references/entity-images.md](references/entity-images.md).
 
 ## Style packs
 
@@ -183,9 +185,22 @@ Do not leave `transition: hard_cut` on every scene. Mix `zoom-through`, `push-sl
 
 ## Step 7 — Assets (agent) — HARD GATE
 
-Read [references/asset-research.md](references/asset-research.md). **Do this before any frame HTML.**
+Read [references/asset-research.md](references/asset-research.md) and [references/entity-images.md](references/entity-images.md). **Do this before any frame HTML.**
 
-For **every** non-`text_only` scene:
+### 7a — Entity images (public figures / famous companies)
+
+From transcript + storyboard, list named public entities → write `analysis/entities.json` with `name`, `type`, `scene_ids`.
+
+```bash
+python <SKILL_DIR>/scripts/fetch_entity_image.py --project <PROJECT> --entities analysis/entities.json
+python <SKILL_DIR>/scripts/apply_entity_assets.py --project <PROJECT>
+```
+
+Vision-check each file under `assets/images/entities/`. Tag scenes with `"visual": { "entity": "<Name>" }`.
+
+### 7b — Remaining scenes
+
+For **every** non-`text_only` scene still missing `asset_path`:
 
 1. Write a narration-specific `search_query` + `requirement.narration_link`.
 2. Prefer `/media-use`:
@@ -193,7 +208,7 @@ For **every** non-`text_only` scene:
 3. Else web search → download 2–4 candidates → **vision-inspect for relevance** → pick one.
 4. Cache:
    `python <SKILL_DIR>/scripts/cache_asset.py --project <PROJECT> --file <path> --query "…" --kind images --usage scene_03`
-5. Set `visual.asset_path` in `storyboard.json` to the cached file.
+5. Set `visual.asset_path` in `storyboard.json`.
 6. Reject irrelevant, watermarked, or caption-hostile crops.
 
 Then:
@@ -202,7 +217,7 @@ Then:
 python <SKILL_DIR>/scripts/qa_report.py --project <PROJECT> --phase assets
 ```
 
-**STOP** if image-related errors remain (`missing_asset_path`, `too_many_text_only`, `asset_file_missing`, …). Do not compose frames yet.
+**STOP** if image-related errors remain (`missing_asset_path`, `too_many_text_only`, `asset_file_missing`, `entity_unresolved`, …). Do not compose frames yet.
 
 ---
 

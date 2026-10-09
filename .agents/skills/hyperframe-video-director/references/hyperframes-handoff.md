@@ -82,7 +82,7 @@ Follow faceless Step 4–5 + `/hyperframes-animation`:
 
 Reject and rebuild if: no `<img>`, or timeline not on `window.__timelines`, or image unrelated to narration.
 
-### G. Captions
+### G. Captions (romanize + karaoke)
 
 ```bash
 node <FACELESS>/scripts/captions.mjs build \
@@ -90,6 +90,14 @@ node <FACELESS>/scripts/captions.mjs build \
   --audio-meta ./audio_meta.json \
   --hyperframes .
 ```
+
+Then **always** run the director caption pass (Telugu → Latin spellings + karaoke highlight skin):
+
+```bash
+python <SKILL_DIR>/scripts/prepare_captions.py --project <PROJECT>
+```
+
+Gate: `caption_groups.json` has **zero** Telugu-script characters; `compositions/captions.html` defines `.caption-word.is-active` and `.is-spoken`.
 
 ### H. Fetch transition SFX (required)
 
