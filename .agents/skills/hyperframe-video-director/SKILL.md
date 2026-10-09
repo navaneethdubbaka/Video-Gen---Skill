@@ -37,7 +37,7 @@ Optional instructions: …
 4. **Do not translate** Telugu meaning into English. For on-screen captions, **romanize** Telugu script into Latin/English spellings (e.g. `ane kotta chesindi`) via `prepare_captions.py`. Keep English words as-is.
 5. **Karaoke captions are mandatory.** Spoken words must use `.is-active` / `.is-spoken` highlight (not a plain dual-tone pill). Run `prepare_captions.py` after `captions.mjs build`.
 6. Secrets only from `ELEVENLABS_API_KEY` (env or local `.env`). Never hardcode keys.
-7. Resume from existing artifacts; do not redo completed gates.
+7. **New VO = new project (or full invalidate).** Never bolt a new voiceover onto an existing composition’s frames/assets (e.g. do not reuse `videos/smoke-director-short` for a different narration). Init a fresh `videos/<topic-slug>/` from the VO topic. If you must reuse a folder, run `ingest_voiceover.py --invalidate` and rebuild transcript → storyboard → assets → frames. Resume only when the VO fingerprint is unchanged.
 8. If a **style pack** is named (see [styles/README.md](styles/README.md)), load it and **skip** open-ended Step 4 analysis unless the user also supplies a new reference to re-analyze.
 9. Style packs that forbid watermarks must ship **zero** channel URL footers (e.g. never `insiderforce.io`).
 10. **Motion + transitions + SFX are mandatory.** Static HTML slides with silent hard cuts are a failed run. See [references/motion-and-sfx.md](references/motion-and-sfx.md).
@@ -123,7 +123,13 @@ python <SKILL_DIR>/scripts/download_reference.py --project <PROJECT> --source <u
 
 ```bash
 python <SKILL_DIR>/scripts/ingest_voiceover.py --project <PROJECT> --source <path-to-audio>
+# If this prints VO_CHANGED=1 on a reused folder:
+python <SKILL_DIR>/scripts/ingest_voiceover.py --project <PROJECT> --source <path-to-audio> --invalidate
 ```
+
+Writes `input/voiceover.sha256.json`. On change: invalidate transcript/storyboard/assets/frames — do not keep the previous video’s pictures.
+
+**Slug rule:** derive `--slug` from the **new VO topic** (e.g. `swiggy-burstrex-security`), never reuse `smoke-director-short` or another topic’s folder for a different narration.
 
 ---
 

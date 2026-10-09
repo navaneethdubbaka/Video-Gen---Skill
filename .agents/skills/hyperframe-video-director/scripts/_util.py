@@ -86,6 +86,8 @@ def find_voiceover(project: Path) -> Path:
     input_dir = project / "input"
     if not input_dir.is_dir():
         die(f"missing input/: {input_dir}")
+    if (input_dir / "voiceover.wav").is_file():
+        return input_dir / "voiceover.wav"
     preferred = sorted(input_dir.glob("voiceover.*"))
     if preferred:
         return preferred[0]

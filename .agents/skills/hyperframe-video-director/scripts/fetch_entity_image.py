@@ -24,21 +24,49 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _util import die, ensure_dir, resolve_project, write_json  # noqa: E402
 
-UA = "hyperframe-video-director/1.0 (entity-image-fetch; educational agent skill)"
+UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) VideoDirectorBot/1.0 (contact: navaneeth@videogen.ai)"
 WIKI_SUMMARY = "https://en.wikipedia.org/api/rest_v1/page/summary/{title}"
 WIKI_SEARCH = "https://en.wikipedia.org/w/api.php"
 
 
 def http_json(url: str, timeout: int = 30) -> dict | list:
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/json"})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return json.loads(resp.read().decode("utf-8"))
+    import time
+    for attempt in range(4):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/json"})
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                return {}
+            if attempt == 3:
+                raise
+            time.sleep(2 * (attempt + 1))
+        except Exception:
+            if attempt == 3:
+                raise
+            time.sleep(1)
+    return {}
 
 
 def http_bytes(url: str, timeout: int = 60) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return resp.read()
+    import time
+    for attempt in range(4):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return resp.read()
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                return b""
+            if attempt == 3:
+                raise
+            time.sleep(2 * (attempt + 1))
+        except Exception:
+            if attempt == 3:
+                raise
+            time.sleep(1)
+    return b""
 
 
 def slug(name: str) -> str:

@@ -78,15 +78,9 @@ temp/
 /reference.*
 /voiceover.*
 
-# Per-project generated / heavy outputs under videos/<slug>/
-videos/*/renders/
-videos/*/composition/hyperframes/node_modules/
-videos/*/composition/hyperframes/.media/
-videos/*/composition/hyperframes/snapshots/
-videos/*/composition/hyperframes/out/
-videos/*/composition/hyperframes/dist/
-videos/*/analysis/frames/
-videos/*/assets/cache/
+# Local video projects + ad-hoc scripts (never ship — skill only)
+videos/
+scratch/
 
 # yt-dlp / download leftovers
 *.part

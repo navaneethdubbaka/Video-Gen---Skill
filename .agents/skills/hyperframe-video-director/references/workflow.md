@@ -25,19 +25,28 @@ Task Progress:
 
 ## Resume rules
 
+**First check VO fingerprint.** After ingest, read `input/voiceover.sha256.json`. If `changed: true` or `VO_CHANGED=1`, treat the project as dirty — do **not** resume storyboard/assets/frames.
+
 | Gate artifact | If present |
 | --- | --- |
-| `videos/<slug>/` tree | Skip init |
+| `videos/<slug>/` tree | Skip init **only** for the same VO topic; new VO topic → new slug |
 | `input/reference.*` | Skip download unless user changed source |
-| `input/voiceover.*` | Skip copy |
+| `input/voiceover.*` + matching `voiceover.sha256.json` | Skip re-copy if fingerprint matches source |
 | `analysis/media-probe.json` | Skip probe unless media changed |
 | `analysis/frames/` non-empty | Skip extract unless reference changed |
-| `analysis/style-spec.json` | Skip style analysis unless user asks redo |
-| `analysis/transcript.json` | Skip STT unless VO changed |
-| `storyboard/storyboard.json` | Skip storyboard unless transcript/style/instructions changed |
-| `composition/hyperframes/hyperframes.json` | Skip `hyperframes init` |
-| `composition/hyperframes/audio_meta.json` | Rebuild only if storyboard/VO changed |
-| `qa/report.json` with pass | Proceed to final if visual QA also clean |
+| `analysis/style-spec.json` | Skip style analysis unless user asks redo (style packs may stay) |
+| `analysis/transcript.json` | Skip STT **only if** VO fingerprint unchanged |
+| `storyboard/storyboard.json` | Skip **only if** VO fingerprint + instructions unchanged |
+| Cached `assets/` + frame HTML | Skip **only if** storyboard unchanged; never keep old images for a new VO |
+| `composition/hyperframes/hyperframes.json` | Skip `hyperframes init` shell only; still rebuild frames when storyboard changes |
+| `composition/hyperframes/audio_meta.json` | Rebuild if storyboard/VO changed |
+| `qa/report.json` with pass | Proceed to final if visual QA also clean **and** VO fingerprint unchanged |
+
+### Forbidden resume pattern
+
+❌ Open an old project → drop in a new `voiceover.wav` → keep old `compositions/frames/*` and old `assets/images/*` → only rebuild captions/audio_meta.
+
+✅ New slug (preferred) **or** `ingest_voiceover.py --project … --source … --invalidate` then re-run steps 5→10.
 
 Always re-run `doctor.py` when tools fail mysteriously.
 

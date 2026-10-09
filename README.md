@@ -61,6 +61,22 @@ Voiceover: ./voiceover.wav
 Pack path: `.cursor/skills/hyperframe-video-director/styles/insider-force-short/`  
 Includes screenshot refs + `style-spec.json`. **No channel watermark** in outputs.
 
+### Antigravity / other agents (copy-paste)
+
+```text
+Use hyperframe-video-director with style pack insider-force-short.
+
+Voiceover: <path-to-THIS-vo.wav>
+
+CRITICAL:
+- Create a NEW project slug from this VO's topic (videos/<topic-slug>/).
+- Do NOT reuse videos/smoke-director-short or any older project's frames/assets.
+- New VO ⇒ new transcript ⇒ new storyboard ⇒ new images ⇒ new HyperFrames frames.
+- If you must reuse a folder, run ingest_voiceover.py --invalidate first.
+- Captions: romanize Telugu to English spellings + karaoke highlight (prepare_captions.py).
+- Real narration-matching images, GSAP motion, transitions + SFX, no watermark.
+```
+
 YouTube references work when `yt-dlp` is installed; otherwise provide a local file.
 
 ## Prerequisites
