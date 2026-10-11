@@ -63,7 +63,15 @@ Resolve with faceless (cwd = `composition/hyperframes`):
 node <FACELESS>/scripts/audio.mjs fetch-sfx --storyboard ./STORYBOARD.md --hyperframes . --audio-meta ./audio_meta.json
 ```
 
-This merges SFX into existing `audio_meta.json` **without** regenerating VO. Then re-run `assemble-index.mjs` so SFX tracks mount.
+This merges SFX into existing `audio_meta.json` **without** regenerating VO.
+
+**SFX volume must be 80%.** Faceless defaults SFX to `0.35` — always normalize after fetch:
+
+```bash
+python <SKILL_DIR>/scripts/set_sfx_volume.py --project <PROJECT> --volume 0.8
+```
+
+Then re-run `assemble-index.mjs` so SFX tracks mount at that volume (`data-volume="0.8"`).
 
 ## In-frame motion (mandatory)
 

@@ -257,6 +257,24 @@ def main() -> int:
                         "msg": "audio_meta.sfx empty — run faceless audio.mjs fetch-sfx before render",
                     }
                 )
+            else:
+                bad_vol = [
+                    c
+                    for c in sfx
+                    if isinstance(c, dict) and abs(float(c.get("volume", 0.35)) - 0.8) > 1e-6
+                ]
+                if bad_vol:
+                    level = "error" if (hf / "index.html").is_file() or args.phase == "pre_render" else "warn"
+                    issues.append(
+                        {
+                            "level": level,
+                            "code": "sfx_volume_not_80",
+                            "msg": (
+                                f"{len(bad_vol)} SFX cue(s) not at volume 0.8 — "
+                                "run set_sfx_volume.py --volume 0.8 then re-assemble"
+                            ),
+                        }
+                    )
 
         cut_only = 0
         sfx_missing = 0

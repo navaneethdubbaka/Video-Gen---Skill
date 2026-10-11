@@ -26,7 +26,7 @@ python <SKILL_DIR>/scripts/qa_report.py --project <PROJECT>
 
 - [ ] Every frame has GSAP entrance (hero + captions) — not a frozen poster
 - [ ] Inter-frame transitions injected (`transitions.mjs verify` passes; not all-cuts unless requested)
-- [ ] `audio_meta.json` `sfx` non-empty; whoosh/pop/hit audible on scene changes
+- [ ] `audio_meta.json` `sfx` non-empty; each cue `"volume": 0.8` (80%); whoosh/pop/hit audible on scene changes
 - [ ] Optional BGM ducked under VO (if present)
 
 ## Visual quality

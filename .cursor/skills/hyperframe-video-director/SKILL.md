@@ -251,12 +251,13 @@ python <SKILL_DIR>/scripts/build_audio_meta_from_vo.py --project <PROJECT>
 # cwd = composition/hyperframes
 node <FACELESS>/scripts/captions.mjs build --storyboard ./STORYBOARD.md --audio-meta ./audio_meta.json --hyperframes .
 node <FACELESS>/scripts/audio.mjs fetch-sfx --storyboard ./STORYBOARD.md --hyperframes . --audio-meta ./audio_meta.json
+python <SKILL_DIR>/scripts/set_sfx_volume.py --project <PROJECT> --volume 0.8
 node <FACELESS>/scripts/assemble-index.mjs --storyboard ./STORYBOARD.md --hyperframes . --audio-meta ./audio_meta.json
 node <FACELESS>/scripts/transitions.mjs inject --storyboard ./STORYBOARD.md --hyperframes .
 node <FACELESS>/scripts/transitions.mjs verify --storyboard ./STORYBOARD.md --index ./index.html
 ```
 
-7. Confirm `audio_meta.json` has non-empty `sfx` and transitions inject is not `0 transitions` (unless jump-cut-only was requested).
+7. Confirm `audio_meta.json` has non-empty `sfx` at **volume 0.8**, and transitions inject is not `0 transitions` (unless jump-cut-only was requested).
 8. `npx hyperframes lint` → `check` → `snapshot`.
 
 ---

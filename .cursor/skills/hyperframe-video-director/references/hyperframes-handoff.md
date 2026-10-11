@@ -106,11 +106,13 @@ node <FACELESS>/scripts/audio.mjs fetch-sfx \
   --storyboard ./STORYBOARD.md \
   --hyperframes . \
   --audio-meta ./audio_meta.json
+
+python <SKILL_DIR>/scripts/set_sfx_volume.py --project <PROJECT> --volume 0.8
 ```
 
-Merges SFX into `audio_meta.json` without wiping VO. Optional light BGM via media-use resolve + manual `bgm` entry (ducked under voice) — never replace VO.
+Merges SFX into `audio_meta.json` without wiping VO, then sets every SFX cue to **80%** volume (`volume: 0.8`). Optional light BGM via media-use resolve + manual `bgm` entry (ducked under voice) — never replace VO.
 
-Verify `audio_meta.json` has a non-empty `sfx` array before continuing.
+Verify `audio_meta.json` has a non-empty `sfx` array and each cue has `"volume": 0.8` before continuing.
 
 ### I. Assemble
 
