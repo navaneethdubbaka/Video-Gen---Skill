@@ -5,6 +5,12 @@
   "total_duration_s": 7.1,
   "style_spec_path": "analysis/style-spec.json",
   "instructions": "fast-paced documentary-style short",
+  "packaging": {
+    "title": "One claim. Three beats. Clear CTA.",
+    "first_frame_note": "Sticker phone cutout + 2-word hook",
+    "series_tag": "follow for more",
+    "comment_bait": "Which beat hit hardest?"
+  },
   "scenes": [
     {
       "scene_id": 1,
@@ -12,26 +18,28 @@
       "end": 2.2,
       "narration": "Sentence one of the voiceover.",
       "concept": "Hook the viewer with the core claim",
+      "pattern": "A",
+      "role": "hook",
       "visual": {
         "type": "photograph",
-        "search_query": "person using smartphone outdoors natural light",
+        "search_query": "person using smartphone outdoors natural light cutout",
         "asset_path": "assets/images/smartphone_01.jpg",
         "requirement": {
           "subject": "person using smartphone",
           "composition": {
-            "subject_position": "right",
-            "negative_space": "left"
+            "subject_position": "center",
+            "negative_space": "lower_third"
           },
-          "purpose": "background for headline",
+          "purpose": "sticker hero",
           "minimum_resolution": "1080p",
           "narration_link": "Sentence one of the voiceover"
         }
       },
       "text": {
-        "content": "THE CLAIM",
-        "emphasis": ["CLAIM"]
+        "content": "the claim",
+        "emphasis": ["claim"]
       },
-      "motion": { "type": "zoom_in" },
+      "motion": { "type": "pop_in" },
       "transition": "cut",
       "sfx": ["pop"]
     },
@@ -41,22 +49,23 @@
       "end": 4.8,
       "narration": "Sentence two of the voiceover.",
       "concept": "Show the tension or problem",
+      "pattern": "H",
       "visual": {
-        "type": "photograph",
-        "search_query": "crowded city street motion blur",
-        "asset_path": "assets/images/city_street_01.jpg",
+        "type": "icon",
+        "search_query": "black circle x icon flat",
+        "asset_path": "assets/images/deny_x.png",
         "requirement": {
-          "subject": "crowded city street",
-          "purpose": "problem bed",
-          "minimum_resolution": "1080p",
+          "subject": "deny icon",
+          "purpose": "icon list beat",
+          "minimum_resolution": "512px",
           "narration_link": "Sentence two of the voiceover"
         }
       },
       "text": {
-        "content": "THE PROBLEM",
-        "emphasis": ["PROBLEM"]
+        "content": "no fluff",
+        "emphasis": ["no"]
       },
-      "motion": { "type": "slow_pan" },
+      "motion": { "type": "stagger_list" },
       "transition": "zoom-through",
       "sfx": ["whoosh", "hit"]
     },
@@ -65,15 +74,17 @@
       "start": 4.8,
       "end": 7.1,
       "narration": "Sentence three of the voiceover.",
-      "concept": "Resolve with the takeaway",
+      "concept": "CTA / follow open loop",
+      "pattern": "J",
+      "role": "cta",
       "visual": {
         "type": "text_only"
       },
       "text": {
-        "content": "THE TAKEAWAY",
-        "emphasis": ["TAKEAWAY"]
+        "content": "follow for part 2",
+        "emphasis": ["follow"]
       },
-      "motion": { "type": "punch_in" },
+      "motion": { "type": "stagger_words" },
       "transition": "push-slide LEFT",
       "sfx": ["whoosh"]
     }

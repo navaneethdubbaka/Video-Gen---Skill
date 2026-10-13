@@ -1,0 +1,62 @@
+{
+  "run_id": "gpt-hooks-vo-01",
+  "mode": "vo_standalone",
+  "style_pack": "insider-force-short",
+  "canvas": { "width": 1080, "height": 1920 },
+  "voiceovers": [
+    { "id": "h1", "path": "input/vo/h1.wav", "duration_s": 2.8 },
+    { "id": "h2", "path": "input/vo/h2.wav", "duration_s": 2.4 },
+    { "id": "h3", "path": "input/vo/h3.wav", "duration_s": 3.1 }
+  ],
+  "body": null,
+  "cut_body_at": null,
+  "hooks": [
+    {
+      "id": "h1",
+      "vo_path": "input/vo/h1.wav",
+      "formula": "shock_claim",
+      "pattern": "A",
+      "on_screen": "just next-word prediction",
+      "emphasis": ["next-word"],
+      "visual": {
+        "type": "photograph",
+        "search_query": "hands typing laptop keyboard cutout white border"
+      },
+      "duration_s": 2.8,
+      "sfx": "pop",
+      "why_it_stops_scroll": "Undercuts magic-AI myth in six words"
+    },
+    {
+      "id": "h2",
+      "vo_path": "input/vo/h2.wav",
+      "formula": "giant_number",
+      "pattern": "B",
+      "on_screen": "117M parameters",
+      "emphasis": ["117M"],
+      "visual": {
+        "type": "photograph",
+        "search_query": "floating laptop soft shadow studio",
+        "number": "117M",
+        "unit": "parameters"
+      },
+      "duration_s": 2.4,
+      "sfx": "hit",
+      "why_it_stops_scroll": "Giant number works as thumbnail"
+    },
+    {
+      "id": "h3",
+      "vo_path": "input/vo/h3.wav",
+      "formula": "forbidden",
+      "pattern": "A",
+      "on_screen": "no fine-tune needed",
+      "emphasis": ["no"],
+      "visual": {
+        "type": "icon",
+        "search_query": "black circle white x flat icon"
+      },
+      "duration_s": 3.1,
+      "sfx": "pop",
+      "why_it_stops_scroll": "Forbidden energy challenges the old rule"
+    }
+  ]
+}

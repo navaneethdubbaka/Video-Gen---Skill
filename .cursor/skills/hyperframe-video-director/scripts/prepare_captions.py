@@ -76,8 +76,8 @@ def fill_skin(skin: str, groups: list, total: float, width: int, height: int) ->
         "  --cap-accent-2: #8a8a8a;\n"
         '  --font-display: "Space Grotesk", "Helvetica Neue", sans-serif;\n'
         '  --font-body: "Space Grotesk", "Helvetica Neue", sans-serif;\n'
-        f"  --cap-band-top: {int(height * 0.83)}px;\n"
-        f"  --cap-band-height: {int(height * 0.17)}px;\n"
+        f"  --cap-band-top: {int(height * 0.875)}px;\n"
+        f"  --cap-band-height: {int(height * 0.115)}px;\n"
         "}"
     )
     one(

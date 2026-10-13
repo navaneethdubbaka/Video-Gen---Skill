@@ -29,8 +29,9 @@ Before building any HyperFrames HTML:
 3. You **vision-inspected** the chosen file and confirmed it matches the narration concept.
 4. Cap: **≤20%** of scenes may be `text_only` (pure kinetic type). All others need a real media file.
 5. `generated_graphic` is **not** a substitute for an image. If you build a UI card / sticker chrome in HTML, it must still include a real `<img>` / screenshot / photo (product UI, photo of subject, downloaded icon PNG, etc.).
+6. **Prefer stickers / UI / paper crops.** Reject generic “crystal brain”, vague neon AI stock, or empty 3D laptop with illegible fake code when the VO names a concrete subject.
 
-Do **not** proceed to Step 8 compose until `qa_report.py` reports no `missing_image` / `too_many_text_only` errors.
+Do **not** proceed to Step 8 compose until `qa_report.py` reports no `missing_image` / `too_many_text_only` / `pattern_diversity` errors.
 
 ## What “relevant” means
 

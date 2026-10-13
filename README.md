@@ -1,31 +1,28 @@
-# Video Gen Skill — hyperframe-video-director
+# Video Gen Skill
 
-Reusable agent skill that creates short-form videos from:
+Two project skills:
 
-1. A **reference** YouTube/local video (visual style only)
-2. A **user voice-over** (Telugu or English) as the timing spine
-3. Optional creative instructions
+| Skill | Status | Use for |
+| --- | --- | --- |
+| [`hyperframe-video-director`](.cursor/skills/hyperframe-video-director/) | **Frozen** | Full short from reference style + VO |
+| [`short-hooks`](.cursor/skills/short-hooks/) | Active | A/B **killer hook visuals** from short hook VOs (standalone clips) |
 
-Composition and rendering are delegated to the existing **HyperFrames** skills. This repo does not fork HyperFrames.
+Composition/rendering → existing **HyperFrames** skills (not forked).
 
 **Hard requirements for every video:** narration-relevant cached images (not SVG-only fakes), GSAP motion, mixed transitions, and boundary SFX.
 
 **Entity images:** when VO names a public figure or famous company/brand, the skill fetches their Wikipedia/Commons image via `scripts/fetch_entity_image.py` and wires it into those scenes.
 
-## Skill location
+## Skill locations
 
 ```text
-.cursor/skills/hyperframe-video-director/
+.cursor/skills/hyperframe-video-director/   # frozen full-pipeline director
+.cursor/skills/short-hooks/                # hook A/B lab
 ```
 
 ### Install on other agents
 
-| Host | Action |
-| --- | --- |
-| Cursor (this project) | Already under `.cursor/skills/` |
-| Cursor (all projects) | Copy folder → `~/.cursor/skills/hyperframe-video-director` |
-| Claude Code | Copy → `~/.claude/skills/hyperframe-video-director` (or project skills dir) |
-| Google Antigravity | Copy into that product's skills directory |
+Copy either/both folders into that host’s skills directory (Cursor / Claude Code / Antigravity). Also ship under `.agents/skills/` for Antigravity-style layouts.
 
 ## Configure ElevenLabs STT
 
@@ -78,6 +75,19 @@ CRITICAL:
 ```
 
 YouTube references work when `yt-dlp` is installed; otherwise provide a local file.
+
+### short-hooks (standalone visuals from hook voiceovers)
+
+```text
+Use short-hooks. Style: insider-force-short.
+
+Hook voiceovers:
+  1) ./vo/hook-a.wav
+  2) ./vo/hook-b.wav
+  3) ./vo/hook-c.wav
+```
+
+Writes `hooks/<run-id>/renders/hook-hN.mp4` — **separate** attention-grabbing clips (not stitched to a full video).
 
 ## Prerequisites
 

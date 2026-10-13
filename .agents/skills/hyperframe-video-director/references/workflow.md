@@ -10,12 +10,13 @@ Task Progress:
 - [ ] 3 probe + extract frames
 - [ ] 4 style_spec.json
 - [ ] 5 transcript.json
-- [ ] 6 storyboard.json (search_query per scene)
+- [ ] 6 storyboard.json (pattern A–K + hook/CTA/pacing + packaging; visual-quality gates)
 - [ ] 7a entities.json + fetch_entity_image + apply_entity_assets (public figures/companies)
 - [ ] 7b remaining assets researched + vision-inspected + cached
 - [ ] 7c every non-text_only scene has asset_path; qa_report --phase assets PASS
 - [ ] 8 HyperFrames init + bridge scripts
 - [ ] 8b compose frames with real img + GSAP window.__timelines
+- [ ] 8b2 animation polish (Emil/GSAP skills if installed — animation-polish.md)
 - [ ] 8c captions + fetch-sfx + assemble
 - [ ] 8d transitions.mjs inject + verify
 - [ ] 9 QA (structural + visual + motion/SFX + image relevance)

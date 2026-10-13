@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hooks.schema.json",
+  "title": "ShortHooksRun",
+  "type": "object",
+  "required": ["run_id", "mode", "hooks"],
+  "properties": {
+    "run_id": { "type": "string" },
+    "mode": {
+      "type": "string",
+      "enum": ["vo_standalone", "stitch_to_body"],
+      "description": "vo_standalone = default; each hook VO gets its own visual MP4"
+    },
+    "style_pack": { "type": "string" },
+    "canvas": {
+      "type": "object",
+      "properties": {
+        "width": { "type": "integer" },
+        "height": { "type": "integer" }
+      }
+    },
+    "voiceovers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "path"],
+        "properties": {
+          "id": { "type": "string" },
+          "path": { "type": "string" },
+          "duration_s": { "type": "number" },
+          "source": { "type": "string" }
+        }
+      }
+    },
+    "body": {
+      "type": ["object", "null"],
+      "description": "Optional finished short for later stitch only"
+    },
+    "cut_body_at": { "type": ["number", "null"] },
+    "hooks": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "vo_path",
+          "formula",
+          "pattern",
+          "on_screen",
+          "duration_s",
+          "sfx",
+          "why_it_stops_scroll"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^h[1-4]$" },
+          "vo_path": { "type": "string" },
+          "formula": {
+            "type": "string",
+            "enum": [
+              "shock_claim",
+              "giant_number",
+              "forbidden",
+              "open_loop",
+              "villain",
+              "before_after"
+            ]
+          },
+          "pattern": { "type": "string", "enum": ["A", "B"] },
+          "on_screen": { "type": "string", "maxLength": 80 },
+          "emphasis": { "type": "array", "items": { "type": "string" } },
+          "visual": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string" },
+              "search_query": { "type": "string" },
+              "asset_path": { "type": "string" },
+              "number": { "type": "string" },
+              "unit": { "type": "string" }
+            }
+          },
+          "duration_s": { "type": "number", "minimum": 0.8, "maximum": 12 },
+          "sfx": { "type": "string" },
+          "why_it_stops_scroll": { "type": "string" }
+        }
+      }
+    }
+  }
+}

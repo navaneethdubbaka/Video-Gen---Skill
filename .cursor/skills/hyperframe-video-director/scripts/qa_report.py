@@ -92,6 +92,30 @@ def main() -> int:
         if not (scene.get("narration") or "").strip():
             issues.append({"level": "warn", "code": "empty_narration", "scene": sid, "msg": "empty narration"})
 
+        pat = (scene.get("pattern") or "").strip().upper()
+        if not pat or not re.fullmatch(r"[A-K]", pat):
+            issues.append(
+                {
+                    "level": "error",
+                    "code": "missing_pattern",
+                    "scene": sid,
+                    "msg": "scene.pattern required (A–K for insider-force-short) — see visual-quality.md",
+                }
+            )
+
+        text_content = ((scene.get("text") or {}).get("content") or "").strip()
+        if text_content:
+            words = [w for w in re.split(r"\s+", text_content) if w]
+            if len(words) > 12:
+                issues.append(
+                    {
+                        "level": "warn",
+                        "code": "text_too_long",
+                        "scene": sid,
+                        "msg": f"text.content has {len(words)} words — keep kinetic lines 2–6 words / cards ≤2 lines",
+                    }
+                )
+
         visual = scene.get("visual") or {}
         vtype = (visual.get("type") or "").lower()
         query = (visual.get("search_query") or "").strip()
@@ -148,6 +172,178 @@ def main() -> int:
         prev_end = max(prev_end, end)
 
     if scenes:
+        # Visual quality / anti-slideshow (pattern diversity)
+        patterns = [(scene.get("pattern") or "").strip().upper() for scene in scenes]
+        valid_pats = [p for p in patterns if re.fullmatch(r"[A-K]", p)]
+        if len(scenes) >= 6 and len(set(valid_pats)) < 4:
+            issues.append(
+                {
+                    "level": "error",
+                    "code": "pattern_diversity",
+                    "msg": (
+                        f"only {len(set(valid_pats))} distinct pattern(s) — need ≥4 "
+                        "(avoid all-card slideshow; see visual-quality.md)"
+                    ),
+                }
+            )
+        for i in range(len(valid_pats) - 2):
+            if valid_pats[i] and valid_pats[i] == valid_pats[i + 1] == valid_pats[i + 2]:
+                issues.append(
+                    {
+                        "level": "error",
+                        "code": "pattern_triple_repeat",
+                        "msg": f"pattern {valid_pats[i]} repeats 3× in a row starting scene index {i + 1}",
+                    }
+                )
+                break
+        card_pats = {"C", "D", "G", "I"}
+        card_n = sum(1 for p in valid_pats if p in card_pats)
+        if valid_pats and card_n / len(valid_pats) > 0.5 + 1e-9:
+            issues.append(
+                {
+                    "level": "error",
+                    "code": "too_many_card_patterns",
+                    "msg": f"{card_n}/{len(valid_pats)} scenes are card patterns C/D/G/I — max 50%",
+                }
+            )
+        total_dur = float(sb.get("total_duration_s") or (scenes[-1].get("end") if scenes else 0) or 0)
+        if total_dur >= 45 and "J" not in valid_pats:
+            issues.append(
+                {
+                    "level": "error",
+                    "code": "missing_kinetic_breath",
+                    "msg": "duration ≥45s needs ≥1 pattern J (pure kinetic type) breathing beat",
+                }
+            )
+        if len(scenes) >= 4 and not ({"A", "H"} & set(valid_pats)):
+            issues.append(
+                {
+                    "level": "warn",
+                    "code": "missing_sticker_or_icon_list",
+                    "msg": "include at least one pattern A (sticker) or H (icon list) for signature look",
+                }
+            )
+
+        # Retention / growth: hook, pacing, CTA, packaging
+        first = scenes[0]
+        first_pat = (first.get("pattern") or "").strip().upper()
+        first_dur = float(first.get("end", 0)) - float(first.get("start", 0))
+        first_text = ((first.get("text") or {}).get("content") or "").strip()
+        first_words = [w for w in re.split(r"\s+", first_text) if w]
+        if first_pat and first_pat not in ("A", "B"):
+            issues.append(
+                {
+                    "level": "error",
+                    "code": "weak_hook_pattern",
+                    "msg": f"scene 1 pattern={first_pat!r} — hook must be A (sticker) or B (big number)",
+                }
+            )
+        if first_words and len(first_words) > 6:
+            issues.append(
+                {
+                    "level": "error",
+                    "code": "hook_text_too_long",
+                    "msg": f"scene 1 text has {len(first_words)} words — hook max 6",
+                }
+            )
+        if first_dur > 3.5 + 1e-9:
+            issues.append(
+                {
+                    "level": "error",
+                    "code": "hook_too_long",
+                    "msg": f"scene 1 is {first_dur:.2f}s — hook max 3.5s",
+                }
+            )
+
+        durs = []
+        for scene in scenes:
+            d = float(scene.get("end", 0)) - float(scene.get("start", 0))
+            durs.append(d)
+            pat = (scene.get("pattern") or "").strip().upper()
+            limit = 7.0 if pat == "J" else 6.0
+            if d > limit + 1e-9:
+                issues.append(
+                    {
+                        "level": "error",
+                        "code": "scene_too_long",
+                        "scene": scene.get("scene_id"),
+                        "msg": f"scene duration {d:.2f}s > {limit:.0f}s max (J may use 7s)",
+                    }
+                )
+        if len(durs) >= 5:
+            avg = sum(durs) / len(durs)
+            if avg > 4.0 + 1e-9:
+                issues.append(
+                    {
+                        "level": "error",
+                        "code": "avg_scene_too_long",
+                        "msg": f"average scene {avg:.2f}s > 4.0s — cut denser for retention",
+                    }
+                )
+
+        cta_ok = False
+        if total_dur > 0:
+            window_start = max(0.0, total_dur - 8.0)
+            for scene in scenes:
+                s0 = float(scene.get("start", 0))
+                role = (scene.get("role") or "").strip().lower()
+                pat = (scene.get("pattern") or "").strip().upper()
+                in_window = s0 >= window_start - 1e-6
+                if in_window and (role == "cta" or pat in ("J", "K")):
+                    cta_ok = True
+                    break
+            # last scene fallback: must be J/K or role cta
+            last = scenes[-1]
+            last_pat = (last.get("pattern") or "").strip().upper()
+            last_role = (last.get("role") or "").strip().lower()
+            if last_role == "cta" or last_pat in ("J", "K"):
+                cta_ok = True
+            if not cta_ok:
+                issues.append(
+                    {
+                        "level": "error",
+                        "code": "missing_cta",
+                        "msg": (
+                            "need a CTA in the last 8s (role: cta and/or pattern J/K) "
+                            "— follow / Part 2 / open loop"
+                        ),
+                    }
+                )
+            # prefer explicit role
+            if cta_ok and not any((s.get("role") or "").strip().lower() == "cta" for s in scenes):
+                issues.append(
+                    {
+                        "level": "warn",
+                        "code": "cta_role_unmarked",
+                        "msg": "mark the follow/Part-2 beat with role: \"cta\"",
+                    }
+                )
+
+        packaging = sb.get("packaging") if isinstance(sb.get("packaging"), dict) else {}
+        pkg_path = project / "analysis" / "packaging.json"
+        if pkg_path.is_file():
+            try:
+                packaging = {**packaging, **(read_json(pkg_path) or {})}
+            except Exception:
+                pass
+        if total_dur >= 30:
+            if not (packaging.get("title") or "").strip():
+                issues.append(
+                    {
+                        "level": "warn",
+                        "code": "missing_packaging_title",
+                        "msg": "set packaging.title (curiosity + specific — not textbook)",
+                    }
+                )
+            if not (packaging.get("first_frame_note") or "").strip():
+                issues.append(
+                    {
+                        "level": "warn",
+                        "code": "missing_first_frame_note",
+                        "msg": "set packaging.first_frame_note (giant number or sticker — almost no body text)",
+                    }
+                )
+
         ratio = text_only_count / len(scenes)
         if ratio > 0.20 + 1e-9:
             issues.append(

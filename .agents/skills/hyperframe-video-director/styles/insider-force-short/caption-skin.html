@@ -5,7 +5,8 @@
   root data-composition-id="captions", timeline at window.__timelines["captions"].
   State changes use gsap.set({className}) — never tl.call() (seek does not fire them).
 
-  Visual: dark translucent pill, upcoming words dim, spoken word pops lime accent.
+  Visual: SLIM dark pill (support layer — not the design). Upcoming dim, spoken word lime.
+  Prefer in-frame dual-tone type on kinetic beats; this pill must not dominate.
   Telugu VO captions should be Latin-romanized before GROUPS is filled.
 -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
@@ -28,8 +29,8 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: var(--cap-band-top, 1600px);
-    height: var(--cap-band-height, 320px);
+    top: var(--cap-band-top, 1680px);
+    height: var(--cap-band-height, 220px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,49 +44,46 @@
     opacity: 0;
   }
   .caption-pill {
-    max-width: 88%;
-    padding: 22px 40px 26px;
-    background: rgba(12, 12, 14, 0.78);
-    border-radius: 22px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    max-width: 78%;
+    padding: 10px 22px 12px;
+    background: rgba(12, 12, 14, 0.55);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
   }
   .caption-line {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.12em 0.28em;
+    gap: 0.08em 0.22em;
     font-family: var(--font-display, "Space Grotesk"), "Helvetica Neue", sans-serif;
     font-weight: 700;
-    font-size: clamp(40px, 5.2vw, 68px);
-    line-height: 1.18;
+    font-size: clamp(28px, 3.6vw, 44px);
+    line-height: 1.15;
     letter-spacing: -0.02em;
     text-align: center;
   }
-  /* upcoming — dim */
   .caption-word {
     display: inline-block;
-    padding: 0.02em 0.08em;
-    color: rgba(255, 255, 255, 0.42);
-    border-radius: 8px;
+    padding: 0.02em 0.06em;
+    color: rgba(255, 255, 255, 0.38);
+    border-radius: 6px;
   }
-  /* currently spoken — hard highlight */
   .caption-word.is-active {
     color: #0c0c0e;
     background: var(--cap-accent, #5efc8d);
-    box-shadow: 0 0 0 0.06em var(--cap-accent, #5efc8d);
-    transform: scale(1.06);
+    box-shadow: 0 0 0 0.05em var(--cap-accent, #5efc8d);
+    transform: scale(1.04);
   }
-  /* already spoken — solid white */
   .caption-word.is-spoken {
-    color: #ffffff;
+    color: rgba(255, 255, 255, 0.92);
     background: transparent;
     box-shadow: none;
     transform: none;
   }
 
   @media (max-aspect-ratio: 9/16) {
-    .caption-pill { max-width: 92%; }
-    .caption-line { font-size: clamp(36px, 5.8vw, 60px); }
+    .caption-pill { max-width: 86%; }
+    .caption-line { font-size: clamp(26px, 4.2vw, 40px); }
   }
 </style>
 

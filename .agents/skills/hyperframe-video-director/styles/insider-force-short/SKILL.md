@@ -20,7 +20,9 @@ Use with `/hyperframe-video-director`. This pack **replaces Step 4 style analysi
 3. **Voice-over owns timing.** Captions and cuts follow the user’s VO transcript, not the reference’s edit.
 4. **Live motion + SFX.** Even though the reference often *looks* like hard cuts, every scene needs GSAP pop/float entrances and boundary SFX (`whoosh`/`pop`/`hit`). Mix in `zoom-through` / `push-slide` / `crossfade` on ~half of boundaries so the piece is not a silent slideshow. Follow parent [../../references/motion-and-sfx.md](../../references/motion-and-sfx.md).
 5. **Real images inside the chrome.** Sticker / floating-card / laptop patterns must wrap a **downloaded, narration-relevant** photo or UI screenshot — not hand-drawn SVG logos or empty cards. Follow [../../references/asset-research.md](../../references/asset-research.md).
-6. **Captions:** Telugu VO → Latin/English spellings (romanize, do not translate). Karaoke highlight on the spoken word via [caption-skin.html](caption-skin.html) + `prepare_captions.py`.
+6. **Captions:** Telugu VO → Latin/English spellings (romanize, do not translate). Slim karaoke via [caption-skin.html](caption-skin.html) + `prepare_captions.py` — dual-tone in-frame type is primary on kinetic beats.
+7. **Anti-slideshow visual quality:** every scene sets `pattern` A–K; ≥4 distinct patterns; no 3-in-a-row repeats; card patterns C/D/G/I ≤50%; ≥1 `J` breath; no double titles; ≤2 lines card body; one accent color; sticker/UI/paper assets not generic AI stock. See [scene-patterns.md](scene-patterns.md) + [../../references/visual-quality.md](../../references/visual-quality.md).
+8. **Retention / growth:** scene 1 = A/B hook ≤3.5s ≤6 words; avg scene ≤4s; CTA (`role: cta`, J/K) in last 8s; packaging title + first-frame note.
 
 ## When to load
 

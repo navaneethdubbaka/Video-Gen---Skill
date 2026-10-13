@@ -1,27 +1,42 @@
 # Scene patterns — insider-force-short
 
-Pick one pattern per storyboard scene. Match the narration concept, not the reference topic.
+Pick **one pattern letter per storyboard scene** (`pattern: "A"` … `"K"`).  
+Match the narration concept, not the reference topic.
+
+**Hard gates** (also in [../../references/visual-quality.md](../../references/visual-quality.md)):
+
+1. When ≥6 scenes: use **≥4 distinct** letters.
+2. Never the **same letter 3× in a row**.
+3. Card-heavy letters `C`/`D`/`G`/`I` ≤ **50%** of scenes.
+4. Duration ≥45s → include **≥1 `J`** (pure kinetic breath).
+5. Include **≥1 `A` (sticker) or `H` (icon list)** plus the `J` breath.
+6. **No double titles** (card H1 ≠ mid-frame headline).
+7. **≤2 lines** of body on any card; kinetic lines **2–6 words**.
+8. Palette: black/gray/white + **one** accent (`#5EFC8D`) — no rainbow pastels.
+9. **Hook:** scene 1 = **A or B** only, ≤6 words, ≤3.5s (`role: hook`).
+10. **Pacing:** avg scene ≤4s; max 6s (7s only for `J`).
+11. **CTA:** last 8s = `J`/`K` with `role: cta` (follow / Part 2 / open loop).
 
 ## A — Hook sticker
 
 **When:** Opening claim, villain/surprise reaction, brand “didn’t see this coming”.  
-**Layout:** Centered cutout subject with **thick white border + soft shadow**; optional faded brand mark behind; dual-tone caption below.  
-**Asset:** Real photo/PNG cutout of the subject (downloaded + cached). Border is CSS; the face/product is an `<img>`.  
-**Motion:** Pop/scale-in sticker → caption words.  
+**Layout:** Centered cutout subject with **thick white border + soft shadow**; optional faded brand mark behind; dual-tone caption below (**no second title**).  
+**Asset:** Real photo/PNG cutout (downloaded + cached). Border is CSS; subject is `<img>`.  
+**Motion:** Strong pop/scale-in (0.85→1) → caption words. SFX `pop`.  
 **Ref:** `refs/ref_01.jpg`  
-**Do not:** invent SVG brand marks; do not paste reference celebrity pixels.
+**Do not:** invent SVG brand marks; do not paste reference celebrity pixels; do not use generic crystal-brain stock.
 
 ## B — Big number + device
 
 **When:** Huge stat (“744 billion”, “25 GB”, “1 token/s”).  
-**Layout:** 3D hand/device or floating screen upper half; **huge black number** + gray unit word below.  
-**Motion:** Device float; number punch.  
+**Layout:** Device/screen upper half; **huge black number** + gray unit word below (that *is* the title — no extra H1).  
+**Motion:** Device float; number punch. SFX `hit`.  
 **Ref:** `refs/ref_02.jpg`
 
 ## C — Floating product site card
 
 **When:** Naming the tool / showing the product surface.  
-**Layout:** Centered rounded website/app card with soft shadow on light studio bg; minimal chrome.  
+**Layout:** Centered rounded website/app card with soft shadow; **minimal chrome**; ≤2 lines of UI copy.  
 **Motion:** Card rises with slight tilt settle.  
 **Ref:** `refs/ref_03.jpg`  
 **Build original UI** — do not screenshot the reference site.
@@ -29,7 +44,8 @@ Pick one pattern per storyboard scene. Match the narration concept, not the refe
 ## D — Doc / paper card + orbiting marks
 
 **When:** Credibility, paper, model card, “on par with…”.  
-**Layout:** White rounded doc card; 1–2 small square logos orbiting corners; gray caption underneath.  
+**Layout:** White rounded doc card; 1–2 small square logos orbiting corners; **one** gray caption under (not a repeat of the paper title).  
+**Body:** Short quote or 1 chart — not a full research dump.  
 **Ref:** `refs/ref_04.jpg`
 
 ## E — Center brand mark beat
@@ -41,33 +57,36 @@ Pick one pattern per storyboard scene. Match the narration concept, not the refe
 ## F — Floating laptop / hardware
 
 **When:** “on your laptop”, “machine you already own”, local/privacy.  
-**Layout:** Centered 3D laptop/phone; soft ground shadow; short caption above or below.  
+**Layout:** Centered laptop/phone with readable screen crop or sticker cutout; soft ground shadow; short caption.  
+**Prefer:** real UI screenshot on screen / sticker cutout over empty 3D mock with fake blur code.  
 **Ref:** `refs/ref_06.jpg`, `refs/ref_09.jpg`
 
 ## G — Warm product info card
 
 **When:** Spec sheet, maker/size/status, CTA “Run it”.  
-**Layout:** Beige/tan rounded card; sans tags + **serif body**; black CTA pill.  
+**Layout:** Beige/tan rounded card; sans tags + **serif body**; black CTA pill; **≤3 metadata rows**.  
 **Ref:** `refs/ref_07.jpg`
 
 ## H — Icon deny/allow list
 
 **When:** “No GPU / No cloud / No bill” style beats.  
 **Layout:** Vertical list; black circles with white ✕ or ✓; bold labels; progressive reveal (upcoming line in gray).  
-**Ref:** `refs/ref_08.jpg`
+**Ref:** `refs/ref_08.jpg`  
+**Use at least once** when the VO lists absences/benefits.
 
 ## I — Social proof card
 
 **When:** Stars, forks, downloads, “2 weeks”.  
-**Layout:** White GitHub-like stats card; soft shadow; teal highlight on star count ok.  
+**Layout:** White GitHub-like stats card; soft shadow; **one** accent highlight on the key number.  
 **Ref:** `refs/ref_10.jpg`  
 **Use real numbers** from the user’s topic when available.
 
 ## J — Pure kinetic type
 
-**When:** Emphasis lines, CTA speech, moral of story.  
-**Layout:** No hero asset; 2–4 centered lines; bold keywords; trailing word in gray.  
-**Ref:** `refs/ref_11.jpg`
+**When:** Emphasis lines, CTA speech, moral of story, **breathing beat**.  
+**Layout:** No hero asset; 2–4 centered lines; bold keywords (#111); trailing word gray (#8A).  
+**Ref:** `refs/ref_11.jpg`  
+**Required** at least once per ≥45s video. Longer hold. Karaoke pill slim/optional — the type *is* the caption.
 
 ## K — Dot-grid symbol panel
 
@@ -79,37 +98,37 @@ Pick one pattern per storyboard scene. Match the narration concept, not the refe
 
 ## Motion + SFX (all patterns)
 
-Every pattern above **must** include:
-
 | Layer | Default |
 | --- | --- |
-| Hero entrance | 0.4s scale 0.92→1 + opacity 0→1 + slight y (power3.out) |
-| Captions | Staggered dual-tone word/line reveals |
-| Idle | Slow 8–12s yoyo float or Ken-Burns on mockups |
-| Boundary SFX | `pop` (sticker/icon), `whoosh` (cut/slide), `hit` (big number), `rise` (crossfade) |
+| Hero entrance | 0.35–0.5s scale + opacity + slight y (`power3.out` or back.out on stickers) |
+| Captions | Dual-tone in-frame **or** slim karaoke — not both shouting the same words |
+| Idle | Slow 8–12s yoyo float on mockups only; kinetic type stays still after reveal |
+| Boundary SFX | `pop` (sticker/icon), `whoosh` (cut/slide), `hit` (big number), `rise` (crossfade) @ **volume 0.8** |
 | Inter-frame | Alternate `cut` with `zoom-through` / `push-slide` / `crossfade` |
 
 Never ship a pattern as a static PNG/HTML still.
 
-## Caption recipe (all patterns)
+## Caption recipe
 
 ```text
-Line 1: [keyword bold #111] [support gray #8A]
-Line 2: optional second dual-tone line
+In-frame (preferred for J / hooks):
+  [keyword bold #111] [support gray #8A]   ← 2–6 words
+
+Karaoke (support):
+  slim dark pill, lime .is-active — do not dominate the frame
+
 Footer: EMPTY (no watermark)
 ```
 
-Keep captions short — 2–6 words per line. Sync to VO stress.
+## Suggested arc (~60–100s)
 
-## Suggested arc for this genre (~60–100s)
-
-1. Hook sticker (A)  
-2. Big number (B)  
-3. Problem / status quo (J or D)  
-4. Product name / site (C or E)  
-5. How it works metaphor (F)  
-6. Spec card (G)  
-7. Deny list (H)  
-8. Honesty beat — “not fast” (J)  
-9. Social proof (I)  
-10. CTA kinetic (J or K) — **no channel watermark**
+1. Hook sticker (**A**, `role: hook`, ≤3.5s)  
+2. Big number (**B**) or kinetic claim (**J**)  
+3. Problem / status quo (**J** or **D**)  
+4. Product / site (**C** or **E**)  
+5. How it works (**F**)  
+6. Spec card (**G**) — keep short  
+7. Deny list (**H**)  
+8. Honesty / breath (**J**)  
+9. Social proof (**I**) — optional  
+10. CTA kinetic (**J** or **K**, `role: cta`, last 8s) — follow / Part 2 — **no channel watermark**

@@ -10,13 +10,15 @@ This skill never renders video itself. After `style-spec.json`, `transcript.json
 2. `/faceless-explainer` — narration-timed modular frame pipeline (adapted; skip TTS)
 3. `/hyperframes-core` — `data-*` contract, storyboard format, media-at-root rules
 4. `/hyperframes-animation` — motion rules for frame workers (**required**)
-5. `/media-use` — resolve BGM/SFX/images; **do not** use its STT for the VO (ElevenLabs already did)
-6. `/hyperframes-cli` — lint / check / snapshot / preview / render
+5. `/hyperframes-keyframes` + `/hyperframes-registry` — punch/zoom + prebuilt effects before inventing
+6. `/media-use` — resolve BGM/SFX/images; **do not** use its STT for the VO (ElevenLabs already did)
+7. `/hyperframes-cli` — lint / check / snapshot / preview / render
+8. **Polish pack** (if installed): see [animation-polish.md](animation-polish.md) — Emil improve/review + GSAP skills + optional taste
 
 Keep skills current:
 
 ```bash
-npx hyperframes skills update faceless-explainer
+npx hyperframes skills update faceless-explainer hyperframes-animation hyperframes-keyframes motion-graphics hyperframes-registry
 ```
 
 ## Project path
@@ -71,7 +73,7 @@ If any storyboard scene (non-`text_only`) lacks a real file, **stop** and return
 
 ### F. Build frames with real images + motion (agent) — CRITICAL
 
-Follow faceless Step 4–5 + `/hyperframes-animation`:
+Follow faceless Step 4–5 + `/hyperframes-animation` (+ `/hyperframes-keyframes` / `/hyperframes-registry` as needed):
 
 - One HTML file per frame: `compositions/frames/NN-<slug>.html` in `<template>`
 - Hero must be a real media element: `<img src="…">` (or `<video muted>`) pointing at the staged asset for that scene
@@ -79,8 +81,20 @@ Follow faceless Step 4–5 + `/hyperframes-animation`:
 - **Every frame** must register a seekable GSAP timeline: `window.__timelines["<data-composition-id>"] = gsap.timeline({ paused: true })` with entrance tweens (not bare `gsap.from` fire-and-forget)
 - Captions: staggered dual-tone reveals; idle micro-float OK
 - Match style pack patterns; update `STORYBOARD.md` `src:` + `status: animated`
+- Hook / CTA / pattern `J`: borrow kinetic recipes from `/motion-graphics` when helpful
 
 Reject and rebuild if: no `<img>`, or timeline not on `window.__timelines`, or image unrelated to narration.
+
+### F2. Animation polish pass (required when polish skills are installed)
+
+Read [animation-polish.md](animation-polish.md). After the first frame pass, **before** captions/assemble:
+
+1. `find-animation-opportunities` — list frames that feel static / same ease
+2. `improve-animations` + `animation-vocabulary` + `gsap-timeline` / `gsap-performance` — fix eases, stagger, pop strength; keep seek-safe `__timelines`
+3. `review-animations` — spot-check hook, one mid beat, CTA
+4. Optional: `high-end-visual-design` / `impeccable` if chrome looks generic
+
+If those skills are **not** installed, skip F2 (warn once) and continue — do not invent a second renderer.
 
 ### G. Captions (romanize + karaoke)
 

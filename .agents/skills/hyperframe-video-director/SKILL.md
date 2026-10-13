@@ -10,9 +10,13 @@ description: >
   style-matched short / reference-style video with narration. Also use when the
   user names a style pack such as insider-force-short, Insider Force style,
   Colibri/Calibri laptop AI short look, or clean-tech sticker short.
+  For standalone killer hook visuals from short hook voiceovers, use short-hooks instead.
 ---
 
 # hyperframe-video-director
+
+> **FROZEN.** Do not expand this skill unless the user explicitly asks.  
+> Hook A/B experiments → use sibling skill **`short-hooks`**.
 
 Orchestration skill. **You decide WHAT** (style, beats, assets, timing).  
 **HyperFrames decides HOW** (HTML composition, animation, lint, render).
@@ -35,14 +39,16 @@ Optional instructions: …
 2. Reference video = **visual grammar only**. Never copy frames, footage, logos, or proprietary assets.
 3. Prefer independently sourced assets (`/media-use` resolve, then cache).
 4. **Do not translate** Telugu meaning into English. For on-screen captions, **romanize** Telugu script into Latin/English spellings (e.g. `ane kotta chesindi`) via `prepare_captions.py`. Keep English words as-is.
-5. **Karaoke captions are mandatory.** Spoken words must use `.is-active` / `.is-spoken` highlight (not a plain dual-tone pill). Run `prepare_captions.py` after `captions.mjs build`.
+5. **Karaoke captions** use `.is-active` / `.is-spoken` via `prepare_captions.py`, but the pill must stay **slim** — dual-tone in-frame type is the primary read on kinetic beats. See [references/visual-quality.md](references/visual-quality.md).
 6. Secrets only from `ELEVENLABS_API_KEY` (env or local `.env`). Never hardcode keys.
-7. **New VO = new project (or full invalidate).** Never bolt a new voiceover onto an existing composition’s frames/assets (e.g. do not reuse `videos/smoke-director-short` for a different narration). Init a fresh `videos/<topic-slug>/` from the VO topic. If you must reuse a folder, run `ingest_voiceover.py --invalidate` and rebuild transcript → storyboard → assets → frames. Resume only when the VO fingerprint is unchanged.
+7. **New VO = new project (or full invalidate).** Never bolt a new voiceover onto an existing composition’s frames/assets. Init a fresh `videos/<topic-slug>/`. If reusing a folder, `ingest_voiceover.py --invalidate` then rebuild. Resume only when VO fingerprint is unchanged.
 8. If a **style pack** is named (see [styles/README.md](styles/README.md)), load it and **skip** open-ended Step 4 analysis unless the user also supplies a new reference to re-analyze.
 9. Style packs that forbid watermarks must ship **zero** channel URL footers (e.g. never `insiderforce.io`).
-10. **Motion + transitions + SFX are mandatory.** Static HTML slides with silent hard cuts are a failed run. See [references/motion-and-sfx.md](references/motion-and-sfx.md).
-11. **Relevant real images are mandatory.** Every scene (except ≤20% kinetic `text_only`) must research, download, vision-inspect, and cache a narration-matching image; set `visual.asset_path` and use it in frame HTML. Invented SVG/CSS-only “fake assets” are a failed run. See [references/asset-research.md](references/asset-research.md).
-12. **Public figures & famous companies:** when VO names a recognizable person, company, brand, or product, fetch that entity’s image (Wikipedia/Wikimedia via script) and use it in those scenes. See [references/entity-images.md](references/entity-images.md).
+10. **Motion + transitions + SFX are mandatory** (SFX volume **0.8**). See [references/motion-and-sfx.md](references/motion-and-sfx.md).
+11. **Relevant real images are mandatory.** Prefer stickers / UI / paper crops — not generic AI-brain stock. See [references/asset-research.md](references/asset-research.md).
+12. **Public figures & famous companies:** fetch entity images when named. See [references/entity-images.md](references/entity-images.md).
+13. **Visual quality (anti-slideshow):** every scene needs a style-pack `pattern` letter; ≥4 distinct patterns; no 3-in-a-row repeats; card patterns ≤50%; ≥1 kinetic `J` breath; **no double titles**; ≤2 lines of card body. See [references/visual-quality.md](references/visual-quality.md).
+14. **Retention / growth:** scene 1 = pattern `A` or `B` (≤6 words, ≤3.5s); average scene ≤4s; CTA (`role: cta`, pattern `J`/`K`) inside the last 8s; note packaging title + first-frame. See [references/visual-quality.md](references/visual-quality.md) §9.
 
 ## Style packs
 
@@ -79,6 +85,8 @@ Task Progress:
 Full checklist: [references/workflow.md](references/workflow.md)  
 Handoff details: [references/hyperframes-handoff.md](references/hyperframes-handoff.md)  
 Motion / SFX: [references/motion-and-sfx.md](references/motion-and-sfx.md)  
+Visual quality: [references/visual-quality.md](references/visual-quality.md)  
+Animation polish: [references/animation-polish.md](references/animation-polish.md)  
 Assets: [references/asset-research.md](references/asset-research.md)  
 Safety: [references/safety.md](references/safety.md)
 
@@ -180,10 +188,12 @@ Read [references/storyboard-guide.md](references/storyboard-guide.md).
 Build `storyboard/storyboard.json` from transcript segments + style-spec + user instructions.  
 Schema: [schemas/storyboard.schema.json](schemas/storyboard.schema.json).
 
-Each scene: narration window, concept, **visual.search_query**, on-screen text, **motion**, **transition**, **sfx** — timed to VO.
+Each scene: narration window, concept, **`pattern` (A–K)**, **visual.search_query**, short on-screen text, **motion**, **transition**, **sfx** — timed to VO.
 
 Prefer `visual.type`: `photograph` | `screenshot` | `icon` | `video_clip`.  
-`text_only` ≤20% of scenes. Do **not** default to `generated_graphic` to skip research.
+`text_only` for pattern `J` breaths (and ≤20% overall). Do **not** default to `generated_graphic` to skip research.
+
+**Visual quality + retention gate before Step 7:** ≥4 distinct patterns (≥6 scenes); no 3-in-a-row repeats; card patterns ≤50%; ≥1 `J` if duration ≥45s; no double titles; scene 1 = A/B hook ≤3.5s; avg scene ≤4s; CTA in last 8s; `packaging` title + first_frame_note. See [references/visual-quality.md](references/visual-quality.md).
 
 Do not leave `transition: hard_cut` on every scene. Mix `zoom-through`, `push-slide`, `crossfade`, `blur-crossfade`, `squeeze` with cuts. Every scene needs an `sfx` cue (`whoosh` / `pop` / `hit` / `rise`). See [references/motion-and-sfx.md](references/motion-and-sfx.md).
 
@@ -244,7 +254,8 @@ python <SKILL_DIR>/scripts/storyboard_to_hyperframes.py --project <PROJECT>
 python <SKILL_DIR>/scripts/build_audio_meta_from_vo.py --project <PROJECT>
 ```
 
-5. Agent builds `compositions/frames/NN-*.html` with **real `<img>` heroes from `asset_path`** + **GSAP entrances** on `window.__timelines[id]` (faceless frame-worker + `/hyperframes-animation`). No SVG-only fake assets. No static posters.
+5. Agent builds `compositions/frames/NN-*.html` with **real `<img>` heroes from `asset_path`** + **GSAP entrances** on `window.__timelines[id]` (faceless frame-worker + `/hyperframes-animation` + keyframes/registry). No SVG-only fake assets. No static posters.
+5b. **Animation polish** (if installed): follow [references/animation-polish.md](references/animation-polish.md) — find → improve → review (Emil + GSAP skills). Skip with a warn if missing.
 6. Faceless pipeline — **do not TTS** the user's VO:
 
 ```bash

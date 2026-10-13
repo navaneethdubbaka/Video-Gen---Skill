@@ -71,7 +71,11 @@ def main() -> int:
     args = parser.parse_args()
 
     project = resolve_project(args.project)
-    ref = find_reference(project)
+    try:
+        ref = find_reference(project)
+        ref_probe = probe(ref)
+    except SystemExit:
+        ref_probe = None
     try:
         vo = find_voiceover(project)
         vo_probe = probe(vo)
@@ -79,7 +83,7 @@ def main() -> int:
         vo_probe = None
 
     out = {
-        "reference": probe(ref),
+        "reference": ref_probe,
         "voiceover": vo_probe,
     }
     dest = project / "analysis" / "media-probe.json"

@@ -27,6 +27,13 @@ python <SKILL_DIR>/scripts/qa_report.py --project <PROJECT>
 - [ ] Every frame has GSAP entrance (hero + captions) — not a frozen poster
 - [ ] Inter-frame transitions injected (`transitions.mjs verify` passes; not all-cuts unless requested)
 - [ ] `audio_meta.json` `sfx` non-empty; each cue `"volume": 0.8` (80%); whoosh/pop/hit audible on scene changes
+- [ ] Pattern diversity: every scene has `pattern` A–K; ≥4 distinct; no 3-in-a-row; cards ≤50%; ≥1 `J` breath ([visual-quality.md](visual-quality.md))
+- [ ] No double titles; no clipped multi-column text walls; one accent color
+- [ ] Assets are stickers/UI/paper — not generic AI-brain stock; karaoke pill is slim
+- [ ] Hook: scene 1 = A/B, ≤6 words, ≤3.5s
+- [ ] Pacing: avg scene ≤4s; no scene >6s (7s only for J)
+- [ ] CTA in last 8s (`role: cta`, pattern J/K) — follow / Part 2 / open loop
+- [ ] `packaging.title` + `first_frame_note` set (curiosity title, not textbook)
 - [ ] Optional BGM ducked under VO (if present)
 
 ## Visual quality

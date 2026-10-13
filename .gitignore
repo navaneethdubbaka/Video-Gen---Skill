@@ -80,6 +80,7 @@ temp/
 
 # Local video projects + ad-hoc scripts (never ship — skill only)
 videos/
+hooks/
 scratch/
 
 # yt-dlp / download leftovers

@@ -21,14 +21,18 @@
     "recommended_families": ["Space Grotesk", "Inter", "SF Pro", "Helvetica Neue"],
     "text_size": "large_display_for_hooks",
     "position": "lower_center_or_mid_center",
-    "caption_style": "dual_tone_kinetic",
+    "caption_style": "dual_tone_kinetic_plus_slim_karaoke",
     "emphasis": "keyword_weight",
     "keyword_emphasis": true,
     "dual_tone": {
       "primary": "#111111",
       "secondary": "#8A8A8A",
-      "rule": "Key nouns/verbs in near-black bold; filler words in medium gray"
+      "rule": "Key nouns/verbs in near-black bold; filler words in medium gray. In-frame dual-tone is primary; karaoke pill is slim support."
     },
+    "max_kinetic_words": 6,
+    "max_card_body_lines": 2,
+    "forbid_double_titles": true,
+    "forbid_rainbow_pastel_cards": true,
     "hybrid_cards": {
       "ui_labels": "bold sans",
       "body_on_warm_cards": "editorial serif allowed"
