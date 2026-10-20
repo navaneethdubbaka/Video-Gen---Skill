@@ -10,6 +10,8 @@ description: >
   style-matched short / reference-style video with narration. Also use when the
   user names a style pack such as insider-force-short, Insider Force style,
   Colibri/Calibri laptop AI short look, or clean-tech sticker short.
+  Also use when the user names greencode-video-gen, Green Code style, greencode
+  video gen, or a dark anime-host explainer Short.
   For standalone killer hook visuals from short hook voiceovers, use short-hooks instead.
 ---
 
@@ -55,6 +57,7 @@ Optional instructions: …
 | Pack | Load when user says… |
 | --- | --- |
 | [`insider-force-short`](styles/insider-force-short/SKILL.md) | Insider Force style, Colibri/Calibri short style, clean-tech sticker short, “style like that laptop AI video” |
+| [`greencode-video-gen`](styles/greencode-video-gen/SKILL.md) | greencode-video-gen, greencode video gen, Green Code style, dark anime-host explainer |
 
 On pack select: read the pack `SKILL.md`, copy its `style-spec.json` into the project, inspect its `refs/`, map scenes via its `scene-patterns.md`.
 

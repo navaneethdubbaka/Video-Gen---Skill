@@ -26,7 +26,7 @@
     "keyword_emphasis": true,
     "dual_tone": {
       "primary": "#111111",
-      "secondary": "#8A8A8A",
+      "secondary": "#6B6B6B",
       "rule": "Key nouns/verbs in near-black bold; filler words in medium gray. In-frame dual-tone is primary; karaoke pill is slim support."
     },
     "max_kinetic_words": 6,
@@ -39,7 +39,7 @@
     }
   },
   "color": {
-    "palette": ["#F2F2F2", "#EDEDED", "#111111", "#8A8A8A", "#FFFFFF", "#5EFC8D"],
+    "palette": ["#F2F2F2", "#EDEDED", "#111111", "#6B6B6B", "#FFFFFF", "#5EFC8D"],
     "background_treatment": "flat light studio gray/off-white; optional subtle dot-grid inset panel",
     "contrast": "high",
     "accent_usage": "single signal color only when needed (never decorative flood)"

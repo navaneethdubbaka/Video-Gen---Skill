@@ -5,6 +5,7 @@ Frozen visual grammars for `/hyperframe-video-director`. Selecting a pack **skip
 | Pack | Triggers | Path |
 | --- | --- | --- |
 | `insider-force-short` | Insider Force style, Colibri/Calibri laptop AI short, clean-tech sticker short | [insider-force-short/SKILL.md](insider-force-short/SKILL.md) |
+| `greencode-video-gen` | greencode video gen, Green Code style, dark anime-host explainer | [greencode-video-gen/SKILL.md](greencode-video-gen/SKILL.md) |
 
 ## Rules for all packs
 

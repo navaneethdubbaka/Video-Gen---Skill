@@ -106,13 +106,13 @@ def main() -> int:
         text_content = ((scene.get("text") or {}).get("content") or "").strip()
         if text_content:
             words = [w for w in re.split(r"\s+", text_content) if w]
-            if len(words) > 12:
+            if len(words) > 6:
                 issues.append(
                     {
-                        "level": "warn",
+                        "level": "error" if len(words) > 8 else "warn",
                         "code": "text_too_long",
                         "scene": sid,
-                        "msg": f"text.content has {len(words)} words — keep kinetic lines 2–6 words / cards ≤2 lines",
+                        "msg": f"text.content has {len(words)} words — keep kinetic lines 2–6 words",
                     }
                 )
 
@@ -221,6 +221,29 @@ def main() -> int:
                     "level": "warn",
                     "code": "missing_sticker_or_icon_list",
                     "msg": "include at least one pattern A (sticker) or H (icon list) for signature look",
+                }
+            )
+
+        # Three-layer stack monotony: hero asset + mid kinetic (karaoke usually on too)
+        # Proxy: non-text_only scenes that also set text.content
+        stack_n = 0
+        for scene in scenes:
+            v = scene.get("visual") or {}
+            vtype = (v.get("type") or "").lower()
+            tc = ((scene.get("text") or {}).get("content") or "").strip()
+            if vtype != "text_only" and tc:
+                stack_n += 1
+        if len(scenes) >= 6 and stack_n / len(scenes) > 0.40 + 1e-9:
+            issues.append(
+                {
+                    "level": "error",
+                    "code": "three_layer_stack_cap",
+                    "msg": (
+                        f"{stack_n}/{len(scenes)} scenes have hero asset + mid kinetic text "
+                        "(proxy for card+headline+karaoke stack) — max 40%; "
+                        "mix pure J/K, hide karaoke on A/B, or drop mid titles on dense cards "
+                        "(see visual-quality.md §14)"
+                    ),
                 }
             )
 

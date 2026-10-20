@@ -113,6 +113,20 @@ python <SKILL_DIR>/scripts/prepare_captions.py --project <PROJECT>
 
 Gate: `caption_groups.json` has **zero** Telugu-script characters; `compositions/captions.html` defines `.caption-word.is-active` and `.is-spoken`.
 
+**Karaoke visual gates** (fail draft if violated — see [visual-quality.md](visual-quality.md) §12):
+
+- One slim pill only; `.is-active` recolors a word **inside** the pill (never a second green mini-pill beside it)
+- Windows must include a content noun/verb — reject orphan fragments (`ikkada`, `gaa`, `lo`, `to`, `ee` alone)
+- Pill above platform UI safe zone (bottom ~180px @1080×1920)
+- On pattern `J`/`A`/`B`, prefer karaoke off or heavily faded when dual-tone already carries the line
+
+**Frame layout gates** while authoring `compositions/frames/NN-*.html`:
+
+- Hero ~38–55% frame height; tight gap to kinetic line; no top-heavy postage stamps
+- No EP/series badge on every card (≤ once early or on CTA)
+- No micro-text / rainbow metric cells / paper-paragraph dumps
+- Hook frame paints by ≤80ms (no blank t=0)
+
 ### H. Fetch transition SFX (required)
 
 ```bash
@@ -159,8 +173,26 @@ QA: [qa-checklist.md](qa-checklist.md) + [motion-and-sfx.md](motion-and-sfx.md) 
 ### L. Render
 
 ```bash
-npx hyperframes render --quality draft --output ../../renders/draft/v1.mp4
-npx hyperframes render --quality high --output ../../renders/final/final.mp4
+**E: drive only (this machine).** Never let HyperFrames scratch land on `C:` (`TEMP`/`TMP`) — C: fills and kills renders. Always:
+
+```powershell
+# from workspace root E:\Video Gen Skill
+.\scripts\render-on-e.ps1 `
+  -ProjectDir "E:\Video Gen Skill\<PROJECT>\composition\hyperframes" `
+  -Out "E:\Video Gen Skill\<PROJECT>\renders\draft\v1.mp4" `
+  -Workers 1
+```
+
+That script forces `TEMP`/`TMP`/`npm` cache under `E:\Video Gen Skill\.tmp\`. Output path must also start with `E:\`.
+
+Fallback (same env):
+
+```powershell
+$env:TEMP = "E:\Video Gen Skill\.tmp\hf-render"
+$env:TMP  = $env:TEMP
+npx hyperframes render --workers 1 --output ../../renders/draft/v1.mp4
+npx hyperframes render --workers 1 --output ../../renders/final/final.mp4
+```
 ```
 
 ## What you must not do

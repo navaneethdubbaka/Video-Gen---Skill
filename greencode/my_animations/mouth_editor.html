@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mouth Editor</title>
+<style>
+  :root {
+    --bg: #12141a;
+    --panel: #1c1f28;
+    --line: #2e3440;
+    --text: #e8eaef;
+    --muted: #9aa3b2;
+    --accent: #3dd68c;
+    --warn: #f0a030;
+    --danger: #e85d5d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font: 13px/1.4 "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: auto 1fr;
+  }
+  header {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    background: var(--panel);
+  }
+  header h1 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  header span { color: var(--muted); font-size: 12px; }
+  aside {
+    border-right: 1px solid var(--line);
+    background: var(--panel);
+    padding: 12px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  section h2 {
+    margin: 0 0 8px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px; }
+  label.file {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 10px;
+    background: #252a36;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  label.file:hover { border-color: #4a5568; }
+  label.file input { display: none; }
+  button, select {
+    font: inherit;
+    color: var(--text);
+    background: #252a36;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 7px 10px;
+    cursor: pointer;
+  }
+  button:hover { border-color: #4a5568; }
+  button.primary { background: #1a3d2e; border-color: #2a6b4a; color: var(--accent); }
+  button.primary:hover { background: #214a38; }
+  button.danger { border-color: #6b3030; color: var(--danger); }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  input[type="range"] { width: 100%; }
+  .hint { color: var(--muted); font-size: 11px; margin: 4px 0 0; }
+  .stat {
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 11px;
+    color: var(--muted);
+    background: #151820;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 8px;
+    white-space: pre-wrap;
+  }
+  main {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    min-width: 0;
+    min-height: 0;
+  }
+  .stage-wrap {
+    position: relative;
+    overflow: auto;
+    background:
+      linear-gradient(45deg, #1a1d24 25%, transparent 25%),
+      linear-gradient(-45deg, #1a1d24 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #1a1d24 75%),
+      linear-gradient(-45deg, transparent 75%, #1a1d24 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+    background-color: #0e1014;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 16px;
+  }
+  canvas {
+    display: block;
+    max-width: none;
+    cursor: crosshair;
+    box-shadow: 0 0 0 1px var(--line);
+    background: #000;
+  }
+  .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-top: 1px solid var(--line);
+    background: var(--panel);
+    flex-wrap: wrap;
+  }
+  .toolbar .grow { flex: 1; }
+  .mode-tabs { display: flex; gap: 4px; }
+  .mode-tabs button.active {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field label { font-size: 11px; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Mouth Editor</h1>
+  <span>Click points around the mouth · drag red cross for anchor · play warp or overlay</span>
+</header>
+
+<aside>
+  <section>
+    <h2>Images</h2>
+    <div class="row">
+      <label class="file">Host PNG<input type="file" id="hostFile" accept="image/*" /></label>
+    </div>
+    <div class="row">
+      <label class="file">Extract GIF<input type="file" id="extractGif" accept="image/gif,.gif" /></label>
+    </div>
+    <div class="row">
+      <label class="file">Mouth still<input type="file" id="mouthFile" accept="image/*" /></label>
+      <label class="file">Mouth PNGs<input type="file" id="mouthSeq" accept="image/*" multiple /></label>
+    </div>
+    <div class="row">
+      <button type="button" id="viewHost">View host</button>
+      <button type="button" id="viewExtract">View extract GIF</button>
+    </div>
+    <p class="hint">Load a GIF → View extract GIF → draw poly on the mouth → Extract. Then View host + overlay.</p>
+  </section>
+
+  <section>
+    <h2>Mode</h2>
+    <div class="mode-tabs row">
+      <button type="button" class="active" data-mode="draw" id="modeDraw">Draw poly</button>
+      <button type="button" data-mode="anchor" id="modeAnchor">Set anchor</button>
+      <button type="button" data-mode="overlay" id="modeOverlay">Place overlay</button>
+    </div>
+    <p class="hint" id="modeHint">Click to add polygon vertices (clockwise). Double-click or press Enter to close.</p>
+  </section>
+
+  <section>
+    <h2>Polygon</h2>
+    <div class="row">
+      <button type="button" id="undoPt">Undo point</button>
+      <button type="button" id="clearPoly" class="danger">Clear poly</button>
+      <button type="button" id="closePoly">Close poly</button>
+    </div>
+    <div class="row">
+      <button type="button" id="autoOval">Oval from box</button>
+      <button type="button" class="primary" id="extractBtn">Extract overlay from poly</button>
+    </div>
+    <p class="hint">Poly selects what to cut from every frame of the extract GIF (soft edges).</p>
+  </section>
+
+  <section>
+    <h2>Overlay size</h2>
+    <div class="field">
+      <label>Scale <span id="scaleLbl">100%</span></label>
+      <input type="range" id="ovScale" min="20" max="300" step="5" value="100" />
+    </div>
+    <div class="field">
+      <label>Width px <span id="ovWLbl">—</span></label>
+      <input type="range" id="ovW" min="20" max="400" step="2" value="100" />
+    </div>
+    <div class="field">
+      <label>Height px <span id="ovHLbl">—</span></label>
+      <input type="range" id="ovH" min="16" max="300" step="2" value="60" />
+    </div>
+    <div class="field">
+      <label>Rotate <span id="ovRotLbl">0°</span></label>
+      <input type="range" id="ovRot" min="-180" max="180" step="1" value="0" />
+    </div>
+    <div class="row">
+      <button type="button" id="ovLock" class="active">Lock aspect</button>
+      <button type="button" id="ovFitPoly">Fit to poly</button>
+      <button type="button" id="ovRotReset">Reset rot</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Animate</h2>
+    <div class="field">
+      <label>Method</label>
+      <select id="animMethod">
+        <option value="overlay" selected>Overlay mouth frames / still</option>
+        <option value="warp">Warp (vertical stretch)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Openness max <span id="sMaxLbl">1.25</span></label>
+      <input type="range" id="sMax" min="1.0" max="1.5" step="0.05" value="1.25" />
+    </div>
+    <div class="field">
+      <label>FPS <span id="fpsLbl">24</span></label>
+      <input type="range" id="fps" min="12" max="30" step="1" value="24" />
+    </div>
+    <div class="field">
+      <label>Frames <span id="framesLbl">96</span></label>
+      <input type="range" id="nFrames" min="24" max="120" step="8" value="96" />
+    </div>
+    <div class="row" style="margin-top:8px">
+      <button type="button" class="primary" id="playBtn">Play</button>
+      <button type="button" id="stopBtn">Stop</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Save</h2>
+    <div class="field">
+      <label>Filename</label>
+      <input type="text" id="saveName" value="talking_loop.gif" style="width:100%;padding:7px 10px;background:#151820;border:1px solid var(--line);border-radius:6px;color:var(--text);font:inherit" />
+    </div>
+    <div class="row" style="margin-top:8px">
+      <button type="button" class="primary" id="saveGif">Save GIF</button>
+    </div>
+    <div class="row">
+      <button type="button" id="exportCalib">calib.json</button>
+      <button type="button" id="exportPng">frame PNG</button>
+      <button type="button" id="exportZip">frames ZIP</button>
+    </div>
+    <p class="hint">Save GIF encodes the current host + overlay animation. Name must end with <code>.gif</code>.</p>
+  </section>
+
+  <section>
+    <h2>Status</h2>
+    <div class="stat" id="stat">Load a host image to start.</div>
+  </section>
+</aside>
+
+<main>
+  <div class="stage-wrap" id="stageWrap">
+    <canvas id="cv" width="640" height="480"></canvas>
+  </div>
+  <div class="toolbar">
+    <label>Zoom <span id="zoomLbl">100%</span>
+      <input type="range" id="zoom" min="25" max="300" step="5" value="100" style="width:140px;vertical-align:middle" />
+    </label>
+    <span class="grow"></span>
+    <span id="xyread" style="font-family:ui-monospace,Consolas,monospace;color:var(--muted)"></span>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script type="module">
+import { parseGIF, decompressFrames } from "https://cdn.jsdelivr.net/npm/gifuct-js@2.1.2/+esm";
+import { GIFEncoder, quantize, applyPalette } from "https://cdn.jsdelivr.net/npm/gifenc@1.0.3/+esm";
+window.__gifTools = { parseGIF, decompressFrames, GIFEncoder, quantize, applyPalette };
+window.dispatchEvent(new Event("giftoolsready"));
+</script>
+<script>
+(() => {
+  const cv = document.getElementById("cv");
+  const ctx = cv.getContext("2d", { willReadFrequently: true });
+  const off = document.createElement("canvas");
+  const octx = off.getContext("2d", { willReadFrequently: true });
+
+  const state = {
+    host: null,
+    mouth: null,
+    mouthFrames: [],
+    extractFrames: [],
+    extractDelays: [],
+    view: "host",
+    poly: [],
+    closed: false,
+    cx: null,
+    anchorY: null,
+    mode: "draw",
+    zoom: 1,
+    drag: null,
+    overlay: { x: 0, y: 0, w: 100, h: 60, scale: 1, lockAspect: true, rot: 0 },
+    playing: false,
+    frame: 0,
+    openness: [],
+    timer: null,
+    baseCache: null,
+    spriteCache: null,
+    _exporting: false,
+  };
+
+  let baseWH = { w: 100, h: 60 };
+
+  function gifTools() { return window.__gifTools || null; }
+  function waitGifTools() {
+    if (gifTools()) return Promise.resolve(gifTools());
+    return new Promise((resolve) => {
+      window.addEventListener("giftoolsready", () => resolve(gifTools()), { once: true });
+      setTimeout(() => resolve(gifTools()), 5000);
+    });
+  }
+
+  const $ = (id) => document.getElementById(id);
+  const setStat = (t) => { $("stat").textContent = t; };
+
+  function imgSize() {
+    if (state.view === "extract" && state.extractFrames.length) {
+      return { w: state.extractFrames[0].width, h: state.extractFrames[0].height };
+    }
+    if (state.host) return { w: state.host.naturalWidth, h: state.host.naturalHeight };
+    return { w: 640, h: 480 };
+  }
+
+  function resizeCanvas() {
+    const { w, h } = imgSize();
+    cv.width = w;
+    cv.height = h;
+    cv.style.width = Math.round(w * state.zoom) + "px";
+    cv.style.height = Math.round(h * state.zoom) + "px";
+    off.width = w;
+    off.height = h;
+  }
+
+  function syncSizeLabels() {
+    $("scaleLbl").textContent = Math.round(state.overlay.scale * 100) + "%";
+    $("ovWLbl").textContent = Math.round(state.overlay.w);
+    $("ovHLbl").textContent = Math.round(state.overlay.h);
+    $("ovRotLbl").textContent = Math.round(state.overlay.rot) + "°";
+    $("ovScale").value = String(Math.round(state.overlay.scale * 100));
+    $("ovW").value = String(Math.round(state.overlay.w));
+    $("ovH").value = String(Math.round(state.overlay.h));
+    $("ovRot").value = String(Math.round(state.overlay.rot));
+  }
+
+  function clientToImg(e) {
+    const r = cv.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width) * cv.width;
+    const y = ((e.clientY - r.top) / r.height) * cv.height;
+    return { x, y };
+  }
+
+  function dist(a, b) {
+    const dx = a.x - b.x, dy = a.y - b.y;
+    return Math.hypot(dx, dy);
+  }
+
+  function nearestPt(p, maxD = 12 / state.zoom) {
+    let best = -1, bd = maxD;
+    state.poly.forEach((q, i) => {
+      const d = dist(p, q);
+      if (d < bd) { bd = d; best = i; }
+    });
+    return best;
+  }
+
+  function polyBBox() {
+    if (!state.poly.length) return null;
+    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    for (const p of state.poly) {
+      x0 = Math.min(x0, p.x); y0 = Math.min(y0, p.y);
+      x1 = Math.max(x1, p.x); y1 = Math.max(y1, p.y);
+    }
+    return { x0, y0, x1, y1 };
+  }
+
+  function ensureAnchor() {
+    const bb = polyBBox();
+    if (!bb) return;
+    if (state.cx == null) state.cx = (bb.x0 + bb.x1) / 2;
+    if (state.anchorY == null) state.anchorY = bb.y0 + (bb.y1 - bb.y0) * 0.25;
+  }
+
+  function opennessCurve(n, seed = 7) {
+    let s = seed >>> 0;
+    const rnd = () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 0xffffffff; };
+    const keysT = [0], keysV = [0.28];
+    let t = 0, open = true;
+    while (t < n - 6) {
+      t += 3 + Math.floor(rnd() * 3);
+      keysV.push(open
+        ? [0.8, 1.0, 1.15, 1.3][Math.floor(rnd() * 4)]
+        : [0.25, 0.35, 0.5][Math.floor(rnd() * 3)]);
+      keysT.push(t);
+      open = !open;
+    }
+    keysT.push(n); keysV.push(0.28);
+    const out = new Float32Array(n);
+    for (let i = 0; i < n; i++) {
+      let k = 0;
+      while (k < keysT.length - 2 && keysT[k + 1] < i) k++;
+      const u0 = (i - keysT[k]) / Math.max(1e-6, keysT[k + 1] - keysT[k]);
+      const u = 0.5 - 0.5 * Math.cos(Math.PI * Math.min(1, Math.max(0, u0)));
+      out[i] = keysV[k] * (1 - u) + keysV[k + 1] * u;
+    }
+    out[0] = out[n - 1] = 0.28;
+    return out;
+  }
+
+  // --- skin fill + warp (canvas 2d) ---
+  function pointInPoly(x, y, poly) {
+    let inside = false;
+    for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+      const xi = poly[i].x, yi = poly[i].y;
+      const xj = poly[j].x, yj = poly[j].y;
+      const inter = ((yi > y) !== (yj > y)) &&
+        (x < (xj - xi) * (y - yi) / (yj - yi + 1e-9) + xi);
+      if (inter) inside = !inside;
+    }
+    return inside;
+  }
+
+  function dilateMask(mask, w, h, r) {
+    const out = new Uint8Array(w * h);
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        let on = 0;
+        for (let dy = -r; dy <= r && !on; dy++) {
+          for (let dx = -r; dx <= r; dx++) {
+            const xx = x + dx, yy = y + dy;
+            if (xx < 0 || yy < 0 || xx >= w || yy >= h) continue;
+            if (mask[yy * w + xx]) { on = 1; break; }
+          }
+        }
+        out[y * w + x] = on;
+      }
+    }
+    return out;
+  }
+
+  function buildBaseAndSprite() {
+    if (!state.host || state.poly.length < 3 || !state.closed) return null;
+    ensureAnchor();
+    const { w, h } = imgSize();
+    octx.clearRect(0, 0, w, h);
+    octx.drawImage(state.host, 0, 0);
+    const src = octx.getImageData(0, 0, w, h);
+    const data = src.data;
+
+    const mask = new Uint8Array(w * h);
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        if (pointInPoly(x + 0.5, y + 0.5, state.poly)) mask[y * w + x] = 1;
+      }
+    }
+    const fillM = dilateMask(mask, w, h, 6);
+    const sprM = dilateMask(mask, w, h, 1);
+
+    // sample cheek color near mouth
+    const bb = polyBBox();
+    let sx = Math.min(w - 8, Math.round(state.cx + (bb.x1 - bb.x0) * 0.55));
+    let sy = Math.round(state.anchorY + 8);
+    sx = Math.max(0, Math.min(w - 8, sx));
+    sy = Math.max(0, Math.min(h - 8, sy));
+    let sr = 0, sg = 0, sb = 0, sn = 0;
+    for (let y = sy; y < sy + 8; y++) {
+      for (let x = sx; x < sx + 8; x++) {
+        const i = (y * w + x) * 4;
+        if (data[i + 3] < 200) continue;
+        sr += data[i]; sg += data[i + 1]; sb += data[i + 2]; sn++;
+      }
+    }
+    if (sn < 4) { sr = 140; sg = 160; sb = 190; sn = 1; }
+    sr = Math.round(sr / sn); sg = Math.round(sg / sn); sb = Math.round(sb / sn);
+
+    const base = new ImageData(new Uint8ClampedArray(data), w, h);
+    const bd = base.data;
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        const mi = y * w + x;
+        if (!fillM[mi]) continue;
+        // soft edge
+        const a = sprM[mi] ? 0.95 : 0.7;
+        const i = mi * 4;
+        bd[i] = Math.round(bd[i] * (1 - a) + sr * a);
+        bd[i + 1] = Math.round(bd[i + 1] * (1 - a) + sg * a);
+        bd[i + 2] = Math.round(bd[i + 2] * (1 - a) + sb * a);
+      }
+    }
+
+    // sprite = original mouth pixels with alpha = sprM (and below anchor)
+    const sprite = new ImageData(new Uint8ClampedArray(data), w, h);
+    const sd = sprite.data;
+    const ay = state.anchorY;
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        const mi = y * w + x;
+        const i = mi * 4;
+        if (!sprM[mi] || y < ay) {
+          sd[i + 3] = 0;
+        }
+      }
+    }
+
+    const pad = 24;
+    const roi = {
+      x0: Math.max(0, Math.floor(bb.x0 - pad)),
+      x1: Math.min(w, Math.ceil(bb.x1 + pad)),
+      y0: Math.max(0, Math.floor(ay - 8)),
+      y1: Math.min(h, Math.ceil(bb.y1 + pad * 2)),
+    };
+
+    return { base, sprite, roi, w, h };
+  }
+
+  function warpOnto(base, sprite, roi, s, sMax) {
+    const { w, h } = imgSize();
+    const out = new ImageData(new Uint8ClampedArray(base.data), w, h);
+    const od = out.data;
+    const sd = sprite.data;
+    const cx = state.cx;
+    const ay = state.anchorY;
+    s = Math.max(0.2, Math.min(sMax, s));
+    const ww = Math.min(1.06, Math.max(0.9, 1 - 0.1 * (s - 0.9)));
+
+    for (let y = roi.y0; y < roi.y1; y++) {
+      for (let x = roi.x0; x < roi.x1; x++) {
+        if (y < ay) continue;
+        const srcY = ay + (y - ay) / s;
+        const srcX = cx + (x - cx) / ww;
+        if (srcY < ay) continue;
+        const x0 = Math.floor(srcX), y0 = Math.floor(srcY);
+        const x1 = x0 + 1, y1 = y0 + 1;
+        if (x0 < 0 || y0 < 0 || x1 >= w || y1 >= h) continue;
+        const fx = srcX - x0, fy = srcY - y0;
+        const sample = (xx, yy) => {
+          const i = (yy * w + xx) * 4;
+          return [sd[i], sd[i + 1], sd[i + 2], sd[i + 3]];
+        };
+        const a = sample(x0, y0), b = sample(x1, y0), c = sample(x0, y1), d = sample(x1, y1);
+        const lerp = (p, q, t) => p + (q - p) * t;
+        const r = lerp(lerp(a[0], b[0], fx), lerp(c[0], d[0], fx), fy);
+        const g = lerp(lerp(a[1], b[1], fx), lerp(c[1], d[1], fx), fy);
+        const bl = lerp(lerp(a[2], b[2], fx), lerp(c[2], d[2], fx), fy);
+        let al = lerp(lerp(a[3], b[3], fx), lerp(c[3], d[3], fx), fy) / 255;
+        if (s < 0.85) al *= 0.55 + 0.45 * ((s - 0.2) / 0.65);
+        if (al < 0.05) continue;
+        const i = (y * w + x) * 4;
+        od[i] = Math.round(od[i] * (1 - al) + r * al);
+        od[i + 1] = Math.round(od[i + 1] * (1 - al) + g * al);
+        od[i + 2] = Math.round(od[i + 2] * (1 - al) + bl * al);
+      }
+    }
+    return out;
+  }
+
+  function currentMouthImg(frameIdx) {
+    if (state.mouthFrames.length) {
+      const i = ((frameIdx % state.mouthFrames.length) + state.mouthFrames.length) % state.mouthFrames.length;
+      return state.mouthFrames[i];
+    }
+    return state.mouth;
+  }
+
+  function drawOverlayMouth(ctx2, s, frameIdx) {
+    const img = currentMouthImg(frameIdx == null ? state.frame : frameIdx);
+    if (!img) return;
+    ensureAnchor();
+    const sMax = +$("sMax").value;
+    const open = Math.max(0.2, Math.min(sMax, s));
+    let tw = state.overlay.w;
+    let th = state.overlay.h;
+    if (!state.mouthFrames.length) {
+      th = state.overlay.h * (0.55 + 0.45 * ((open - 0.2) / Math.max(0.01, sMax - 0.2)));
+    }
+    const cx = state.overlay.x || state.cx || imgSize().w / 2;
+    const ay = state.overlay.y || state.anchorY || imgSize().h * 0.4;
+    const rot = (state.overlay.rot || 0) * Math.PI / 180;
+    ctx2.save();
+    ctx2.translate(cx, ay + th / 2);
+    ctx2.rotate(rot);
+    // draw centered on pivot (mid of overlay box); top sits at -th/2 so ay is top when rot=0
+    ctx2.drawImage(img, -tw / 2, -th / 2, tw, th);
+    ctx2.restore();
+  }
+
+  /** Soft poly alpha 0..1 (luma of blurred white fill). Preserves feather. */
+  function softPolyAlpha(w, h, poly, softPx = 2.5) {
+    const hard = document.createElement("canvas");
+    hard.width = w; hard.height = h;
+    const hx = hard.getContext("2d");
+    hx.beginPath();
+    poly.forEach((p, i) => (i ? hx.lineTo(p.x, p.y) : hx.moveTo(p.x, p.y)));
+    hx.closePath();
+    hx.fillStyle = "#fff";
+    hx.fill();
+    const soft = document.createElement("canvas");
+    soft.width = w; soft.height = h;
+    const sx = soft.getContext("2d");
+    sx.filter = `blur(${softPx}px)`;
+    sx.drawImage(hard, 0, 0);
+    sx.filter = "none";
+    const data = sx.getImageData(0, 0, w, h).data;
+    const a = new Float32Array(w * h);
+    for (let i = 0, p = 0; i < a.length; i++, p += 4) a[i] = data[p] / 255;
+    return a;
+  }
+
+  /** Soft-key chroma green (and near-black checker voids) → alpha. Keeps original alpha if present. */
+  function applyChromaAndMask(rgba, w, h, maskAlpha, x0, y0, cw, ch) {
+    const out = new Uint8ClampedArray(cw * ch * 4);
+    for (let y = 0; y < ch; y++) {
+      for (let x = 0; x < cw; x++) {
+        const si = ((y0 + y) * w + (x0 + x)) * 4;
+        const di = (y * cw + x) * 4;
+        let r = rgba[si], g = rgba[si + 1], b = rgba[si + 2], a = rgba[si + 3] / 255;
+        // green screen soft key
+        const maxRB = Math.max(r, b);
+        if (g > 70 && g > maxRB + 25) {
+          const greenness = Math.min(1, (g - maxRB - 15) / 90);
+          a *= 1 - greenness;
+        }
+        const m = maskAlpha[(y0 + y) * w + (x0 + x)] || 0;
+        a *= m;
+        out[di] = r;
+        out[di + 1] = g;
+        out[di + 2] = b;
+        out[di + 3] = Math.round(Math.max(0, Math.min(1, a)) * 255);
+      }
+    }
+    return out;
+  }
+
+  function canvasFromRgba(rgba, cw, ch) {
+    const c = document.createElement("canvas");
+    c.width = cw;
+    c.height = ch;
+    c.getContext("2d").putImageData(new ImageData(rgba, cw, ch), 0, 0);
+    return c; // keep as canvas — preserves alpha (no JPEG-like flatten)
+  }
+
+  async function extractFromPoly() {
+    if (!state.extractFrames.length) {
+      setStat("Load an Extract GIF first.");
+      return;
+    }
+    if (!state.closed || state.poly.length < 3) {
+      setStat("Close a polygon on the extract GIF first.");
+      return;
+    }
+    const w = state.extractFrames[0].width;
+    const h = state.extractFrames[0].height;
+    const bb = polyBBox();
+    const pad = 4;
+    const x0 = Math.max(0, Math.floor(bb.x0 - pad));
+    const y0 = Math.max(0, Math.floor(bb.y0 - pad));
+    const x1 = Math.min(w, Math.ceil(bb.x1 + pad));
+    const y1 = Math.min(h, Math.ceil(bb.y1 + pad));
+    const cw = x1 - x0, ch = y1 - y0;
+    // light feather so edge alpha matches soft cut (not a hard box)
+    const maskAlpha = softPolyAlpha(w, h, state.poly, 2.2);
+
+    const imgs = [];
+    for (let i = 0; i < state.extractFrames.length; i++) {
+      const src = state.extractFrames[i];
+      const rgba = applyChromaAndMask(src.data, w, h, maskAlpha, x0, y0, cw, ch);
+      imgs.push(canvasFromRgba(rgba, cw, ch));
+      if (i % 12 === 0) setStat(`Extracting… ${i + 1}/${state.extractFrames.length}`);
+    }
+    state.mouthFrames = imgs;
+    state.mouth = imgs[0];
+    state.overlay.w = cw;
+    state.overlay.h = ch;
+    state.overlay.scale = 1;
+    state.overlay.rot = 0;
+    baseWH = { w: cw, h: ch };
+    state.overlay.x = (bb.x0 + bb.x1) / 2;
+    state.overlay.y = bb.y0;
+    if (state.host) {
+      state.view = "host";
+      resizeCanvas();
+      const { w: hw, h: hh } = imgSize();
+      state.overlay.x = hw * (state.overlay.x / w);
+      state.overlay.y = hh * (state.overlay.y / h);
+      const faceScale = hw / w;
+      state.overlay.w = cw * faceScale;
+      state.overlay.h = ch * faceScale;
+      baseWH = { w: state.overlay.w, h: state.overlay.h };
+      state.overlay.scale = 1;
+    }
+    $("animMethod").value = "overlay";
+    $("nFrames").value = String(imgs.length);
+    $("framesLbl").textContent = String(imgs.length);
+    syncSizeLabels();
+    updateStat();
+    render(null);
+    setStat(`Extracted ${imgs.length} frames (${cw}×${ch}) with soft alpha. Place / rotate / size → Play → Save GIF.`);
+  }
+
+  async function decodeGifFile(file) {
+    const tools = await waitGifTools();
+    if (!tools) throw new Error("GIF tools failed to load (need network)");
+    const buf = await file.arrayBuffer();
+    const gif = tools.parseGIF(buf);
+    const frames = tools.decompressFrames(gif, true);
+    const w = frames[0].dims.width;
+    const h = frames[0].dims.height;
+    const full = document.createElement("canvas");
+    full.width = w; full.height = h;
+    const fctx = full.getContext("2d");
+    fctx.clearRect(0, 0, w, h);
+    const out = [];
+    const delays = [];
+    for (const fr of frames) {
+      const { left, top, width: fw, height: fh } = {
+        left: fr.dims.left, top: fr.dims.top, width: fr.dims.width, height: fr.dims.height,
+      };
+      const patch = new ImageData(new Uint8ClampedArray(fr.patch), fw, fh);
+      // disposal: simplistic — draw patch onto canvas
+      if (fr.disposalType === 2) {
+        fctx.clearRect(left, top, fw, fh);
+      }
+      const tmp = document.createElement("canvas");
+      tmp.width = fw; tmp.height = fh;
+      tmp.getContext("2d").putImageData(patch, 0, 0);
+      fctx.drawImage(tmp, left, top);
+      out.push(fctx.getImageData(0, 0, w, h));
+      delays.push(Math.max(20, fr.delay || 40));
+    }
+    return { frames: out, delays, w, h };
+  }
+
+  async function saveAsGif() {
+    let name = ($("saveName").value || "talking_loop.gif").trim();
+    if (!name.toLowerCase().endsWith(".gif")) name += ".gif";
+    $("saveName").value = name;
+
+    if (!state.host) {
+      setStat("Load a host image first.");
+      return;
+    }
+    const tools = await waitGifTools();
+    if (!tools) {
+      setStat("GIF encoder failed to load (need network once).");
+      return;
+    }
+    stopPlay();
+    state.view = "host";
+    resizeCanvas();
+    refreshCaches();
+
+    const fps = +$("fps").value;
+    const delay = Math.round(1000 / fps);
+    const n = state.mouthFrames.length && $("animMethod").value === "overlay"
+      ? state.mouthFrames.length
+      : +$("nFrames").value;
+    state.openness = opennessCurve(n);
+    const { w, h } = imgSize();
+    const { GIFEncoder, quantize, applyPalette } = tools;
+    const gif = GIFEncoder();
+    setStat(`Encoding ${n} frames → ${name}…`);
+    state._exporting = true;
+
+    for (let i = 0; i < n; i++) {
+      const s = state.openness[i];
+      let imgData;
+      if ($("animMethod").value === "warp") {
+        if (!state.spriteCache) refreshCaches();
+        const { base, sprite, roi } = state.spriteCache;
+        imgData = warpOnto(base, sprite, roi, s, +$("sMax").value);
+      } else {
+        octx.clearRect(0, 0, w, h);
+        if (state.spriteCache && state.closed) octx.putImageData(state.spriteCache.base, 0, 0);
+        else octx.drawImage(state.host, 0, 0);
+        drawOverlayMouth(octx, s, i);
+        imgData = octx.getImageData(0, 0, w, h);
+      }
+      // gifenc quantize/applyPalette require RGBA (4 bytes/px) — RGB caused tiled glitch
+      const src = imgData.data;
+      const rgba = new Uint8Array(w * h * 4);
+      for (let p = 0; p < src.length; p += 4) {
+        const a = src[p + 3] / 255;
+        // composite transparent host pixels onto green screen
+        rgba[p] = Math.round(src[p] * a);
+        rgba[p + 1] = Math.round(src[p + 1] * a + 178 * (1 - a));
+        rgba[p + 2] = Math.round(src[p + 2] * a);
+        rgba[p + 3] = 255;
+      }
+      const palette = quantize(rgba, 256);
+      const index = applyPalette(rgba, palette);
+      gif.writeFrame(index, w, h, {
+        palette,
+        delay: Math.max(20, delay),
+        // first frame needs full palette; later frames reuse
+        first: i === 0,
+      });
+      if (i % 8 === 0) setStat(`Encoding… ${i + 1}/${n}`);
+    }
+    gif.finish();
+    state._exporting = false;
+    const bytes = gif.bytes();
+    const blob = new Blob([bytes], { type: "image/gif" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    a.click();
+    setStat(`Saved ${name} (${n} frames @ ${fps}fps, ${w}×${h})`);
+    render(null);
+  }
+
+  function render(frameImg) {
+    const { w, h } = imgSize();
+    ctx.clearRect(0, 0, w, h);
+    if (frameImg) {
+      ctx.putImageData(frameImg, 0, 0);
+    } else if (state.view === "extract" && state.extractFrames.length) {
+      const fi = Math.min(state.frame, state.extractFrames.length - 1);
+      ctx.putImageData(state.extractFrames[fi], 0, 0);
+    } else if (state.host) {
+      ctx.drawImage(state.host, 0, 0);
+      // preview overlay when idle
+      if (!state.playing && (state.mouth || state.mouthFrames.length) && $("animMethod").value === "overlay") {
+        drawOverlayMouth(ctx, 1.0, 0);
+      }
+    } else {
+      ctx.fillStyle = "#222";
+      ctx.fillRect(0, 0, w, h);
+      return;
+    }
+
+    // guides (not while exporting)
+    if (!state._exporting) {
+      // poly
+      if (state.poly.length) {
+        ctx.beginPath();
+        state.poly.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+        if (state.closed) ctx.closePath();
+        ctx.strokeStyle = "#3dd68c";
+        ctx.lineWidth = 1.5 / state.zoom;
+        ctx.stroke();
+        if (state.closed) {
+          ctx.fillStyle = "rgba(61,214,140,0.12)";
+          ctx.fill();
+        }
+        state.poly.forEach((p, i) => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 4 / state.zoom, 0, Math.PI * 2);
+          ctx.fillStyle = i === 0 ? "#f0a030" : "#3dd68c";
+          ctx.fill();
+        });
+      }
+      if (state.cx != null && state.anchorY != null) {
+        ctx.strokeStyle = "#e85d5d";
+        ctx.lineWidth = 1.5 / state.zoom;
+        const s = 10 / state.zoom;
+        ctx.beginPath();
+        ctx.moveTo(state.cx - s, state.anchorY);
+        ctx.lineTo(state.cx + s, state.anchorY);
+        ctx.moveTo(state.cx, state.anchorY - s);
+        ctx.lineTo(state.cx, state.anchorY + s);
+        ctx.stroke();
+      }
+      if (state.mouth && state.mode === "overlay") {
+        const bb = polyBBox();
+        if (bb) {
+          ctx.strokeStyle = "#6ea8fe";
+          ctx.strokeRect(
+            (state.overlay.x || state.cx) - 40,
+            (state.overlay.y || state.anchorY),
+            80, 40
+          );
+        }
+      }
+    }
+  }
+
+  function refreshCaches() {
+    state.baseCache = null;
+    state.spriteCache = null;
+    if (state.closed && state.poly.length >= 3) {
+      const pack = buildBaseAndSprite();
+      if (pack) {
+        state.baseCache = pack.base;
+        state.spriteCache = pack;
+      }
+    }
+    updateStat();
+  }
+
+  function updateStat() {
+    const { w, h } = imgSize();
+    const lines = [
+      `image: ${w}×${h}`,
+      `poly: ${state.poly.length} pts ${state.closed ? "(closed)" : "(open)"}`,
+      `cx: ${state.cx != null ? state.cx.toFixed(1) : "—"}  anchorY: ${state.anchorY != null ? state.anchorY.toFixed(1) : "—"}`,
+      `mode: ${state.mode}  anim: ${$("animMethod").value}`,
+      `view: ${state.view}`,
+      state.extractFrames.length ? `extract GIF: ${state.extractFrames.length} frames` : "extract GIF: none",
+      state.mouthFrames.length
+        ? `overlay seq: ${state.mouthFrames.length} frames`
+        : state.mouth
+          ? `overlay: still (${state.mouth.naturalWidth}×${state.mouth.naturalHeight})`
+          : "overlay: none",
+      `overlay size: ${Math.round(state.overlay.w)}×${Math.round(state.overlay.h)}`,
+    ];
+    setStat(lines.join("\n"));
+  }
+
+  function paintFrame(i) {
+    const method = $("animMethod").value;
+    const sMax = +$("sMax").value;
+    const s = state.openness[i] ?? 0.28;
+    if (method === "warp") {
+      if (!state.spriteCache) refreshCaches();
+      if (!state.spriteCache) {
+        render(null);
+        return;
+      }
+      const { base, sprite, roi } = state.spriteCache;
+      const frame = warpOnto(base, sprite, roi, s, sMax);
+      render(frame);
+    } else {
+      const { w, h } = imgSize();
+      octx.clearRect(0, 0, w, h);
+      if (state.spriteCache && state.closed) {
+        octx.putImageData(state.spriteCache.base, 0, 0);
+      } else if (state.host) {
+        octx.drawImage(state.host, 0, 0);
+      }
+      // For frame sequences, index by i; openness unused for height
+      drawOverlayMouth(octx, s, i);
+      render(octx.getImageData(0, 0, w, h));
+    }
+  }
+
+  function stopPlay() {
+    state.playing = false;
+    if (state.timer) { clearInterval(state.timer); state.timer = null; }
+    render(null);
+  }
+
+  function startPlay() {
+    if (state.view === "extract") {
+      // scrub extract GIF
+      if (!state.extractFrames.length) return;
+      const fps = +$("fps").value;
+      const n = state.extractFrames.length;
+      state.frame = 0;
+      state.playing = true;
+      if (state.timer) clearInterval(state.timer);
+      state.timer = setInterval(() => {
+        state.frame = (state.frame + 1) % n;
+        render(null);
+      }, 1000 / fps);
+      return;
+    }
+    if (!state.host) return;
+    if ($("animMethod").value === "warp" && (!state.closed || state.poly.length < 3)) {
+      setStat("Close a mouth polygon first (Draw poly → Close).");
+      return;
+    }
+    if ($("animMethod").value === "overlay" && !state.mouth && !state.mouthFrames.length) {
+      setStat("Load/extract a mouth overlay first.");
+      return;
+    }
+    refreshCaches();
+    const fps = +$("fps").value;
+    const n = state.mouthFrames.length && $("animMethod").value === "overlay"
+      ? state.mouthFrames.length
+      : +$("nFrames").value;
+    state.openness = opennessCurve(n);
+    state.frame = 0;
+    state.playing = true;
+    if (state.timer) clearInterval(state.timer);
+    state.timer = setInterval(() => {
+      paintFrame(state.frame);
+      state.frame = (state.frame + 1) % n;
+    }, 1000 / fps);
+  }
+
+  // --- events ---
+  $("hostFile").addEventListener("change", (e) => {
+    const f = e.target.files?.[0];
+    if (!f) return;
+    const url = URL.createObjectURL(f);
+    const img = new Image();
+    img.onload = () => {
+      state.host = img;
+      state.view = "host";
+      stopPlay();
+      resizeCanvas();
+      render(null);
+      updateStat();
+      URL.revokeObjectURL(url);
+    };
+    img.src = url;
+  });
+
+  $("extractGif").addEventListener("change", async (e) => {
+    const f = e.target.files?.[0];
+    if (!f) return;
+    try {
+      setStat("Decoding GIF…");
+      const { frames, delays } = await decodeGifFile(f);
+      state.extractFrames = frames;
+      state.extractDelays = delays;
+      state.poly = [];
+      state.closed = false;
+      state.cx = null;
+      state.anchorY = null;
+      state.view = "extract";
+      state.frame = 0;
+      stopPlay();
+      resizeCanvas();
+      render(null);
+      setStat(`Extract GIF loaded: ${frames.length} frames ${frames[0].width}×${frames[0].height}. Draw poly on the mouth, then Extract.`);
+    } catch (err) {
+      setStat("GIF decode failed: " + (err.message || err));
+    }
+  });
+
+  $("viewHost").onclick = () => {
+    if (!state.host) { setStat("Load a host PNG first."); return; }
+    state.view = "host";
+    stopPlay();
+    resizeCanvas();
+    render(null);
+    updateStat();
+  };
+  $("viewExtract").onclick = () => {
+    if (!state.extractFrames.length) { setStat("Load an Extract GIF first."); return; }
+    state.view = "extract";
+    stopPlay();
+    resizeCanvas();
+    render(null);
+    updateStat();
+  };
+  $("extractBtn").onclick = () => extractFromPoly();
+  $("saveGif").onclick = () => saveAsGif();
+  $("saveName").addEventListener("blur", () => {
+    let n = ($("saveName").value || "talking_loop.gif").trim();
+    if (!n.toLowerCase().endsWith(".gif")) n += ".gif";
+    $("saveName").value = n;
+  });
+
+  function placeOverlayDefault() {
+    ensureAnchor();
+    const img = state.mouth || state.mouthFrames[0];
+    if (state.cx != null) {
+      state.overlay.x = state.cx;
+      state.overlay.y = state.anchorY;
+    } else {
+      const { w, h } = imgSize();
+      state.overlay.x = w / 2;
+      state.overlay.y = h * 0.42;
+    }
+    if (img) {
+      const iw = img.naturalWidth || img.width || state.overlay.w;
+      const ih = img.naturalHeight || img.height || state.overlay.h;
+      state.overlay.w = iw;
+      state.overlay.h = ih;
+      baseWH = { w: iw, h: ih };
+    }
+    state.overlay.scale = 1;
+    state.overlay.rot = state.overlay.rot || 0;
+    syncSizeLabels();
+  }
+
+  $("mouthFile").addEventListener("change", (e) => {
+    const f = e.target.files?.[0];
+    if (!f) return;
+    state.mouthFrames = [];
+    const url = URL.createObjectURL(f);
+    const img = new Image();
+    img.onload = () => {
+      state.mouth = img;
+      placeOverlayDefault();
+      $("animMethod").value = "overlay";
+      updateStat();
+      render(null);
+      URL.revokeObjectURL(url);
+    };
+    img.src = url;
+  });
+
+  $("mouthSeq").addEventListener("change", async (e) => {
+    const files = [...(e.target.files || [])];
+    if (!files.length) return;
+    files.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+    const imgs = await Promise.all(files.map((f) => new Promise((resolve, reject) => {
+      const url = URL.createObjectURL(f);
+      const img = new Image();
+      img.onload = () => { URL.revokeObjectURL(url); resolve(img); };
+      img.onerror = reject;
+      img.src = url;
+    })));
+    state.mouthFrames = imgs;
+    state.mouth = imgs[0] || null;
+    placeOverlayDefault();
+    if (imgs[0]) {
+      const iw = imgs[0].naturalWidth || imgs[0].width;
+      const ih = imgs[0].naturalHeight || imgs[0].height;
+      baseWH = { w: iw, h: ih };
+      state.overlay.w = iw;
+      state.overlay.h = ih;
+      state.overlay.scale = 1;
+      syncSizeLabels();
+    }
+    $("animMethod").value = "overlay";
+    $("nFrames").value = String(imgs.length);
+    $("framesLbl").textContent = String(imgs.length);
+    updateStat();
+    render(null);
+    setStat(`Loaded ${imgs.length} mouth frames. Place overlay, then Play.`);
+  });
+
+  document.querySelectorAll(".mode-tabs button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      state.mode = btn.dataset.mode;
+      document.querySelectorAll(".mode-tabs button").forEach((b) => b.classList.toggle("active", b === btn));
+      const hints = {
+        draw: "Click to add polygon vertices (clockwise). Double-click or Enter to close.",
+        anchor: "Click or drag the red cross to set top-lip anchor (ANCHOR_Y) and CX.",
+        overlay: "Drag to place. Wheel = scale. Use Rotate slider to angle the mouth.",
+      };
+      $("modeHint").textContent = hints[state.mode];
+    });
+  });
+
+  cv.addEventListener("mousedown", (e) => {
+    if (!state.host && !state.extractFrames.length) return;
+    const p = clientToImg(e);
+    if (state.mode === "draw") {
+      if (e.shiftKey) {
+        const i = nearestPt(p, 14 / state.zoom);
+        if (i >= 0) {
+          state.poly.splice(i, 1);
+          state.closed = false;
+          refreshCaches();
+          render(null);
+        }
+        return;
+      }
+      const i = nearestPt(p, 10 / state.zoom);
+      if (i >= 0) {
+        state.drag = { type: "pt", i };
+        return;
+      }
+      if (!state.closed) {
+        state.poly.push(p);
+        if (state.poly.length === 1) {
+          state.cx = p.x;
+          state.anchorY = p.y;
+        }
+        render(null);
+        updateStat();
+      }
+    } else if (state.mode === "anchor") {
+      state.cx = p.x;
+      state.anchorY = p.y;
+      state.drag = { type: "anchor" };
+      refreshCaches();
+      render(null);
+      updateStat();
+    } else if (state.mode === "overlay") {
+      state.overlay.x = p.x;
+      state.overlay.y = p.y;
+      state.drag = { type: "overlay" };
+      render(null);
+    }
+  });
+
+  cv.addEventListener("mousemove", (e) => {
+    const p = clientToImg(e);
+    $("xyread").textContent = `${p.x.toFixed(1)}, ${p.y.toFixed(1)}`;
+    if (!state.drag) return;
+    if (state.drag.type === "pt") {
+      state.poly[state.drag.i] = p;
+      render(null);
+    } else if (state.drag.type === "anchor") {
+      state.cx = p.x;
+      state.anchorY = p.y;
+      render(null);
+    } else if (state.drag.type === "overlay") {
+      state.overlay.x = p.x;
+      state.overlay.y = p.y;
+      render(null);
+    }
+  });
+
+  window.addEventListener("mouseup", () => {
+    if (state.drag) {
+      state.drag = null;
+      refreshCaches();
+      updateStat();
+    }
+  });
+
+  cv.addEventListener("dblclick", (e) => {
+    e.preventDefault();
+    if (state.mode === "draw" && state.poly.length >= 3) {
+      state.closed = true;
+      ensureAnchor();
+      refreshCaches();
+      render(null);
+      updateStat();
+    }
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && state.mode === "draw" && state.poly.length >= 3) {
+      state.closed = true;
+      ensureAnchor();
+      refreshCaches();
+      render(null);
+      updateStat();
+    }
+    if (e.key === "z" && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      state.poly.pop();
+      state.closed = false;
+      refreshCaches();
+      render(null);
+    }
+  });
+
+  $("undoPt").onclick = () => {
+    state.poly.pop();
+    state.closed = false;
+    refreshCaches();
+    render(null);
+    updateStat();
+  };
+  $("clearPoly").onclick = () => {
+    state.poly = [];
+    state.closed = false;
+    state.cx = null;
+    state.anchorY = null;
+    refreshCaches();
+    render(null);
+    updateStat();
+  };
+  $("closePoly").onclick = () => {
+    if (state.poly.length >= 3) {
+      state.closed = true;
+      ensureAnchor();
+      refreshCaches();
+      render(null);
+      updateStat();
+    }
+  };
+  $("autoOval").onclick = () => {
+    if (!state.host && !state.extractFrames.length) return;
+    // click-drag style: use current bbox or default center oval
+    let bb = polyBBox();
+    if (!bb) {
+      const { w, h } = imgSize();
+      bb = { x0: w * 0.4, y0: h * 0.42, x1: w * 0.6, y1: h * 0.5 };
+    }
+    const cx = (bb.x0 + bb.x1) / 2, cy = (bb.y0 + bb.y1) / 2;
+    const rx = (bb.x1 - bb.x0) / 2, ry = (bb.y1 - bb.y0) / 2;
+    state.poly = [];
+    for (let i = 0; i < 12; i++) {
+      const a = (i / 12) * Math.PI * 2 - Math.PI / 2;
+      state.poly.push({ x: cx + Math.cos(a) * rx, y: cy + Math.sin(a) * ry });
+    }
+    state.closed = true;
+    state.cx = cx;
+    state.anchorY = cy - ry * 0.55;
+    refreshCaches();
+    render(null);
+    updateStat();
+  };
+
+  $("playBtn").onclick = startPlay;
+  $("stopBtn").onclick = stopPlay;
+
+  $("zoom").oninput = () => {
+    state.zoom = +$("zoom").value / 100;
+    $("zoomLbl").textContent = Math.round(state.zoom * 100) + "%";
+    resizeCanvas();
+  };
+  $("sMax").oninput = () => { $("sMaxLbl").textContent = $("sMax").value; };
+  $("fps").oninput = () => { $("fpsLbl").textContent = $("fps").value; };
+  $("nFrames").oninput = () => { $("framesLbl").textContent = $("nFrames").value; };
+
+  $("ovScale").oninput = () => {
+    const sc = +$("ovScale").value / 100;
+    state.overlay.scale = sc;
+    state.overlay.w = baseWH.w * sc;
+    state.overlay.h = baseWH.h * sc;
+    syncSizeLabels();
+    if (!state.playing) render(null);
+  };
+  $("ovW").oninput = () => {
+    const nw = +$("ovW").value;
+    if (state.overlay.lockAspect) {
+      const ratio = state.overlay.h / Math.max(1, state.overlay.w);
+      state.overlay.w = nw;
+      state.overlay.h = nw * ratio;
+    } else state.overlay.w = nw;
+    baseWH = { w: state.overlay.w / state.overlay.scale, h: state.overlay.h / state.overlay.scale };
+    syncSizeLabels();
+    if (!state.playing) render(null);
+  };
+  $("ovH").oninput = () => {
+    const nh = +$("ovH").value;
+    if (state.overlay.lockAspect) {
+      const ratio = state.overlay.w / Math.max(1, state.overlay.h);
+      state.overlay.h = nh;
+      state.overlay.w = nh * ratio;
+    } else state.overlay.h = nh;
+    baseWH = { w: state.overlay.w / state.overlay.scale, h: state.overlay.h / state.overlay.scale };
+    syncSizeLabels();
+    if (!state.playing) render(null);
+  };
+  $("ovLock").onclick = () => {
+    state.overlay.lockAspect = !state.overlay.lockAspect;
+    $("ovLock").classList.toggle("active", state.overlay.lockAspect);
+  };
+  $("ovFitPoly").onclick = () => {
+    const bb = polyBBox();
+    if (!bb) { setStat("Need a polygon to fit."); return; }
+    state.overlay.w = bb.x1 - bb.x0;
+    state.overlay.h = bb.y1 - bb.y0;
+    state.overlay.x = (bb.x0 + bb.x1) / 2;
+    state.overlay.y = bb.y0;
+    state.overlay.scale = 1;
+    baseWH = { w: state.overlay.w, h: state.overlay.h };
+    syncSizeLabels();
+    render(null);
+  };
+  $("ovRot").oninput = () => {
+    state.overlay.rot = +$("ovRot").value;
+    $("ovRotLbl").textContent = Math.round(state.overlay.rot) + "°";
+    if (!state.playing) render(null);
+  };
+  $("ovRotReset").onclick = () => {
+    state.overlay.rot = 0;
+    syncSizeLabels();
+    if (!state.playing) render(null);
+  };
+  // wheel to scale overlay in place mode
+  cv.addEventListener("wheel", (e) => {
+    if (state.mode !== "overlay") return;
+    e.preventDefault();
+    const sc = state.overlay.scale * (e.deltaY < 0 ? 1.06 : 0.94);
+    state.overlay.scale = Math.max(0.2, Math.min(3, sc));
+    state.overlay.w = baseWH.w * state.overlay.scale;
+    state.overlay.h = baseWH.h * state.overlay.scale;
+    syncSizeLabels();
+    if (!state.playing) render(null);
+  }, { passive: false });
+
+  $("exportCalib").onclick = () => {
+    if (!state.host || !state.closed) {
+      setStat("Need a closed polygon first.");
+      return;
+    }
+    ensureAnchor();
+    const { w, h } = imgSize();
+    const bb = polyBBox();
+    const calib = {
+      poly: state.poly.map((p) => [+p.x.toFixed(2), +p.y.toFixed(2)]),
+      anchor_y: +state.anchorY.toFixed(2),
+      cx: +state.cx.toFixed(2),
+      skin_sample: [
+        +(state.anchorY + 10).toFixed(2),
+        +(state.anchorY + 20).toFixed(2),
+        +(state.cx + 40).toFixed(2),
+        +(state.cx + 54).toFixed(2),
+      ],
+      box: [bb.y0 - 20, bb.y1 + 30, bb.x0 - 20, bb.x1 + 20].map((v) => +v.toFixed(2)),
+      roi: [bb.x0 - 16, bb.x1 + 16, state.anchorY - 10, bb.y1 + 40].map((v) => +v.toFixed(2)),
+      ref_size: [w, h],
+      s_max: +$("sMax").value,
+      notes: "from mouth_editor.html",
+    };
+    const blob = new Blob([JSON.stringify(calib, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "mouth_calib.json";
+    a.click();
+  };
+
+  $("exportPng").onclick = () => {
+    if (!state.host) return;
+    state._exporting = true;
+    if (state.playing) paintFrame(state.frame);
+    else if (state.spriteCache) paintFrame(0);
+    else render(null);
+    cv.toBlob((blob) => {
+      state._exporting = false;
+      render(null);
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "mouth_frame.png";
+      a.click();
+    });
+  };
+
+  $("exportZip").onclick = async () => {
+    if (!state.host) return;
+    if ($("animMethod").value === "warp" && (!state.closed || state.poly.length < 3)) {
+      setStat("Close a mouth polygon first.");
+      return;
+    }
+    if (typeof JSZip === "undefined") {
+      setStat("JSZip failed to load (need network once).");
+      return;
+    }
+    refreshCaches();
+    const n = +$("nFrames").value;
+    const sMax = +$("sMax").value;
+    state.openness = opennessCurve(n);
+    const zip = new JSZip();
+    const folder = zip.folder("frames");
+    setStat(`Exporting ${n} frames…`);
+    state._exporting = true;
+    const { w, h } = imgSize();
+    for (let i = 0; i < n; i++) {
+      const s = state.openness[i];
+      let imgData;
+      if ($("animMethod").value === "warp") {
+        const { base, sprite, roi } = state.spriteCache;
+        imgData = warpOnto(base, sprite, roi, s, sMax);
+      } else {
+        octx.clearRect(0, 0, w, h);
+        if (state.spriteCache) octx.putImageData(state.spriteCache.base, 0, 0);
+        else if (state.host) octx.drawImage(state.host, 0, 0);
+        drawOverlayMouth(octx, s, i);
+        imgData = octx.getImageData(0, 0, w, h);
+      }
+      octx.putImageData(imgData, 0, 0);
+      const blob = await new Promise((res) => off.toBlob(res, "image/png"));
+      folder.file(`f${String(i).padStart(3, "0")}.png`, blob);
+      if (i % 8 === 0) setStat(`Exporting… ${i + 1}/${n}`);
+    }
+    state._exporting = false;
+    const openTxt = Array.from(state.openness).map((v) => v.toFixed(3)).join("\n");
+    zip.file("openness.txt", openTxt);
+    const out = await zip.generateAsync({ type: "blob" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(out);
+    a.download = "mouth_frames.zip";
+    a.click();
+    setStat(`Exported ${n} frames → mouth_frames.zip`);
+    render(null);
+  };
+
+  syncSizeLabels();
+  resizeCanvas();
+  render(null);
+})();
+</script>
+</body>
+</html>

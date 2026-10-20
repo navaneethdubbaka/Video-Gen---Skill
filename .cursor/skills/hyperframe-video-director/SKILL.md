@@ -10,6 +10,8 @@ description: >
   style-matched short / reference-style video with narration. Also use when the
   user names a style pack such as insider-force-short, Insider Force style,
   Colibri/Calibri laptop AI short look, or clean-tech sticker short.
+  Also use when the user names greencode-video-gen, Green Code style, greencode
+  video gen, or a dark anime-host explainer Short.
   For standalone killer hook visuals from short hook voiceovers, use short-hooks instead.
 ---
 
@@ -47,14 +49,17 @@ Optional instructions: …
 10. **Motion + transitions + SFX are mandatory** (SFX volume **0.8**). See [references/motion-and-sfx.md](references/motion-and-sfx.md).
 11. **Relevant real images are mandatory.** Prefer stickers / UI / paper crops — not generic AI-brain stock. See [references/asset-research.md](references/asset-research.md).
 12. **Public figures & famous companies:** fetch entity images when named. See [references/entity-images.md](references/entity-images.md).
-13. **Visual quality (anti-slideshow):** every scene needs a style-pack `pattern` letter; ≥4 distinct patterns; no 3-in-a-row repeats; card patterns ≤50%; ≥1 kinetic `J` breath; **no double titles**; ≤2 lines of card body. See [references/visual-quality.md](references/visual-quality.md).
+13. **Visual quality (anti-slideshow):** every scene needs a style-pack `pattern` letter; ≥4 distinct patterns; no 3-in-a-row repeats; card patterns ≤50%; ≥1 kinetic `J` breath; **no double titles**; ≤2 lines of card body; **no top-heavy dead bands**; **phone-readable** type (no micro-text / rainbow metrics / paper dumps); **≤40%** full card+kinetic+karaoke stacks; sparse EP badges; karaoke = one pill above safe zone, no orphan fragments; hook visible at **t=0**. See [references/visual-quality.md](references/visual-quality.md).
 14. **Retention / growth:** scene 1 = pattern `A` or `B` (≤6 words, ≤3.5s); average scene ≤4s; CTA (`role: cta`, pattern `J`/`K`) inside the last 8s; note packaging title + first-frame. See [references/visual-quality.md](references/visual-quality.md) §9.
+15. **Post-render vision gate:** before promoting `final.mp4`, vision-inspect ≥8 frames and write `qa/visual-notes.md`. Fail on recurring top-heavy slides, micro-text, double titles, orphan karaoke, or blank open.
 
 ## Style packs
 
 | Pack | Load when user says… |
 | --- | --- |
 | [`insider-force-short`](styles/insider-force-short/SKILL.md) | Insider Force style, Colibri/Calibri short style, clean-tech sticker short, “style like that laptop AI video” |
+| [`greencode-video-gen`](styles/greencode-video-gen/SKILL.md) | greencode-video-gen, greencode video gen, Green Code style, light-studio anime-host explainer (VO-matched photos; host GIF @ 1x) |
+| [`host-mouth-talk`](../host-mouth-talk/SKILL.md) | talking mouth, animate mouth, batch host_stills → host_talking |
 
 On pack select: read the pack `SKILL.md`, copy its `style-spec.json` into the project, inspect its `refs/`, map scenes via its `scene-patterns.md`.
 
@@ -193,7 +198,7 @@ Each scene: narration window, concept, **`pattern` (A–K)**, **visual.search_qu
 Prefer `visual.type`: `photograph` | `screenshot` | `icon` | `video_clip`.  
 `text_only` for pattern `J` breaths (and ≤20% overall). Do **not** default to `generated_graphic` to skip research.
 
-**Visual quality + retention gate before Step 7:** ≥4 distinct patterns (≥6 scenes); no 3-in-a-row repeats; card patterns ≤50%; ≥1 `J` if duration ≥45s; no double titles; scene 1 = A/B hook ≤3.5s; avg scene ≤4s; CTA in last 8s; `packaging` title + first_frame_note. See [references/visual-quality.md](references/visual-quality.md).
+**Visual quality + retention gate before Step 7:** ≥4 distinct patterns (≥6 scenes); no 3-in-a-row repeats; card patterns ≤50%; ≥1 `J` if duration ≥45s; no double titles; scene 1 = A/B hook ≤3.5s; avg scene ≤4s; CTA in last 8s; `packaging` title + first_frame_note; plan ≤40% three-layer stacks; EP badge sparse. See [references/visual-quality.md](references/visual-quality.md).
 
 Do not leave `transition: hard_cut` on every scene. Mix `zoom-through`, `push-slide`, `crossfade`, `blur-crossfade`, `squeeze` with cuts. Every scene needs an `sfx` cue (`whoosh` / `pop` / `hit` / `rise`). See [references/motion-and-sfx.md](references/motion-and-sfx.md).
 
@@ -279,9 +284,9 @@ node <FACELESS>/scripts/transitions.mjs verify --storyboard ./STORYBOARD.md --in
 python <SKILL_DIR>/scripts/qa_report.py --project <PROJECT>
 ```
 
-Plus visual review per [references/qa-checklist.md](references/qa-checklist.md) against snapshots and style-spec.
+Plus visual review per [references/qa-checklist.md](references/qa-checklist.md) and [references/visual-quality.md](references/visual-quality.md) §10–15 against snapshots **and** the draft MP4 (extract ≥8 frames).
 
-On failure: fix scene → re-assemble → re-check → `renders/draft/vN.mp4`.
+Write `qa/visual-notes.md` (what failed / what passed). On failure: fix scene → re-assemble → re-check → `renders/draft/vN.mp4`.
 
 ---
 
@@ -291,8 +296,7 @@ On failure: fix scene → re-assemble → re-check → `renders/draft/vN.mp4`.
 npx hyperframes render --quality high --output renders/video.mp4
 ```
 
-(run inside `composition/hyperframes`). Copy to `<PROJECT>/renders/final/final.mp4`.
-
+(run inside `composition/hyperframes`). Copy to `<PROJECT>/renders/final/final.mp4` **only after** `qa/visual-notes.md` shows no recurring §10–15 fails.
 ---
 
 ## Configuration

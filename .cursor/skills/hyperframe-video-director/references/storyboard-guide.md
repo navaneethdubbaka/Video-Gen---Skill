@@ -8,8 +8,9 @@ For each meaningful narration window ask:
 
 1. What is being said?
 2. What concept is communicated?
-3. **Which style-pack `pattern` letter?** (`A`–`K` for insider-force-short). Required. Rotate — see [visual-quality.md](visual-quality.md).
-4. What **real visual** communicates it best? (photo / UI screenshot / sticker cutout / icon PNG — not invented SVG, not generic AI-brain stock)
+3. **Which style-pack `pattern` letter?** (`A`–`K` for insider-force-short / greencode-video-gen). Required. Rotate — see [visual-quality.md](visual-quality.md).
+3b. **If style pack is `greencode-video-gen`:** set `visual.host_expression` to a catalog id (`talk_emph`, `hang`, `point_up`, … — **never `shock`**) and `visual.host_asset` under `greencode/my_animations/host_stills/`. Use `null` host only for pattern `J`. Resolve with `scripts/resolve_host_expression.py`. See [styles/greencode-video-gen/character-catalog.md](../styles/greencode-video-gen/character-catalog.md).
+4. What **real visual** communicates it best? (photo / UI screenshot / sticker cutout / icon PNG — not invented SVG, not generic AI-brain stock). For greencode, the host GIF is separate from the graphic-stage `asset_path`.
 5. Does the reference style suggest a treatment (sticker, floating card, mockup, kinetic type)?
 6. Asset type — prefer: `photograph` | `screenshot` | `icon` | `video_clip` | `multiple`  
    Use `text_only` for pattern `J` breaths (and ≤20% otherwise).  
@@ -33,6 +34,7 @@ Before leaving Step 6, verify:
 - No letter repeats 3× consecutively
 - Card patterns `C`/`D`/`G`/`I` ≤ 50% of scenes
 - ≥1 `J` breath when total duration ≥ 45s
+- ≤ **40%** of scenes may combine a hero asset **and** mid `text.content` (three-layer stack proxy) — leave many scenes as pure `J`/`K`, or asset-only with karaoke off
 
 ### Retention / growth (gate)
 
@@ -42,6 +44,13 @@ Before leaving Step 6, verify:
 - Top-level `packaging` (or `analysis/packaging.json`): `title` + `first_frame_note`
 
 See [visual-quality.md](visual-quality.md) §9.
+
+### Composition / chrome (gate)
+
+- Plan **no double titles**: if the card has an H1, leave `text.content` empty (or the reverse)
+- Dense facts → split scenes or use pattern `B`/`H`/`J` — never a paper-paragraph card
+- Series/EP badge: at most one early scene (or CTA) — do not mark every scene for a corner chip
+- See [visual-quality.md](visual-quality.md) §10–15
 
 ## Visual field (required shape)
 

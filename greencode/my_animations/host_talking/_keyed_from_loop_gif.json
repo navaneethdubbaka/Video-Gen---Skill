@@ -1,0 +1,18 @@
+{
+  "sourced_from": "E:\\Video Gen Skill\\greencode\\my_animations\\host_talking_loop_gif",
+  "keyed_expressions": [
+    "celebrate",
+    "facepalm_lite",
+    "hang",
+    "lean_in",
+    "point_side",
+    "point_up",
+    "present",
+    "talk_emph",
+    "talk_loop",
+    "wave"
+  ],
+  "banned_skipped": [
+    "shock"
+  ]
+}

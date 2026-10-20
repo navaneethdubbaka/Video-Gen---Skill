@@ -45,6 +45,14 @@ python <SKILL_DIR>/scripts/qa_report.py --project <PROJECT>
 - [ ] Images not stretched
 - [ ] Animations not broken / stuck
 - [ ] No unexpected black or blank frames
+- [ ] **Not top-heavy:** hero + kinetic are a tight mid group; no giant empty band above karaoke ([visual-quality.md](visual-quality.md) §10)
+- [ ] **Phone-readable:** no micro-text cards, paper dumps, or rainbow multi-color metric cells (§11)
+- [ ] **No double titles** / paraphrase stacks (card H1 ≠ mid kinetic) (§2)
+- [ ] **Karaoke:** one slim pill; no orphan fragments; above bottom ~180px safe zone (§12)
+- [ ] **Chrome:** EP/series badge sparse (not every card); no half-clipped corner badges (§13)
+- [ ] **Recipe variety:** ≤40% scenes use full card+kinetic+karaoke stack (§14)
+- [ ] **t=0:** hook hero visible (not blank studio) (§15)
+- [ ] Stickers/icons read in 0.5s (no abstract unlabeled blobs)
 
 ## Style
 
@@ -62,10 +70,16 @@ Compare snapshots to `analysis/style-spec.json`:
 - [ ] Language of on-screen text matches VO (unless translation requested)
 - [ ] No copied reference footage/logos
 
+## Post-render vision (before promoting final)
+
+- [ ] Vision-inspect ≥8 frames across the MP4 / contact sheet
+- [ ] Write `qa/visual-notes.md` with pass/fail bullets
+- [ ] Do **not** promote `renders/final/final.mp4` while any §10–15 fail recurs
+
 ## Iteration
 
 ```text
-render_v1 → QA → fix → render_v2 → QA → final.mp4
+render_v1 → QA → vision notes → fix → render_v2 → QA → final.mp4
 ```
 
 Fix the specific failing scene; re-run assemble/check/snapshot; promote only when QA passes.

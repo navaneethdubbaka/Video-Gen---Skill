@@ -43,12 +43,15 @@ Or a folder of short clips: `Hook VO folder: ./hooks-vo/`
 2. **One VO → one standalone MP4.** Do not concat hooks together; do not attach a body by default.
 3. **3–4 variants.** If user gives 1–2 VOs, still produce distinct formulas (ask for more VO only if duration/topic is unclear).
 4. Each hook duration follows **that VO’s length** (prefer 1.5–5s; warn if >6s).
-5. On-screen text **≤ 6 words**, pattern **A or B**, curiosity/shock — not textbook titles.
+5. On-screen text **≤ 6 words total** (hero + badge + any text baked into the asset). Pattern **A or B**, curiosity/shock — not textbook titles. Text inside generated comparison cards still counts.
 6. Distinct `formula` per variant ([hook-formulas.md](references/hook-formulas.md)).
-7. VO is authoritative audio — never replace with TTS. Captions: romanize Telugu, karaoke highlight.
-8. SFX entrance at volume **0.8**. Seekable GSAP `window.__timelines` required.
+7. VO is authoritative audio — never replace with TTS. Captions: romanize Telugu; keep **thin** (one short line or punch-words) so karaoke does not bury the hero.
+8. SFX entrance at volume **0.8**. Seekable GSAP `window.__timelines` required. **≥2 visual beats** synced to VO claim words — not entrance + soft float only.
 9. Default canvas **9:16 1080×1920** + `insider-force-short` grammar unless user says otherwise.
 10. Output: `hooks/<run-id>/renders/hook-<id>.mp4` only (stitch-to-body is **optional**, separate ask).
+11. **Hook ≠ body scene.** No dual-column report cards, bullet lists, or “Parameter Efficiency”-style titles. Pattern B = giant number **with meaning**; Pattern A = one sticker. See [visual-quality.md](references/visual-quality.md).
+12. **Edtech default = clarity, not mystery.** For explainer / LLM / study VOs, promise a **knowledge contract** in 1–2s (mute-readable). Prefer myth-bust / knowledge-gap / countdown over bare `why?` open loops. See [edtech-hooks.md](references/edtech-hooks.md).
+13. **Mute-first + proof by 3s.** Hook claim in upper/mid frame by ~0.2s; a simple proof visual (vs chip / strike / sticker) by 3s. Bottom karaoke alone is not the hook.
 
 ## Skill root
 
@@ -71,7 +74,9 @@ Task Progress:
 ```
 
 Details: [references/workflow.md](references/workflow.md)  
-Formulas: [references/hook-formulas.md](references/hook-formulas.md)
+Formulas: [references/hook-formulas.md](references/hook-formulas.md)  
+Visual QA: [references/visual-quality.md](references/visual-quality.md)  
+Edtech hooks: [references/edtech-hooks.md](references/edtech-hooks.md)
 
 ---
 
@@ -148,7 +153,9 @@ Fill `hooks.json` ([schemas/hooks.schema.json](schemas/hooks.schema.json)):
 | `sfx` | `pop` or `hit` |
 | `why_it_stops_scroll` | one line |
 
-Sharpen on-screen wording; **do not change** what the VO claims.
+Sharpen on-screen wording; **do not change** what the VO claims.  
+Before locking recipes, run the **thumb test** in [visual-quality.md](references/visual-quality.md) and the **mute knowledge-contract** test in [edtech-hooks.md](references/edtech-hooks.md) (default for our niche).  
+For education topics, fill `knowledge_contract` + `proof_by_3s` on each hook.
 
 ---
 
@@ -156,7 +163,9 @@ Sharpen on-screen wording; **do not change** what the VO claims.
 
 One real image per hook (sticker cutout / UI crop / device for big number).  
 Prefer `/media-use` resolve + director `cache_asset.py` into `hooks/<run>/assets/`.  
-No generic crystal-brain stock. Pattern B may be type-led with a light device plate.
+No generic crystal-brain stock. Pattern B may be **type-led only** (no asset) or a light device plate.
+
+**Reject** AI “comparison cards”, charts with titles/bullets, dual winner/loser panels — those are body assets. Inspect for tofu/missing glyphs before wiring.
 
 ---
 
@@ -166,9 +175,9 @@ Under `variants/<id>/hyperframes/`:
 
 1. `npx hyperframes init … --non-interactive --example=blank`
 2. Single composition timed to VO duration; mount VO as voice track
-3. Visual: insider-force sticker or giant number; dual-tone ≤6 words
-4. Slim karaoke captions from transcript words (romanize Telugu)
-5. Entrance SFX @ 0.8; `window.__timelines[id]` seekable GSAP
+3. Visual: **only** sticker (A) or giant number (B); dual-tone ≤6 words — no stacked headline+report-card
+4. Thin karaoke / punch-word captions (romanize Telugu)
+5. Entrance SFX @ 0.8; `window.__timelines[id]` seekable GSAP; **≥2 VO-synced beats**
 6. Read `/hyperframes-animation` + `/motion-graphics` for pop/kinetic
 
 ---
@@ -186,10 +195,14 @@ Deliverable = these standalone files. **Stop here** unless user asks to stitch o
 
 ## Step 7 — QA + deliver
 
+Full checklist: [visual-quality.md](references/visual-quality.md).
+
 - [ ] Each MP4 audio = that hook VO (not silence, not TTS)
-- [ ] ≤6 words on screen; A/B pattern; distinct formulas
-- [ ] Pop/punch in first 0.5s; no watermark
-- [ ] Frame grab at t=0.4s → `qa/hN.jpg`
+- [ ] ≤6 words total (including text in asset); A/B pattern purity; distinct formulas
+- [ ] Pop in first 0.5s **and** a second beat mid-VO; no watermark; no tofu
+- [ ] Edtech: mute at 0s names the learning outcome (not bare “why?”)
+- [ ] Hook claim upper/mid by 0.2s; proof visual by 3s
+- [ ] Mute thumb test at t=0.4s → `qa/hN.jpg` (must read in 0.5s)
 
 | Hook | Formula | On-screen | File |
 | --- | --- | --- | --- |

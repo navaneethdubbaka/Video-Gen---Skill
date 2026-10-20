@@ -23,6 +23,7 @@ Use with `/hyperframe-video-director`. This pack **replaces Step 4 style analysi
 6. **Captions:** Telugu VO → Latin/English spellings (romanize, do not translate). Slim karaoke via [caption-skin.html](caption-skin.html) + `prepare_captions.py` — dual-tone in-frame type is primary on kinetic beats.
 7. **Anti-slideshow visual quality:** every scene sets `pattern` A–K; ≥4 distinct patterns; no 3-in-a-row repeats; card patterns C/D/G/I ≤50%; ≥1 `J` breath; no double titles; ≤2 lines card body; one accent color; sticker/UI/paper assets not generic AI stock. See [scene-patterns.md](scene-patterns.md) + [../../references/visual-quality.md](../../references/visual-quality.md).
 8. **Retention / growth:** scene 1 = A/B hook ≤3.5s ≤6 words; avg scene ≤4s; CTA (`role: cta`, J/K) in last 8s; packaging title + first-frame note.
+9. **Composition truth (from real Shorts QA):** no top-heavy postage-stamp cards; phone-readable type only; ≤40% scenes use full card+kinetic+karaoke stack; EP/series badge **sparse** (not every corner); karaoke = **one** pill above platform safe zone (no orphan fragments / split pills); hook visible at t=0. Vision-pass + `qa/visual-notes.md` before final.
 
 ## When to load
 

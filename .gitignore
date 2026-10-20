@@ -63,6 +63,7 @@ $RECYCLE.BIN/
 tmp/
 temp/
 .turbo/
+.tmp/
 
 # Ad-hoc media dropped at repo root (fixtures & style packs stay tracked)
 /*.mp4
@@ -87,3 +88,5 @@ scratch/
 *.part
 *.ytdl
 *.download
+Hooks/
+hooks/

@@ -1,0 +1,292 @@
+{
+  "version": 6,
+  "root": "greencode/my_animations",
+  "mode": "talking_primary",
+  "host_dir": "host_talking",
+  "playback": {
+    "mode": "talking_loop_plus_gsap_entrance",
+    "forbid_gif_webp_in_compose": false,
+    "prefer": "talking_loop.gif",
+    "fallback": "talking_loop.webp",
+    "still_dir": "host_stills",
+    "talking_dir": "host_talking",
+    "source_gif_dir": "host_talking_loop_gif",
+    "host_fps": 12,
+    "host_playback_rate": 1.0,
+    "forbid_time_stretch_host": true,
+    "note": "Prefer keyed talking_loop.gif at native 12fps (1x). Never speed GIFs to fit scene length. Light stage #EDEDED — host alpha, no black plate."
+  },
+  "chroma_key": {
+    "enabled": false,
+    "note": "Green removed offline. Transparent host on LIGHT stage. Do not chroma again; do not put host on a black rectangle."
+  },
+  "banned": [
+    "shock"
+  ],
+  "fallback_order": [
+    "talk_emph",
+    "talk_loop",
+    "idle_bob"
+  ],
+  "expressions": [
+    {
+      "id": "talk_loop",
+      "file": "host_talking/talk_loop/talking_loop.webp",
+      "tags": [
+        "talk"
+      ],
+      "facing": "right",
+      "preferred_patterns": [
+        "C",
+        "D"
+      ],
+      "still_file": "host_stills/talk_loop.png",
+      "file_gif": "host_talking/talk_loop/talking_loop.gif",
+      "loop": true,
+      "source": "host_talking_loop_gif"
+    },
+    {
+      "id": "talk_emph",
+      "file": "host_talking/talk_emph/talking_loop.webp",
+      "tags": [
+        "talk",
+        "emph"
+      ],
+      "facing": "center",
+      "preferred_patterns": [
+        "B",
+        "C",
+        "G",
+        "K"
+      ],
+      "still_file": "host_stills/talk_emph.png",
+      "file_gif": "host_talking/talk_emph/talking_loop.gif",
+      "loop": true,
+      "source": "host_talking_loop_gif"
+    },
+    {
+      "id": "point_up",
+      "file": "host_talking/point_up/talking_loop.webp",
+      "tags": [
+        "point"
+      ],
+      "facing": "right",
+      "preferred_patterns": [
+        "A",
+        "B",
+        "E"
+      ],
+      "still_file": "host_stills/point_up.png",
+      "file_gif": "host_talking/point_up/talking_loop.gif",
+      "loop": true,
+      "source": "host_talking_loop_gif"
+    },
+    {
+      "id": "point_side",
+      "file": "host_talking/point_side/talking_loop.webp",
+      "tags": [
+        "point"
+      ],
+      "facing": "right",
+      "preferred_patterns": [
+        "B",
+        "F",
+        "H"
+      ],
+      "still_file": "host_stills/point_side.png",
+      "file_gif": "host_talking/point_side/talking_loop.gif",
+      "loop": true,
+      "source": "host_talking_loop_gif"
+    },
+    {
+      "id": "think",
+      "file": "host_stills/think.png",
+      "tags": [
+        "think"
+      ],
+      "facing": "left",
+      "preferred_patterns": [
+        "G",
+        "I",
+        "D"
+      ],
+      "still_file": "host_stills/think.png",
+      "loop": false,
+      "note": "No keyed talking GIF yet \u2014 still fallback. Drop think_talking_loop.gif into host_talking_loop_gif and re-run key_talking_loop_gifs.py"
+    },
+    {
+      "id": "celebrate",
+      "file": "host_talking/celebrate/talking_loop.webp",
+      "tags": [
+        "celebrate",
+        "win"
+      ],
+      "facing": "center",
+      "preferred_patterns": [
+        "G",
+        "K",
+        "F"
+      ],
+      "still_file": "host_stills/celebrate.png",
+      "file_gif": "host_talking/celebrate/talking_loop.gif",
+      "loop": true,
+      "source": "host_talking_loop_gif"
+    },
+    {
+      "id": "shrug",
+      "file": "host_stills/shrug.png",
+      "tags": [
+        "shrug",
+        "fail"
+      ],
+      "facing": "center",
+      "preferred_patterns": [
+        "I"
+      ],
+      "still_file": "host_stills/shrug.png",
+      "loop": false,
+      "note": "No keyed talking GIF yet \u2014 still fallback. Drop shrug_talking_loop.gif into host_talking_loop_gif and re-run key_talking_loop_gifs.py"
+    },
+    {
+      "id": "hang",
+      "file": "host_talking/hang/talking_loop.webp",
+      "tags": [
+        "hang",
+        "hook"
+      ],
+      "facing": "center",
+      "preferred_patterns": [
+        "A"
+      ],
+      "still_file": "host_stills/hang.png",
+      "file_gif": "host_talking/hang/talking_loop.gif",
+      "loop": true,
+      "source": "host_talking_loop_gif"
+    },
+    {
+      "id": "idle_bob",
+      "file": "host_stills/idle_bob.png",
+      "tags": [
+        "idle"
+      ],
+      "facing": "center",
+      "preferred_patterns": [
+        "E"
+      ],
+      "still_file": "host_stills/idle_bob.png",
+      "loop": false,
+      "note": "No keyed talking GIF yet \u2014 still fallback. Drop idle_bob_talking_loop.gif into host_talking_loop_gif and re-run key_talking_loop_gifs.py"
+    },
+    {
+      "id": "wave",
+      "file": "host_talking/wave/talking_loop.webp",
+      "tags": [
+        "wave",
+        "hello",
+        "cta",
+        "outro"
+      ],
+      "facing": "center",
+      "preferred_patterns": [
+        "K",
+        "A"
+      ],
+      "still_file": "host_stills/wave.png",
+      "file_gif": "host_talking/wave/talking_loop.gif",
+      "loop": true,
+      "source": "host_talking_loop_gif"
+    },
+    {
+      "id": "cross_arms",
+      "file": "host_stills/cross_arms.png",
+      "tags": [
+        "skeptic",
+        "doubt",
+        "problem"
+      ],
+      "facing": "center",
+      "preferred_patterns": [
+        "I",
+        "F",
+        "G"
+      ],
+      "still_file": "host_stills/cross_arms.png",
+      "loop": false,
+      "note": "No keyed talking GIF yet \u2014 still fallback. Drop cross_arms_talking_loop.gif into host_talking_loop_gif and re-run key_talking_loop_gifs.py"
+    },
+    {
+      "id": "thumbs_up",
+      "file": "host_stills/thumbs_up.png",
+      "tags": [
+        "win",
+        "approve",
+        "soft_win"
+      ],
+      "facing": "center",
+      "preferred_patterns": [
+        "G",
+        "K",
+        "B"
+      ],
+      "still_file": "host_stills/thumbs_up.png",
+      "loop": false,
+      "note": "No keyed talking GIF yet \u2014 still fallback. Drop thumbs_up_talking_loop.gif into host_talking_loop_gif and re-run key_talking_loop_gifs.py"
+    },
+    {
+      "id": "lean_in",
+      "file": "host_talking/lean_in/talking_loop.webp",
+      "tags": [
+        "curious",
+        "insight",
+        "listen"
+      ],
+      "facing": "center",
+      "preferred_patterns": [
+        "C",
+        "D",
+        "E"
+      ],
+      "still_file": "host_stills/lean_in.png",
+      "file_gif": "host_talking/lean_in/talking_loop.gif",
+      "loop": true,
+      "source": "host_talking_loop_gif"
+    },
+    {
+      "id": "present",
+      "file": "host_talking/present/talking_loop.webp",
+      "tags": [
+        "present",
+        "showcase",
+        "show"
+      ],
+      "facing": "right",
+      "preferred_patterns": [
+        "C",
+        "H",
+        "F"
+      ],
+      "still_file": "host_stills/present.png",
+      "file_gif": "host_talking/present/talking_loop.gif",
+      "loop": true,
+      "source": "host_talking_loop_gif"
+    },
+    {
+      "id": "facepalm_lite",
+      "file": "host_talking/facepalm_lite/talking_loop.webp",
+      "tags": [
+        "fail",
+        "oops",
+        "embarrassed"
+      ],
+      "facing": "center",
+      "preferred_patterns": [
+        "I",
+        "A"
+      ],
+      "still_file": "host_stills/facepalm_lite.png",
+      "file_gif": "host_talking/facepalm_lite/talking_loop.gif",
+      "loop": true,
+      "source": "host_talking_loop_gif"
+    }
+  ]
+}

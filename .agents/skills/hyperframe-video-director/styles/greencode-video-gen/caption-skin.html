@@ -1,0 +1,167 @@
+<!--
+  Greencode Video Gen — karaoke caption skin (dark stage).
+
+  Hooks (do not rename): .caption-group / .caption-word + states .is-active / .is-spoken,
+  root data-composition-id="captions", timeline at window.__timelines["captions"].
+  State changes use gsap.set({className}) — never tl.call() (seek does not fire them).
+
+  Visual: SLIM dark pill on black stage. Active word = terminal green fill + near-black text.
+  Prefer in-frame white/green dual-tone on kinetic beats; this pill must not dominate.
+-->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+
+<style data-brand-tokens></style>
+
+<style>
+  #captions-root {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .caption-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+  }
+  .caption-stage {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: var(--cap-band-top, 1680px);
+    height: var(--cap-band-height, 220px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .caption-group {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+  }
+  .caption-pill {
+    max-width: 78%;
+    padding: 10px 22px 12px;
+    background: rgba(10, 10, 10, 0.72);
+    border-radius: 14px;
+    border: 1px solid rgba(57, 255, 20, 0.18);
+  }
+  .caption-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.08em 0.22em;
+    font-family: var(--font-display, "Space Grotesk"), "Helvetica Neue", sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 3.6vw, 44px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+  .caption-word {
+    display: inline-block;
+    padding: 0.02em 0.06em;
+    color: rgba(245, 245, 245, 0.35);
+    border-radius: 6px;
+  }
+  .caption-word.is-active {
+    color: #0a0a0a;
+    background: var(--cap-accent, #39ff14);
+    box-shadow: 0 0 0 0.05em var(--cap-accent, #39ff14);
+    transform: scale(1.04);
+  }
+  .caption-word.is-spoken {
+    color: rgba(245, 245, 245, 0.92);
+    background: transparent;
+    box-shadow: none;
+    transform: none;
+  }
+
+  @media (max-aspect-ratio: 9/16) {
+    .caption-pill { max-width: 86%; }
+    .caption-line { font-size: clamp(26px, 4.2vw, 40px); }
+  }
+</style>
+
+<div
+  id="captions-root"
+  data-composition-id="captions"
+  data-timeline-locked
+  data-start="0"
+  data-duration="0"
+  data-fps="30"
+  data-width="0"
+  data-height="0"
+>
+  <div class="caption-layer" aria-hidden="true">
+    <div id="caption-stage" class="caption-stage"></div>
+  </div>
+</div>
+
+<script>
+  var GROUPS = [];
+  var DURATION = 0;
+
+  (function () {
+    var stage = document.getElementById("caption-stage");
+
+    GROUPS.forEach(function (group, g) {
+      var groupEl = document.createElement("div");
+      groupEl.className = "caption-group";
+      groupEl.id = "caption-group-" + g;
+      var pill = document.createElement("div");
+      pill.className = "caption-pill";
+      var line = document.createElement("div");
+      line.className = "caption-line";
+      (group.words || []).forEach(function (w, i) {
+        var span = document.createElement("span");
+        span.className = "caption-word";
+        span.id = "caption-word-" + g + "-" + i;
+        span.textContent = String(w.text);
+        line.appendChild(span);
+      });
+      pill.appendChild(line);
+      groupEl.appendChild(pill);
+      stage.appendChild(groupEl);
+    });
+
+    window.__timelines = window.__timelines || {};
+    var tl = gsap.timeline({ paused: true });
+
+    GROUPS.forEach(function (group, g) {
+      var groupEl = document.getElementById("caption-group-" + g);
+      var words = group.words || [];
+      var next = GROUPS[g + 1];
+      var isLast = g === GROUPS.length - 1;
+      var start = Math.max(0, Number(group.start));
+      var end = isLast ? DURATION : Math.min(Number(next.start), Number(group.end) + 0.3);
+      if (end <= start) end = start + 0.01;
+
+      tl.set(groupEl, { opacity: 1 }, start);
+      tl.set(groupEl, { opacity: 0 }, end);
+
+      words.forEach(function (w, i) {
+        var el = document.getElementById("caption-word-" + g + "-" + i);
+        var at = Math.max(start, Number(w.start));
+        tl.set(el, { className: "caption-word" }, start);
+        tl.set(el, { className: "caption-word is-active" }, at);
+        tl.fromTo(el, { scale: 0.92 }, { scale: 1.06, duration: 0.14, ease: "back.out(2.4)" }, at);
+        if (i + 1 < words.length) {
+          var nextAt = Math.max(start, Number(words[i + 1].start));
+          tl.set(el, { className: "caption-word is-spoken" }, nextAt);
+        }
+      });
+      if (words.length) {
+        var lastEl = document.getElementById("caption-word-" + g + "-" + (words.length - 1));
+        var lastSpoken = Math.min(end, Number(words[words.length - 1].end) + 0.1);
+        tl.set(lastEl, { className: "caption-word is-spoken" }, lastSpoken);
+      }
+    });
+
+    tl.to({}, { duration: DURATION }, 0);
+    window.__timelines["captions"] = tl;
+  })();
+</script>

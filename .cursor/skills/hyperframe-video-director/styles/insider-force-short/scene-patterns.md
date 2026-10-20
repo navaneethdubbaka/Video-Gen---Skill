@@ -13,10 +13,14 @@ Match the narration concept, not the reference topic.
 6. **No double titles** (card H1 ≠ mid-frame headline).
 7. **≤2 lines** of body on any card; kinetic lines **2–6 words**.
 8. Palette: black/gray/white + **one** accent (`#5EFC8D`) — no rainbow pastels.
-9. **Hook:** scene 1 = **A or B** only, ≤6 words, ≤3.5s (`role: hook`).
+9. **Hook:** scene 1 = **A or B** only, ≤6 words, ≤3.5s (`role: hook`); visible at **t=0** (no blank open).
 10. **Pacing:** avg scene ≤4s; max 6s (7s only for `J`).
 11. **CTA:** last 8s = `J`/`K` with `role: cta` (follow / Part 2 / open loop).
-
+12. **No top-heavy slides:** hero ~38–55% frame height; tight card→headline gap; no giant empty band above karaoke.
+13. **Phone-readable cards:** max 2 metric cells; one accent; no paper-paragraph dumps; no rainbow stats.
+14. **Recipe cap:** ≤40% scenes may stack card + mid kinetic + visible karaoke; mix `A`/`B`/`E`/`F`/`H`/`J`/`K` with karaoke off/minimal.
+15. **EP badge sparse:** series chip ≤ once early OR on CTA — never every card corner.
+16. **Karaoke:** one slim pill, phrase-coherent windows, above bottom ~180px safe zone; no split green mini-pills.
 ## A — Hook sticker
 
 **When:** Opening claim, villain/surprise reaction, brand “didn’t see this coming”.  
@@ -84,7 +88,7 @@ Match the narration concept, not the reference topic.
 ## J — Pure kinetic type
 
 **When:** Emphasis lines, CTA speech, moral of story, **breathing beat**.  
-**Layout:** No hero asset; 2–4 centered lines; bold keywords (#111); trailing word gray (#8A).  
+**Layout:** No hero asset; 2–4 centered lines; bold keywords (#111); trailing word gray (#6B).  
 **Ref:** `refs/ref_11.jpg`  
 **Required** at least once per ≥45s video. Longer hold. Karaoke pill slim/optional — the type *is* the caption.
 
@@ -111,13 +115,17 @@ Never ship a pattern as a static PNG/HTML still.
 ## Caption recipe
 
 ```text
-In-frame (preferred for J / hooks):
-  [keyword bold #111] [support gray #8A]   ← 2–6 words
+In-frame (preferred for J / hooks / stickers):
+  [keyword bold #111] [support gray #6B]   ← 2–6 words; secondary ≥ #6B6B6B contrast
 
-Karaoke (support):
-  slim dark pill, lime .is-active — do not dominate the frame
+Karaoke (support — often OFF on J/A/B):
+  ONE slim dark pill; lime .is-active on the word INSIDE the pill
+  Never: orphan fragments (ikkada / gaa / lo alone)
+  Never: separate green mini-pill glued beside the dark pill
+  Keep above Reels/TikTok UI (bottom ~180px @1080×1920)
 
-Footer: EMPTY (no watermark)
+Chrome:
+  EP/series badge sparse; Footer EMPTY (no watermark)
 ```
 
 ## Suggested arc (~60–100s)

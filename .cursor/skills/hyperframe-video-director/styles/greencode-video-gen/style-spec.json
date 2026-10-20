@@ -1,0 +1,135 @@
+{
+  "style_pack": "greencode-video-gen",
+  "format": {
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "source_resolution_note": "reference was 16:9 3840x2160; pack targets 1080x1920 Shorts"
+  },
+  "pacing": {
+    "average_shot_duration": 2.5,
+    "cut_style": "hard_cut_mixed",
+    "cut_frequency": "high",
+    "scene_density": "dense",
+    "narration_driven_cuts": true,
+    "sound_driven_cuts": false
+  },
+  "typography": {
+    "style": "terminal kinetic + clean sans",
+    "font_characteristics": "heavy display for hooks (optionally pixel/mono); geometric sans for support; dual-tone near-black + terminal green on light stage",
+    "recommended_families": ["Space Grotesk", "JetBrains Mono", "Press Start 2P", "SF Pro", "Inter"],
+    "text_size": "large_display_for_hooks",
+    "position": "upper_mid_or_mid_center_above_host",
+    "caption_style": "dual_tone_kinetic_plus_slim_karaoke",
+    "emphasis": "keyword_weight",
+    "keyword_emphasis": true,
+    "dual_tone": {
+      "primary": "#111111",
+      "secondary": "#1DB954",
+      "rule": "Key nouns/verbs in near-black bold; accent words in terminal green. In-frame dual-tone is primary; karaoke pill is slim support."
+    },
+    "max_kinetic_words": 6,
+    "max_card_body_lines": 2,
+    "forbid_double_titles": true,
+    "forbid_rainbow_pastel_cards": true
+  },
+  "color": {
+    "palette": ["#EDEDED", "#F4F4F4", "#FFFFFF", "#111111", "#6B6B6B", "#39FF14", "#1DB954", "#E8E8E8"],
+    "background_treatment": "LIGHT studio gray/off-white (#EDEDED–#F4F4F4); optional subtle cool wash or soft vignette. NEVER near-black void stage.",
+    "contrast": "high_on_light",
+    "accent_usage": "single terminal green for keywords, list headers, UI chrome only",
+    "forbid_black_stage": true,
+    "forbid_black_host_plate": true
+  },
+  "imagery": {
+    "treatment": "host_gif_plus_graphic_stage",
+    "motion": "host_float_plus_graphic_pop",
+    "subject_positioning": "host_lower_left_graphic_upper_mid",
+    "uses_photographs": true,
+    "uses_screenshots": true,
+    "uses_illustrations": true,
+    "uses_icons": true,
+    "uses_diagrams": true,
+    "uses_charts": false,
+    "preferred_asset_types": [
+      "host_expression_gif",
+      "code_terminal_card",
+      "architecture_diagram_card",
+      "kinetic_type_on_light",
+      "entity_sticker_cutout",
+      "checklist_rows",
+      "narration_matched_photo"
+    ],
+    "host_catalog": "greencode/my_animations/catalog.json",
+    "host_chroma_key": null,
+    "script_match_required": true,
+    "forbid_generic_stock": true,
+    "asset_rule": "Every content image must depict what THAT scene's VO says. Search query = narration nouns. Vision-check before lock. No random AI-brain / abstract filler."
+  },
+  "motion_graphics": {
+    "zoom_behavior": "slow push-in on cards; punch-in on keyword reveals",
+    "pan_behavior": "rare",
+    "parallax": false,
+    "overlays": ["soft drop shadow under host", "optional faint light grid at ~3% opacity"],
+    "shapes": ["rounded light cards 12-20px radius", "monospace terminal panels on white/off-white", "circle icon wells"],
+    "borders": "1px #39FF14 hairlines on terminal cards; soft gray card edges",
+    "gradients": "none on canvas; soft shadow falloff only",
+    "blur": "none",
+    "shadows": "soft diffuse under host and cards (y+8..20, blur 30..60, opacity ~0.25)"
+  },
+  "transitions": {
+    "style": "punchy_mixed",
+    "common": ["cut", "zoom-through", "push-slide LEFT", "crossfade", "blur-crossfade"],
+    "min_non_cut_ratio": 0.4,
+    "sfx_required": true,
+    "default_sfx": ["whoosh", "pop", "hit", "rise"]
+  },
+  "audio": {
+    "voiceover_authoritative": true,
+    "sfx_on_boundaries": true,
+    "sfx_volume": 0.8,
+    "bgm": "optional light bed ducked under VO"
+  },
+  "hierarchy": {
+    "visual_hierarchy": "graphic/kinetic upper-mid → host lower-left → slim karaoke above safe zone → empty footer",
+    "emphasis_timing": "caption words land with stressed syllables; host expression swaps on scene boundaries"
+  },
+  "watermark": {
+    "enabled": false,
+    "forbidden_examples": [
+      "DNA helix channel mark",
+      "channel url footers",
+      "cloned Green Code character",
+      "GREENCODE //",
+      "PATTERN [A]",
+      "greencode video gen",
+      "greencode-video-gen on canvas"
+    ],
+    "footer_policy": "leave bottom 8% clear unless user supplies their own brand"
+  },
+  "host_playback": {
+    "entrance_only": true,
+    "forbid_infinite_yoyo": true,
+    "max_breathe_px": 6,
+    "max_same_expression_streak": 2,
+    "min_distinct_expressions_when_ge_8_scenes": 4,
+    "prefer_keyed_gif": true,
+    "prefer_keyed_webp": false,
+    "native_fps": 12,
+    "playback_rate": 1.0,
+    "forbid_time_stretch": true,
+    "forbid_speed_to_fit_scene": true,
+    "hold_after_one_loop": true,
+    "note": "Host GIF/WebP plays at native 12fps 1x. Never compress a 4–8s mouth loop into a 2s scene. Soft loop or freeze — do not speed up."
+  },
+  "compose": {
+    "forbid_concept_as_subtitle": true,
+    "forbid_shared_top_bar_template": true,
+    "max_hero_height_pct": 48,
+    "host_zone": "lower_left",
+    "stage_background": "#EDEDED",
+    "contract": "styles/greencode-video-gen/compose-alive.md"
+  },
+  "notes": "LIGHT studio greencode. Script-matched photos only. Host GIFs at native 1x (12fps keyed). No black stage. No GREENCODE/PATTERN chrome."
+}

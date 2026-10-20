@@ -12,3 +12,5 @@ Frozen visual grammars for `/hyperframe-video-director`. Selecting a pack **skip
 - Inspect pack `refs/` with vision before composing
 - Obey pack watermark / safety overrides
 - Still run VO transcription + storyboard + HyperFrames handoff from the parent skill
+
+| `greencode-video-gen` | greencode video gen, Green Code style, dark anime-host explainer | [greencode-video-gen/SKILL.md](greencode-video-gen/SKILL.md) |

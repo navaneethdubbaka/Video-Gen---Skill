@@ -33,6 +33,10 @@ Before building any HyperFrames HTML:
 
 Do **not** proceed to Step 8 compose until `qa_report.py` reports no `missing_image` / `too_many_text_only` / `pattern_diversity` errors.
 
+## Greencode pack (extra gate)
+
+When style pack is `greencode-video-gen`: every non-`J` scene image is audited against that scene’s VO line. Reject abstract AI-brain, neon mood, wrong brand, or decorative `</>` only. `narration_link` + vision glance test required before compose.
+
 ## What “relevant” means
 
 The image must depict what the **narration is talking about**, not a vague mood.
