@@ -76,17 +76,47 @@ temp/
 /*.m4a
 /*.aac
 /*.flac
+/*.gif
+/*.webp
 /reference.*
 /voiceover.*
+/talking_loop.gif
+/scratch_test_key.*
+/prompt.txt
 
 # Local video projects + ad-hoc scripts (never ship — skill only)
 videos/
 hooks/
 scratch/
+Hooks/
 
 # yt-dlp / download leftovers
 *.part
 *.ytdl
 *.download
-Hooks/
-hooks/
+
+# ---- Mouth / host pipeline junk (keep host_talking + host_stills + catalog) ----
+# QA contact sheets / poly crops from mouth calibration
+**/qa_crops/
+
+# Side-by-side QA stills
+qa-compare/
+greencode/my_animations/host_stills_audit/
+
+# Superseded host packs (catalog is talking_primary → host_talking/)
+greencode/my_animations/host/
+greencode/my_animations/host_keyed/
+greencode/my_animations/host_once/
+
+# Duplicate keyed copies next to green-screen sources (compose uses host_talking/)
+greencode/my_animations/host_talking_loop_gif/keyed/
+
+# Local greencode reference footage (not part of the skill)
+greencode/*.webm
+greencode/*.mp4
+greencode/*.mkv
+greencode/*.mov
+
+# Mouth overlay work folders (regenerable)
+greencode/my_animations/mouth_overlay/
+**/mouth_overlay/
